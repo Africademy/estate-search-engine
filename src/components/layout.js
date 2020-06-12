@@ -30,6 +30,7 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
       <Header />
+      {children}
     </>
   )
 }
