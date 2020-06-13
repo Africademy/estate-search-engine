@@ -1,0 +1,36 @@
+[
+  {
+    "key": 1,
+    "name": "Vistula Apartments",
+    "image": ["estate1", "estate2"],
+    "address": "ul. Pra 20",
+    "city": "Warsaw",
+    "prices": [
+      {
+        "type": "Rent",
+        "price": 1000
+      },
+      {
+        "type": "Sell",
+        "price": 250000
+      }
+    ]
+  },
+  {
+    "key": 2,
+    "name": "Golden Gate Valley",
+    "image": [],
+    "address": "ul. Pro 20",
+    "city": "Cracow",
+    "prices": [
+      {
+        "type": "Rent",
+        "price": 1200
+      },
+      {
+        "type": "Sell",
+        "price": 300000
+      }
+    ]
+  }
+]

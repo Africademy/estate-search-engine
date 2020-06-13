@@ -1,21 +1,30 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import {
   HeaderWrapper,
   Logo,
+  LogoSVG,
   Nav,
-  NavItem,
   Dropdown,
   Interaction,
   FavouritesIcon,
   AddAdvertBtn,
 } from "./header.styled"
 import Heart from "../icons/favourites"
+import Burger from "../burger/burger"
+import logo from "../../static/icons/location.svg"
 
 const Header = () => {
+  const [isMenuOpen, setMenu] = useState(false)
+
+  const handleMenu = () => {
+    setMenu(!isMenuOpen)
+  }
   return (
     <HeaderWrapper>
-      <Logo></Logo>
+      <Logo>
+        <LogoSVG src={logo} />
+      </Logo>
       <Dropdown></Dropdown>
       <Nav>
         <Link to="/buy">Buy</Link>
@@ -24,8 +33,9 @@ const Header = () => {
       </Nav>
       <Interaction>
         <FavouritesIcon>
-          <Heart />
+          <Heart height={"100%"} />
         </FavouritesIcon>
+        <Burger isMenuOpen={isMenuOpen} handleMenu={handleMenu} />
         <AddAdvertBtn>Add advertisement</AddAdvertBtn>
       </Interaction>
     </HeaderWrapper>
