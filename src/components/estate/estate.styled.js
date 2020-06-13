@@ -94,7 +94,7 @@ export const Image = styled.img`
   transition: 0.7s ease-in-out;
 `
 export const ControlBtns = styled.div`
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: auto;
   display: flex;

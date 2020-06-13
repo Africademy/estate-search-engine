@@ -7,7 +7,7 @@ const HomeOffers = () => {
   return (
     <HomeOffersWrapper>
       {JSONEstates.map(estate => {
-        return <Estate estate={estate} />
+        return <Estate key={estate.key} estate={estate} />
       })}
     </HomeOffersWrapper>
   )

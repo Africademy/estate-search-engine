@@ -40,82 +40,6 @@ export const SearchInput = styled.input`
     outline: none;
   }
 `
-export const Type = styled.p`
-  height: 100%;
-  color: #fff;
-  display: flex;
-  flex-flow: column;
-  -webkit-flex-flow: column;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  font-size: 1.2em;
-  border: none;
-  cursor: pointer;
-
-  :focus {
-    outline: none;
-  }
-
-  svg {
-    transform: rotate(${props => (props.toggleType ? "90deg" : 0)});
-  }
-`
-export const Switch = styled.input`
-  height: 30px;
-  width: 120px;
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: relative;
-  z-index: 0;
-
-  :focus {
-    outline: none;
-  }
-
-  :before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 40px;
-    border-radius: 50px;
-    background-color: ${colors.pink};
-    bottom: 0;
-    z-index: -1;
-  }
-  :after {
-    content: ${props => {
-      if (props.rent) {
-        return `
-          "Rent"
-        `
-      } else {
-        return `
-          "Sell"
-        `
-      }
-    }};
-    display: flex;
-    align-items: center;
-    padding: 10px 20px 10px;
-    width: max-content;
-    height: 40px;
-    position: absolute;
-    border-radius: 50px;
-    z-index: -1;
-    bottom: 0;
-    left: 0;
-    transition: 0.3s ease-in-out;
-    background-color: #fff;
-  }
-  :checked:after {
-    transform: translateX(65%);
-  }
-`
-export const SelectWrapper = styled.div`
-  display: flex;
-`
 export const Select = styled.input`
   width: 60px;
   height: 50px;
@@ -126,10 +50,6 @@ export const Select = styled.input`
     outline: none;
   }
 `
-export const ArrowIcon = styled.img`
-  transition: 0.3s ease-in-out;
-  transform: rotate(${props => (props.toggleType ? "-180deg" : 0)});
-`
 export const SearchBtn = styled.button`
   border: none;
   padding: 20px 40px 20px;
@@ -137,4 +57,35 @@ export const SearchBtn = styled.button`
   color: #fff;
   cursor: pointer;
   font-size: 1em;
+
+  &:focus {
+    outline: none;
+  }
+`
+export const ToggleAdvanced = styled.button`
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(67, 97, 238, 0.3);
+  transition: 0.3s ease-in-out;
+
+  svg {
+    transition: 0.3s ease-in-out;
+    transform: rotate(${props => (props.toggleAdvanced ? "90deg" : 0)});
+  }
+
+  :focus {
+    outline: none;
+  }
+  :hover {
+    transition: 0.3s ease-in-out;
+    background-color: rgba(67, 97, 238, 0.6);
+  }
 `

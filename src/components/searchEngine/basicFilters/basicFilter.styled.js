@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../../../../theme"
+import { colors } from "../../../theme"
 
 export const TypesWrapper = styled.section`
   height: 60%;
@@ -11,10 +11,31 @@ export const TypesWrapper = styled.section`
   justify-content: space-between;
   -webkit-justify-content: space-between;
   position: relative;
+  z-index: 5;
+`
+export const Type = styled.p`
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  font-size: 1.2em;
+  border: none;
+  cursor: pointer;
+
+  :focus {
+    outline: none;
+  }
+
+  svg {
+    transform: rotate(${props => (props.toggleType ? "90deg" : 0)});
+  }
 `
 export const Dropdown = styled.section`
   position: absolute;
-  width: 100%;
+  width: 120%;
   height: max-content;
   background-color: #ffffff;
   left: 0;
@@ -30,7 +51,43 @@ export const Dropdown = styled.section`
   padding: 1vw 0 1vw;
   transition: 0.3s ease-in-out;
   transform-origin: center 0;
-  transform: scale(${props => (props.toggleType ? 1 : 0)});
+  transform: scale(${props => (props.toggleState ? 1 : 0)});
+`
+export const PriceFilter = styled.div`
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
+  padding: 10px;
+  position: relative;
+`
+export const RangeOfPrice = styled.input`
+  position: relative;
+
+  :before {
+    content: ${props => props.price};
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`
+export const ApplyBtn = styled.button`
+  width: max-content;
+  padding: 10px 20px 10px;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: ${colors.pink};
+  color: #fff;
+  border: none;
+
+  :focus {
+    outline: none;
+  }
 `
 export const Title = styled.p`
   color: #fff;

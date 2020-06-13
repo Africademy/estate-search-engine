@@ -5,6 +5,7 @@
     "image": ["estate1", "estate2"],
     "address": "ul. Pra 20",
     "city": "Warsaw",
+    "type": "House",
     "prices": [
       {
         "type": "Rent",
@@ -22,6 +23,7 @@
     "image": [],
     "address": "ul. Pro 20",
     "city": "Cracow",
+    "type": "Flat",
     "prices": [
       {
         "type": "Rent",
@@ -30,6 +32,24 @@
       {
         "type": "Sell",
         "price": 300000
+      }
+    ]
+  },
+  {
+    "key": 3,
+    "name": "Urban Premium",
+    "image": [],
+    "address": "ul. Mazowiecka 120",
+    "city": "Warsaw",
+    "type": "Flat",
+    "prices": [
+      {
+        "type": "Rent",
+        "price": 1400
+      },
+      {
+        "type": "Sell",
+        "price": 500000
       }
     ]
   }
