@@ -15,6 +15,10 @@ export const InputsWrapper = styled.div`
   justify-content: space-between;
   position: relative;
 `
+export const InputWrapper = styled.div`
+  width: 45%;
+  height: 40px;
+`
 export const Dropdown = styled.ul`
   position: absolute;
   top: 100%;
@@ -26,10 +30,14 @@ export const Dropdown = styled.ul`
   transform: scale(0);
   transform-origin: 50% 0;
   padding: 2px 0 2px;
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
 `
+export const DropdownMax = styled(Dropdown)``
 export const MinInput = styled.input`
-  height: 40px;
-  width: 45%;
+  height: 100%;
+  width: 100%;
   border: 1px solid #a0a0a0;
   border-radius: 5px;
   padding: 10px;
@@ -40,9 +48,16 @@ export const MinInput = styled.input`
 `
 export const MaxInput = styled(MinInput)``
 
-export const Item = styled.li`
+export const Item = styled.button`
   list-style-type: none;
   line-height: 1.5em;
   padding: 0 0 0 5px;
   font-size: 1em;
+  border: none;
+  background: none;
+  text-align: left;
+
+  &:hover {
+    background-color: #ccc;
+  }
 `

@@ -1,9 +1,13 @@
 import React from "react"
-import { IllustrationWrapper } from "./homepageIllustration.styled"
+import { IllustrationWrapper, Accent } from "./homepageIllustration.styled"
+import { HeroText } from "../search/search.styled"
 
 const HomepageIllustration = () => {
   return (
     <IllustrationWrapper>
+      <HeroText>
+        Find your dream <Accent>home</Accent>
+      </HeroText>
       <svg
         height={250}
         xmlns="http://www.w3.org/2000/svg"

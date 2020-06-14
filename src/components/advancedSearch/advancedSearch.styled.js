@@ -3,6 +3,8 @@ import styled from "styled-components"
 export const AdvancedWrapper = styled.section`
   width: 100%;
   height: ${props => (props.toggleAdvanced ? "30vh" : 0)};
+  transform: scale(${props => (props.toggleAdvanced ? 1 : 0)});
+  transform-origin: 80% -30%;
   background-color: #ffffff;
   position: absolute;
   z-index: 0;

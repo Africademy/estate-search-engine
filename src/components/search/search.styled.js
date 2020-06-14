@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
+import { small } from "../breakpoints"
 import search from "../../static/icons/search.svg"
 
 export const SearchWrapper = styled.main`
@@ -13,6 +14,13 @@ export const SearchWrapper = styled.main`
   position: relative;
   z-index: 10;
 `
+export const HeroText = styled.h1`
+  font-size: 4.5em;
+  width: 40vw;
+  color: #fff;
+  left: 10vw;
+  top: 35%;
+`
 export const SearchBar = styled.section`
   width: 80%;
   height: 100px;
@@ -23,6 +31,22 @@ export const SearchBar = styled.section`
   align-items: center;
   padding: 0 15px 0;
   position: relative;
+
+  @media all and (max-width: ${small}) {
+    width: 90%;
+    height: 70vh;
+    flex-flow: column;
+    padding: 10px;
+  }
+`
+export const Filters = styled.section`
+  display: flex;
+  @media all and (max-width: ${small}) {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 20px;
+  }
 `
 export const SearchInput = styled.input`
   height: 60%;
@@ -38,6 +62,11 @@ export const SearchInput = styled.input`
 
   :focus {
     outline: none;
+  }
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    height: 60px;
   }
 `
 export const Select = styled.input`
@@ -61,6 +90,9 @@ export const SearchBtn = styled.button`
   &:focus {
     outline: none;
   }
+  @media all and (max-width: ${small}) {
+    width: 100%;
+  }
 `
 export const ToggleAdvanced = styled.button`
   height: 40px;
@@ -75,6 +107,7 @@ export const ToggleAdvanced = styled.button`
   cursor: pointer;
   background-color: rgba(67, 97, 238, 0.3);
   transition: 0.3s ease-in-out;
+  position: relative;
 
   svg {
     transition: 0.3s ease-in-out;
@@ -87,5 +120,18 @@ export const ToggleAdvanced = styled.button`
   :hover {
     transition: 0.3s ease-in-out;
     background-color: rgba(67, 97, 238, 0.6);
+  }
+
+  @media all and (max-width: ${small}) {
+    justify-self: end;
+
+    &:before {
+      content: "Advanced";
+      display: block;
+      position: absolute;
+      color: #fff;
+      font-size: 1.2em;
+      right: 130%;
+    }
   }
 `

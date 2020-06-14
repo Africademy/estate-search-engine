@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../../theme"
+import { small } from "../../breakpoints"
 
 export const TypesWrapper = styled.section`
   height: 60%;
@@ -12,6 +13,10 @@ export const TypesWrapper = styled.section`
   -webkit-justify-content: space-between;
   position: relative;
   z-index: 5;
+
+  @media all and (max-width: ${small}) {
+    width: 80%;
+  }
 `
 export const Type = styled.p`
   height: 100%;

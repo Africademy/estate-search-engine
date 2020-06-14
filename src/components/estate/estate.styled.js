@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { small } from "../breakpoints"
 
 export const EstateContent = styled.section`
   width: 90%;
@@ -20,6 +21,10 @@ export const EstateContent = styled.section`
   justify-content: space-between;
   -webkit-justify-content: space-between;
   transition: 0.3s ease-in-out;
+
+  @media all and (max-width: ${small}) {
+    width: 95%;
+  }
 `
 export const EstateWrapper = styled.div`
   width: 100%;
@@ -39,6 +44,10 @@ export const EstateWrapper = styled.div`
       0 39px 80px -6px rgba(0, 0, 0, 0.1);
 
     transition: 0.3s ease-in-out;
+  }
+
+  @media all and (max-width: ${small}) {
+    height: 45vh;
   }
 `
 export const LeftBtn = styled.button`

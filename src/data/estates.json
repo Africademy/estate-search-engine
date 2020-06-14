@@ -5,6 +5,7 @@
     "image": ["estate1", "estate2"],
     "address": "ul. Pra 20",
     "city": "Warsaw",
+    "district": "Śródmieście",
     "type": "House",
     "prices": [
       {
@@ -23,6 +24,7 @@
     "image": [],
     "address": "ul. Pro 20",
     "city": "Cracow",
+    "district": "Stare Miasto",
     "type": "Flat",
     "prices": [
       {
@@ -41,6 +43,7 @@
     "image": [],
     "address": "ul. Mazowiecka 120",
     "city": "Warsaw",
+    "district": "Wola",
     "type": "Flat",
     "prices": [
       {
