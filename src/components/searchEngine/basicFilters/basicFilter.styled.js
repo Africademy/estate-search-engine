@@ -18,7 +18,7 @@ export const TypesWrapper = styled.section`
     width: 80%;
   }
 `
-export const Type = styled.p`
+export const Type = styled.button`
   height: 100%;
   color: #fff;
   display: flex;
@@ -28,6 +28,7 @@ export const Type = styled.p`
   -webkit-justify-content: space-between;
   font-size: 1.2em;
   border: none;
+  background: none;
   cursor: pointer;
 
   :focus {
@@ -58,30 +59,31 @@ export const Dropdown = styled.section`
   transform-origin: center 0;
   transform: scale(${props => (props.toggleState ? 1 : 0)});
 `
+export const PriceDropdown = styled(Dropdown)`
+  width: 200%;
+`
 export const PriceFilter = styled.div`
   width: 100%;
-  height: 8vh;
+  height: auto;
   display: flex;
   flex-flow: column;
   -webkit-flex-flow: column;
-  padding: 10px;
   position: relative;
+  padding: 0 10px 0;
+  align-items: flex-end;
 `
-export const RangeOfPrice = styled.input`
-  position: relative;
-
-  :before {
-    content: ${props => props.price};
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+export const InputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+  margin: 0 0 10px;
 `
 export const ApplyBtn = styled.button`
   width: max-content;
   padding: 10px 20px 10px;
-  position: absolute;
   bottom: 0;
   right: 10px;
   cursor: pointer;
@@ -134,4 +136,11 @@ export const Item = styled.button`
   :focus {
     outline: none;
   }
+`
+export const Separator = styled.span`
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  margin: 0 10px 0;
 `

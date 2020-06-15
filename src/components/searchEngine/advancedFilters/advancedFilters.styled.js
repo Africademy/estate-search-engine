@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import dollar from "../../../static/icons/dollar.svg"
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -40,9 +41,13 @@ export const MinInput = styled.input`
   width: 100%;
   border: 1px solid #a0a0a0;
   border-radius: 5px;
-  padding: 10px;
+  padding: 10px 10px 10px 25px;
+  background-image: url(${dollar});
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: 3px center;
 
-  :focus ~ ${Dropdown} {
+  &:focus ~ ${Dropdown} {
     transform: scale(1);
   }
 `

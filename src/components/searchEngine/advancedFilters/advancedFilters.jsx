@@ -29,7 +29,7 @@ const AdvancedFilter = ({
       <Label>Amount of rooms</Label>
       <InputsWrapper>
         <InputWrapper>
-          <MinInput placeholder="min" value={minRooms} />
+          <MinInput placeholder="min" readOnly value={minRooms} />
           {dropdown ? (
             <Dropdown>
               {rooms.map(room => {
@@ -47,7 +47,7 @@ const AdvancedFilter = ({
           ) : null}
         </InputWrapper>
         <InputWrapper>
-          <MaxInput placeholder="max" value={maxRooms} />
+          <MaxInput placeholder="max" readOnly value={maxRooms} />
           {dropdown ? (
             <DropdownMax>
               {rooms.map(room => {

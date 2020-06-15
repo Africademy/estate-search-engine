@@ -1,14 +1,17 @@
-import React, { useState } from "react"
+import React from "react"
 import {
   Dropdown,
+  PriceDropdown,
   Item,
   Title,
   TypesWrapper,
   Type,
   PriceFilter,
-  RangeOfPrice,
   ApplyBtn,
+  InputWrapper,
+  Separator,
 } from "./basicFilter.styled"
+import { MaxInput, MinInput } from "../advancedFilters/advancedFilters.styled"
 
 const BasicFilter = ({
   chooseType,
@@ -17,38 +20,56 @@ const BasicFilter = ({
   toggleState,
   title,
   insert,
+  openPrice,
   applyPrice,
-  handleRangeChange,
-  price,
+  minPrice,
+  maxPrice,
+  handlePrice,
+  name,
 }) => {
   return (
     <TypesWrapper>
-      <Type onClick={() => handleToggle()}>
-        <Title>{title}</Title>
-        {chooseType}
-        <Dropdown toggleState={toggleState}>
-          {array !== null ? (
-            array.map(item => {
+      {array !== null ? (
+        <Type onClick={() => handleToggle()}>
+          <Title>{title}</Title>
+          {chooseType}
+          <Dropdown toggleState={toggleState}>
+            {array.map(item => {
               return (
-                <Item onClick={e => insert(e)} key={item.key}>
+                <Item name={name} onClick={e => insert(e)} key={item.key}>
                   {item.name}
                 </Item>
               )
-            })
-          ) : (
+            })}
+            )}
+          </Dropdown>
+        </Type>
+      ) : (
+        <Type>
+          <Title onClick={() => openPrice()}>{title}</Title>
+          {chooseType}
+          <PriceDropdown toggleState={toggleState}>
             <PriceFilter>
-              <RangeOfPrice
-                price={price}
-                onChange={e => handleRangeChange(e)}
-                min="0"
-                max="1000"
-                type="range"
-              />
-              <ApplyBtn onClick={() => applyPrice()}>Apply {price}</ApplyBtn>
+              <InputWrapper>
+                <MinInput
+                  onChange={e => handlePrice(e)}
+                  name="minPrice"
+                  value={minPrice}
+                  placeholder="min"
+                />
+                <Separator />
+                <MaxInput
+                  onChange={e => handlePrice(e)}
+                  name="maxPrice"
+                  value={maxPrice}
+                  placeholder="max"
+                />
+              </InputWrapper>
+              <ApplyBtn onClick={() => applyPrice()}>Apply</ApplyBtn>
             </PriceFilter>
-          )}
-        </Dropdown>
-      </Type>
+          </PriceDropdown>
+        </Type>
+      )}
     </TypesWrapper>
   )
 }

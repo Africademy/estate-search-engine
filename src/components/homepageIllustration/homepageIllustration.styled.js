@@ -23,7 +23,7 @@ export const Accent = styled.span`
     left: 0;
     width: 40%;
     height: 10px;
-    background-color: ${colors.pink};
+    background-color: ${colors.darkBlue};
     transition: 0.3s ease-in-out;
   }
   &:hover:after {

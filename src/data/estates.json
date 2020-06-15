@@ -2,7 +2,16 @@
   {
     "key": 1,
     "name": "Vistula Apartments",
-    "image": ["estate1", "estate2"],
+    "images": [
+      {
+        "key": 1,
+        "img": "estate1"
+      },
+      {
+        "key": 2,
+        "img": "estate2"
+      }
+    ],
     "address": "ul. Pra 20",
     "city": "Warsaw",
     "district": "Śródmieście",
@@ -16,12 +25,27 @@
         "type": "Sell",
         "price": 250000
       }
-    ]
+    ],
+    "advantages": {
+      "garage": true,
+      "TV": true,
+      "AGD": true,
+      "windows": "Plastic"
+    }
   },
   {
     "key": 2,
     "name": "Golden Gate Valley",
-    "image": [],
+    "images": [
+      {
+        "key": 1,
+        "img": "estate3"
+      },
+      {
+        "key": 2,
+        "img": "estate4"
+      }
+    ],
     "address": "ul. Pro 20",
     "city": "Cracow",
     "district": "Stare Miasto",
@@ -35,12 +59,21 @@
         "type": "Sell",
         "price": 300000
       }
-    ]
+    ],
+    "advantages": {
+      "garage": true,
+      "TV": true,
+      "AGD": true,
+      "windows": "Plastic"
+    }
   },
   {
     "key": 3,
     "name": "Urban Premium",
-    "image": [],
+    "images": [
+      { "key": 1, "img": "estate5" },
+      { "key": 2, "img": "estate6" }
+    ],
     "address": "ul. Mazowiecka 120",
     "city": "Warsaw",
     "district": "Wola",
@@ -54,6 +87,12 @@
         "type": "Sell",
         "price": 500000
       }
-    ]
+    ],
+    "advantages": {
+      "garage": true,
+      "TV": true,
+      "AGD": true,
+      "windows": "Plastic"
+    }
   }
 ]

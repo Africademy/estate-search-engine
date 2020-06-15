@@ -3,9 +3,6 @@ import {
   EstateWrapper,
   EstateImageContainer,
   Image,
-  ControlBtns,
-  LeftBtn,
-  RightBtn,
   EstateContent,
   Name,
   Address,
@@ -15,22 +12,13 @@ import {
   AddToFavourites,
 } from "./estate.styled"
 import Heart from "../icons/favourites"
-import NavArrowLeft from "../icons/imageArrow"
 
 const Estate = ({ estate }) => {
   return (
     <EstateWrapper>
       <EstateImageContainer>
-        <ControlBtns>
-          <LeftBtn>
-            <NavArrowLeft height={"30px"} />
-          </LeftBtn>
-          <RightBtn>
-            <NavArrowLeft height={"30px"} />
-          </RightBtn>
-        </ControlBtns>
-        {estate.image.map(img => {
-          return <Image src={`./photos/${img}.jpeg`} />
+        {estate.images.map(img => {
+          return <Image key={img.key} src={`./photos/${img.img}.jpeg`} />
         })}
       </EstateImageContainer>
       <EstateContent>

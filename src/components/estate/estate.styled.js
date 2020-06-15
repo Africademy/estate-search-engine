@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import { small } from "../breakpoints"
 
+//TODO rwd for detailed mode
+
 export const EstateContent = styled.section`
   width: 90%;
   height: 50%;
@@ -50,27 +52,6 @@ export const EstateWrapper = styled.div`
     height: 45vh;
   }
 `
-export const LeftBtn = styled.button`
-  height: 40px;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  align-items: center;
-  -webkit-align-items: center;
-  cursor: pointer;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  //transform: translateX(-50px);
-  transition: 0.3s ease-in-out;
-`
-export const RightBtn = styled(LeftBtn)`
-  //transform: translateX(50px);
-  svg {
-    transform: rotate(180deg);
-  }
-`
 export const EstateImageContainer = styled.section`
   width: 100%;
   height: 60%;
@@ -82,15 +63,7 @@ export const EstateImageContainer = styled.section`
   overflow-y: hidden;
   position: relative;
 
-  :hover ${LeftBtn} {
-    transform: translateX(0);
-    transition: 0.3s ease-in-out;
-  }
-  :hover ${RightBtn} {
-    transform: translateX(0);
-    transition: 0.3s ease-in-out;
-  }
-  :hover img {
+  &:hover img {
     transition: 0.7s ease-in-out;
     transform: translateX(-100%);
   }
@@ -102,18 +75,18 @@ export const Image = styled.img`
   object-position: center center;
   transition: 0.7s ease-in-out;
 `
-export const ControlBtns = styled.div`
-  position: absolute;
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 5px 0;
-`
 export const Name = styled.h3`
   font-size: 1.7em;
 `
-export const Address = styled.p``
+export const Address = styled.p`
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+
+  svg {
+    margin: 0 5px 0 0;
+  }
+`
 export const Footer = styled.div`
   width: 100%;
   height: auto;

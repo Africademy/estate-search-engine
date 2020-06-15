@@ -2,7 +2,10 @@ import React, { Component, createRef } from "react"
 import {
   SearchWrapper,
   SearchBar,
+  InputWrapper,
   SearchInput,
+  SearchDropDown,
+  Result,
   SearchBtn,
   ToggleAdvanced,
   Filters,
@@ -11,7 +14,6 @@ import HomepageIllustration from "../homepageIllustration/homepageIllustration"
 import AdvancedSearch from "../advancedSearch/advancedSearch"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 import EstatesData from "../../data/estates.json"
-import arrowDown from "../../static/icons/nav-arrow-down.svg"
 
 class Search extends Component {
   constructor() {
@@ -25,9 +27,13 @@ class Search extends Component {
       togglePayment: false,
       togglePrice: false,
       toggleAdvanced: false,
+      toggleSearchDropdown: false,
+      estates: EstatesData,
+      found: null,
       minRooms: "",
       maxRooms: "",
-      price: 0,
+      minPrice: 0,
+      maxPrice: 0,
       types: [
         { key: 1, name: "Flat" },
         { key: 2, name: "House" },
@@ -53,33 +59,42 @@ class Search extends Component {
     this.type = createRef()
   }
   handleSearchInput = e => {
-    this.setState({ city: e.target.value })
+    const { estates } = this.state
+    this.setState({ city: e.target.value }, () => {
+      const foundedEstates = estates.filter(estate => {
+        return estate.city.includes(this.formatSearchInput())
+      })
+      this.setState({ found: foundedEstates })
+    })
   }
   toggleDropdown = () => {
     this.setState({ toggleType: !this.state.toggleType })
   }
-  insertEstate = e => {
-    this.setState({ chooseType: e.target.innerText })
-  }
-  insertPayment = e => {
-    this.setState({ choosePayment: e.target.innerText })
-  }
-  insertMinRoom = e => {
-    this.setState({ minRooms: e.target.innerText })
-  }
-  insertMaxRoom = e => {
-    this.setState({ maxRooms: e.target.innerText })
+  insertAttributes = e => {
+    this.setState({ [e.target.name]: e.target.innerText })
   }
   handleTransaction = () => {
     this.setState({
       togglePayment: !this.state.togglePayment,
     })
   }
-  handlePrice = () => {
-    this.setState({ togglePrice: !this.state.togglePrice })
+  openPrice = () => {
+    this.setState({ togglePrice: true })
+  }
+  handlePrice = e => {
+    this.setState(
+      {
+        [e.target.name]: e.target.value,
+      },
+      () => {
+        this.setState({
+          price: `${this.state.minPrice} - ${this.state.maxPrice}`,
+        })
+      }
+    )
   }
   applyPrice = () => {
-    this.setState({ togglePrice: !this.state.togglePrice })
+    this.setState({ togglePrice: false })
   }
   handleRangeChange = e => {
     this.setState({ price: e.target.value })
@@ -91,62 +106,93 @@ class Search extends Component {
     const { city } = this.state
     const capital = city.slice(0, 1).toUpperCase()
     const rest = city.slice(1, city.length).toLowerCase()
-    const fixed = capital.concat(rest)
-    return fixed
+    const search = capital.concat(rest)
+    return search
+  }
+  insertLocation = estate => {
+    this.setState({
+      city: `${estate.city}, ${estate.district}`,
+      toggleSearchDropdown: false,
+    })
   }
   handleSearch = () => {
-    const found = EstatesData.filter(estate => {
-      return estate.city === this.formatSearchInput()
+    const { estates, chooseType, city } = this.state
+    let res = estates.filter(estate => {
+      return `${estate.city}, ${estate.district}` === this.state.city
     })
-    if (this.state.chooseType !== "Choose...") {
-      const fed = found.filter(estate => {
-        return estate.type === this.state.chooseType
+    if (chooseType !== "Choose...") {
+      let choosen = res.filter(estate => {
+        return estate.type === chooseType
       })
-      console.log(fed)
+      res = choosen
     }
-    console.log(found, "test")
+    console.log(res)
   }
 
   render() {
-    const { types, rooms, transaction } = this.state
+    const { types, transaction, found } = this.state
     return (
       <SearchWrapper>
         <HomepageIllustration />
         <SearchBar>
-          <SearchInput
-            onChange={e => this.handleSearchInput(e)}
-            value={this.state.city}
-            type="search"
-            placeholder="Search..."
-          />
+          <InputWrapper>
+            <SearchInput
+              onFocus={() => this.setState({ toggleSearchDropdown: true })}
+              onChange={e => this.handleSearchInput(e)}
+              value={this.state.city}
+              type="search"
+              placeholder="Search..."
+              isEmpty={this.state.city}
+              toggle={this.state.toggleSearchDropdown}
+            />
+            {this.state.city !== "" ? (
+              <SearchDropDown toggle={this.state.toggleSearchDropdown}>
+                {found !== null
+                  ? found.map(estate => {
+                      return (
+                        <Result onClick={() => this.insertLocation(estate)}>
+                          {estate.city}, {estate.district}
+                        </Result>
+                      )
+                    })
+                  : null}
+              </SearchDropDown>
+            ) : null}
+          </InputWrapper>
           <Filters>
             <BasicFilter
               chooseType={this.state.chooseType}
               title={"Type of estate"}
               array={types}
-              insert={this.insertEstate}
+              insert={this.insertAttributes}
               handleToggle={this.toggleDropdown}
               toggleState={this.state.toggleType}
               applyPrice={this.applyPrice}
+              name={"chooseType"}
             />
             <BasicFilter
               chooseType={this.state.choosePayment}
               title={"Rent or buy?"}
               array={transaction}
-              insert={this.insertPayment}
+              insert={this.insertAttributes}
               handleToggle={this.handleTransaction}
               toggleState={this.state.togglePayment}
               applyPrice={this.applyPrice}
+              name={"choosePayment"}
             />
             <BasicFilter
-              chooseType={this.state.chooseType}
+              chooseType={this.state.price}
               array={null}
               title={"Price"}
               handleToggle={this.handlePrice}
               toggleState={this.state.togglePrice}
               applyPrice={this.applyPrice}
               handleRangeChange={this.handleRangeChange}
-              price={this.state.price}
+              minPrice={this.state.minPrice}
+              maxPrice={this.state.maxPrice}
+              name={"price"}
+              openPrice={this.openPrice}
+              handlePrice={this.handlePrice}
             />
             <ToggleAdvanced
               toggleAdvanced={this.state.toggleAdvanced}

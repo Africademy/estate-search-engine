@@ -3,6 +3,8 @@ import { colors } from "../../theme"
 import { small } from "../breakpoints"
 import search from "../../static/icons/search.svg"
 
+//TODO better rwd
+
 export const SearchWrapper = styled.main`
   width: 100vw;
   height: 70vh;
@@ -39,6 +41,16 @@ export const SearchBar = styled.section`
     padding: 10px;
   }
 `
+export const InputWrapper = styled.section`
+  height: 60%;
+  width: 40%;
+  position: relative;
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    height: 60px;
+  }
+`
 export const Filters = styled.section`
   display: flex;
   @media all and (max-width: ${small}) {
@@ -49,24 +61,77 @@ export const Filters = styled.section`
   }
 `
 export const SearchInput = styled.input`
-  height: 60%;
-  width: 40%;
+  height: 100%;
+  width: 100%;
   font-size: 1.1em;
-  border-radius: 5px;
+  border-radius: ${props => {
+    if (props.isEmpty === "") {
+      return `
+        5px
+              `
+    } else if (!props.toggle) {
+      return `
+        5px
+              `
+    } else {
+      return `
+        5px 5px 0 0
+              `
+    }
+  }};
   border: none;
   padding: 10px 10px 10px 45px;
   background-image: url(${search});
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: 2% center;
+  transition: 0.3s ease-in-out;
 
-  :focus {
+  &:focus {
     outline: none;
   }
+`
+export const SearchDropDown = styled.div`
+  position: absolute;
+  background-color: #ffffff;
+  width: 100%;
+  height: auto;
+  flex-flow: column;
+  transition: 0.3s ease-in-out;
+  display: ${props => (props.toggle ? "flex" : "none")};
+`
+export const Result = styled.button`
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  padding: 15px 0 15px 45px;
+  font-size: 1em;
+  cursor: pointer;
+  position: relative;
 
-  @media all and (max-width: ${small}) {
-    width: 100%;
-    height: 60px;
+  &:focus {
+    outline: none;
+  }
+  &:before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(
+      90deg,
+      ${colors.pinkHalf},
+      ${colors.pinkTransparent}
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+  }
+  &:hover:before {
+    opacity: 1;
+    transition: 0.3s ease-in-out;
   }
 `
 export const Select = styled.input`
@@ -85,6 +150,7 @@ export const SearchBtn = styled.button`
   background-color: ${colors.pink};
   color: #fff;
   cursor: pointer;
+  border-radius: 5px;
   font-size: 1em;
 
   &:focus {
