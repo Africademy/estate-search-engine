@@ -17,8 +17,10 @@ export const BurgerWrapper = styled.button`
       props.isMenuOpen
         ? "translateY(5px) rotate(90deg)"
         : "translateY(0) rotate(0deg)"};
+    position: relative;
+    z-index: 15;
 
-    :focus {
+    &:focus {
       outline: none;
     }
 

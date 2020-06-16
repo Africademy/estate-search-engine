@@ -3,8 +3,6 @@ import { colors } from "../../theme"
 import { small } from "../breakpoints"
 import search from "../../static/icons/search.svg"
 
-//TODO better rwd
-
 export const SearchWrapper = styled.main`
   width: 100vw;
   height: 70vh;
@@ -22,6 +20,11 @@ export const HeroText = styled.h1`
   color: #fff;
   left: 10vw;
   top: 35%;
+
+  @media all and (max-width: ${small}) {
+    font-size: 3em;
+    width: 100vw;
+  }
 `
 export const SearchBar = styled.section`
   width: 80%;

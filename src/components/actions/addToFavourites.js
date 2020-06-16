@@ -1,3 +1,6 @@
-export const addToFavourites = () => {
-  type: "ADD_TO_FAVOURITES"
+export const addToFavourites = estate => {
+  return {
+    type: "ADD_TO_FAVOURITES",
+    payload: estate,
+  }
 }

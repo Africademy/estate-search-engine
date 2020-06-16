@@ -13,6 +13,8 @@ export const HeaderWrapper = styled.header`
 
   display: flex;
   justify-content: space-between;
+  overflow-x: hidden;
+  overflow-y: auto;
 `
 export const Logo = styled.div`
   height: 100%;
@@ -122,11 +124,22 @@ export const FavouritesIcon = styled.button`
   cursor: pointer;
   position: relative;
 
-  :focus {
+  &:focus {
     outline: none;
   }
-  :after {
-    content: "2";
+  // TODO show how many estates in favs
+  &:after {
+    content: ${props => {
+      if (props.length > 0) {
+        return `
+          ${props.length}
+        `
+      } else {
+        return `
+          ""
+        `
+      }
+    }};
     color: #fff;
     display: flex;
     justify-content: center;

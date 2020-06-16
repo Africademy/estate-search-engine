@@ -12,8 +12,11 @@ import {
   AddToFavourites,
 } from "./estate.styled"
 import Heart from "../icons/favourites"
+import { useDispatch } from "react-redux"
+import { addToFavourites } from "../actions/addToFavourites"
 
 const Estate = ({ estate }) => {
+  const dispatch = useDispatch()
   return (
     <EstateWrapper>
       <EstateImageContainer>
@@ -30,7 +33,7 @@ const Estate = ({ estate }) => {
           <Price>
             $<Highlight>{estate.prices[0].price}</Highlight> / month
           </Price>
-          <AddToFavourites>
+          <AddToFavourites onClick={() => dispatch(addToFavourites(estate))}>
             <Heart height={"80%"} />
           </AddToFavourites>
         </Footer>

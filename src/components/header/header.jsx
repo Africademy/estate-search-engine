@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import {
   HeaderWrapper,
@@ -13,13 +13,10 @@ import {
 import Heart from "../icons/favourites"
 import Burger from "../burger/burger"
 import logo from "../../static/icons/location.svg"
+import { useSelector } from "react-redux"
 
 const Header = () => {
-  const [isMenuOpen, setMenu] = useState(false)
-
-  const handleMenu = () => {
-    setMenu(!isMenuOpen)
-  }
+  const favs = useSelector(state => state.Favourites)
   return (
     <HeaderWrapper>
       <Logo>
@@ -32,10 +29,10 @@ const Header = () => {
         <Link to="/coming">Coming</Link>
       </Nav>
       <Interaction>
-        <FavouritesIcon>
+        <FavouritesIcon favs={favs}>
           <Heart height={"100%"} />
         </FavouritesIcon>
-        <Burger isMenuOpen={isMenuOpen} handleMenu={handleMenu} />
+        <Burger />
         <AddAdvertBtn>Add advertisement</AddAdvertBtn>
       </Interaction>
     </HeaderWrapper>

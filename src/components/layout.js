@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { createGlobalStyle } from "styled-components"
 import Header from "../components/header/header"
 import { Helmet } from "react-helmet"
+import BurgerMenu from "./burgerMenu/burger"
 
 const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
@@ -35,6 +36,7 @@ const Layout = ({ children }) => {
         <meta charSet="utf-8" />
         <title>{data.site.siteMetadata.title}</title>
       </Helmet>
+      <BurgerMenu />
       {children}
     </>
   )

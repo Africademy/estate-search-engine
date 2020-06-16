@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
+import { small } from "../breakpoints"
 
 export const IllustrationWrapper = styled.section`
   height: 100%;
@@ -10,6 +11,11 @@ export const IllustrationWrapper = styled.section`
   align-items: center;
   -webkit-align-items: center;
 
+  svg {
+    @media all and (max-width: ${small}) {
+      display: none;
+    }
+  }
   svg g g g g {
   }
 `

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { small } from "../breakpoints"
 
 export const ImageContainer = styled.div`
   width: 40%;

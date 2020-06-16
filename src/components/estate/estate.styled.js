@@ -1,8 +1,6 @@
 import styled from "styled-components"
 import { small } from "../breakpoints"
 
-//TODO rwd for detailed mode
-
 export const EstateContent = styled.section`
   width: 90%;
   height: 50%;
@@ -77,6 +75,9 @@ export const Image = styled.img`
 `
 export const Name = styled.h3`
   font-size: 1.7em;
+  @media all and (max-width: ${small}) {
+    font-size: 1.5em;
+  }
 `
 export const Address = styled.p`
   display: flex;
@@ -85,6 +86,9 @@ export const Address = styled.p`
 
   svg {
     margin: 0 5px 0 0;
+  }
+  @media all and (max-width: ${small}) {
+    font-size: 0.9em;
   }
 `
 export const Footer = styled.div`
@@ -113,4 +117,10 @@ export const AddToFavourites = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+  position: relative;
+  z-index: 10;
+
+  &:focus {
+    outline: none;
+  }
 `

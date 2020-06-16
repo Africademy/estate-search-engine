@@ -7,7 +7,7 @@ import JSONEstates from "../../data/estates.json"
 
 const HomeOffers = () => {
   const [offers] = useState(JSONEstates)
-  const [isDetailed, setDetailed] = useState(true)
+  const [isDetailed, setDetailed] = useState(false)
 
   const handleToggle = () => {
     setDetailed(!isDetailed)
@@ -19,7 +19,7 @@ const HomeOffers = () => {
       <Grid isDetailed={isDetailed}>
         {isDetailed
           ? offers.map(estate => {
-              return <DetailedEstate estate={estate} />
+              return <DetailedEstate key={estate.key} estate={estate} />
             })
           : offers.map(estate => {
               return <Estate key={estate.key} estate={estate} />

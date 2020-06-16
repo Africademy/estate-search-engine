@@ -5,11 +5,11 @@
     "images": [
       {
         "key": 1,
-        "img": "estate1"
+        "img": "estate1-1"
       },
       {
         "key": 2,
-        "img": "estate2"
+        "img": "estate1-2"
       }
     ],
     "address": "ul. Pra 20",
@@ -39,11 +39,11 @@
     "images": [
       {
         "key": 1,
-        "img": "estate3"
+        "img": "estate2-1"
       },
       {
         "key": 2,
-        "img": "estate4"
+        "img": "estate2-2"
       }
     ],
     "address": "ul. Pro 20",
@@ -71,8 +71,8 @@
     "key": 3,
     "name": "Urban Premium",
     "images": [
-      { "key": 1, "img": "estate5" },
-      { "key": 2, "img": "estate6" }
+      { "key": 1, "img": "estate3-1" },
+      { "key": 2, "img": "estate3-2" }
     ],
     "address": "ul. Mazowiecka 120",
     "city": "Warsaw",

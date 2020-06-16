@@ -32,6 +32,7 @@ class Search extends Component {
       found: null,
       minRooms: "",
       maxRooms: "",
+      price: "Choose...",
       minPrice: 0,
       maxPrice: 0,
       types: [

@@ -10,6 +10,10 @@ export const HomeOffersWrapper = styled.main`
   -webkit-flex-flow: column;
   justify-content: center;
   -webkit-justify-content: center;
+
+  @media all and (max-width: ${small}) {
+    height: auto;
+  }
 `
 export const Grid = styled.section`
   width: 100%;
