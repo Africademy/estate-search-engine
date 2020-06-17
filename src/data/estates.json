@@ -31,7 +31,8 @@
       "TV": true,
       "AGD": true,
       "windows": "Plastic"
-    }
+    },
+    "liked": false
   },
   {
     "key": 2,
@@ -65,7 +66,8 @@
       "TV": true,
       "AGD": true,
       "windows": "Plastic"
-    }
+    },
+    "liked": false
   },
   {
     "key": 3,
@@ -93,6 +95,7 @@
       "TV": true,
       "AGD": true,
       "windows": "Plastic"
-    }
+    },
+    "liked": false
   }
 ]

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
   EstateWrapper,
   ImageContainer,
@@ -14,10 +14,12 @@ import {
   Name,
   Price,
 } from "../estate/estate.styled"
+import HeartFull from "../icons/favouritesFilled"
 import Heart from "../icons/favourites"
 import Pin from "../icons/pin"
 
-const DetailedEstate = ({ estate }) => {
+const DetailedEstate = ({ updated, handleLike, estate }) => {
+  useEffect(() => {}, [updated])
   return (
     <EstateWrapper>
       <ImageContainer>
@@ -36,8 +38,12 @@ const DetailedEstate = ({ estate }) => {
           <Price>
             $<Highlight>{estate.prices[0].price}</Highlight>
           </Price>
-          <AddToFavourites>
-            <Heart height={"80%"} />
+          <AddToFavourites onClick={() => handleLike(estate)}>
+            {estate.liked ? (
+              <HeartFull height={"80%"} />
+            ) : (
+              <Heart height={"80%"} />
+            )}
           </AddToFavourites>
         </Footer>
       </ContentContainer>

@@ -14,6 +14,7 @@ import Heart from "../icons/favourites"
 import Burger from "../burger/burger"
 import logo from "../../static/icons/location.svg"
 import { useSelector } from "react-redux"
+import { navigate } from "../../../.cache/gatsby-browser-entry"
 
 const Header = () => {
   const favs = useSelector(state => state.Favourites)
@@ -33,7 +34,13 @@ const Header = () => {
           <Heart height={"100%"} />
         </FavouritesIcon>
         <Burger />
-        <AddAdvertBtn>Add advertisement</AddAdvertBtn>
+        <AddAdvertBtn
+          onClick={() => {
+            navigate("/advertisement")
+          }}
+        >
+          Add advertisement
+        </AddAdvertBtn>
       </Interaction>
     </HeaderWrapper>
   )

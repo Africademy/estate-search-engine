@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {
   EstateWrapper,
   EstateImageContainer,
@@ -12,11 +12,9 @@ import {
   AddToFavourites,
 } from "./estate.styled"
 import Heart from "../icons/favourites"
-import { useDispatch } from "react-redux"
-import { addToFavourites } from "../actions/addToFavourites"
+import HeartFull from "../icons/favouritesFilled"
 
-const Estate = ({ estate }) => {
-  const dispatch = useDispatch()
+const Estate = ({ estate, handleLike }) => {
   return (
     <EstateWrapper>
       <EstateImageContainer>
@@ -33,8 +31,12 @@ const Estate = ({ estate }) => {
           <Price>
             $<Highlight>{estate.prices[0].price}</Highlight> / month
           </Price>
-          <AddToFavourites onClick={() => dispatch(addToFavourites(estate))}>
-            <Heart height={"80%"} />
+          <AddToFavourites onClick={() => handleLike(estate)}>
+            {estate.liked ? (
+              <HeartFull height={"80%"} />
+            ) : (
+              <Heart height={"80%"} />
+            )}
           </AddToFavourites>
         </Footer>
       </EstateContent>

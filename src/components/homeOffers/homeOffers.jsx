@@ -4,13 +4,21 @@ import Estate from "../estate/estate"
 import DetailedEstate from "../detailedEstate/detailedEstate"
 import HomeOffersHeader from "./header/homeOffersHeader"
 import JSONEstates from "../../data/estates.json"
+import { useDispatch } from "react-redux"
+import { addToFavourites } from "../actions/addToFavourites"
 
 const HomeOffers = () => {
   const [offers] = useState(JSONEstates)
+  const [updated, setUpdated] = useState(false)
+  const dispatch = useDispatch()
   const [isDetailed, setDetailed] = useState(false)
 
   const handleToggle = () => {
     setDetailed(!isDetailed)
+  }
+  const handleLike = estate => {
+    dispatch(addToFavourites(estate))
+    setUpdated(!updated)
   }
 
   return (
@@ -19,10 +27,22 @@ const HomeOffers = () => {
       <Grid isDetailed={isDetailed}>
         {isDetailed
           ? offers.map(estate => {
-              return <DetailedEstate key={estate.key} estate={estate} />
+              return (
+                <DetailedEstate
+                  handleLike={handleLike}
+                  key={estate.key}
+                  estate={estate}
+                />
+              )
             })
           : offers.map(estate => {
-              return <Estate key={estate.key} estate={estate} />
+              return (
+                <Estate
+                  handleLike={handleLike}
+                  key={estate.key}
+                  estate={estate}
+                />
+              )
             })}
       </Grid>
     </HomeOffersWrapper>
