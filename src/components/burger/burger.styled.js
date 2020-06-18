@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import { small } from "../breakpoints"
+import { medium } from "../breakpoints"
 
 export const BurgerWrapper = styled.button`
   display: none;
-  @media all and (max-width: ${small}) {
+  @media all and (max-width: ${medium}) {
     display: flex;
     flex-flow: column;
     justify-content: space-evenly;

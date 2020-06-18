@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import {
   Wrapper,
   List,
@@ -8,16 +8,13 @@ import {
   SelectedItems,
   Remove,
 } from "./advantages.styled"
-import { SubTitle } from "../addForm/addForm.styled"
+import { SubTitle } from "../basics/basics.styled"
 import { useDispatch, useSelector } from "react-redux"
 import { AddAdvantages } from "../../actions/addAdvantages"
 import { removeAdvantage } from "../../actions/removeAdvantage"
 
 const Advantages = ({ advantages }) => {
   const advs = useSelector(state => state.AddAdvantages)
-  useEffect(() => {
-    console.log("changed")
-  }, [advs])
   const dispatch = useDispatch()
 
   const handleSelect = (adv, e) => {

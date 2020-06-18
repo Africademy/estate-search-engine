@@ -24,6 +24,8 @@ class Advertisement extends Component {
     rentPrice: 0,
     currency: "",
     basicError: "",
+    clearBasics: "Clear all",
+    clearPrices: "Clear all",
   }
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -75,14 +77,31 @@ class Advertisement extends Component {
       this.setState({ basicError: "" })
     }
   }
+  clearAllFields = e => {
+    e.preventDefault()
+    switch (e.target.name) {
+      case "basics": {
+        this.setState({
+          name: "",
+          street: "",
+          city: "",
+          district: "",
+          insertType: "choose",
+        })
+        return
+      }
+      case "prices": {
+        return
+      }
+      default: {
+        return null
+      }
+    }
+  }
   handleSubmit = e => {
     e.preventDefault()
-    const promise = new Promise((res, reject) => {
-      setTimeout(() => {
-        res("success")
-      }, 250)
-    })
     const { name, street, city, district, insertType, currency } = this.state
+    this.validateBasics()
     const newEstate = {
       name: name,
       address: street,
@@ -98,12 +117,6 @@ class Advertisement extends Component {
       ],
       advantages: advantages,
     }
-    promise.then(res => {
-      console.log(newEstate, res)
-    })
-    promise.catch(err => {
-      console.log("failed", err)
-    })
   }
 
   render() {
@@ -151,6 +164,9 @@ class Advertisement extends Component {
             toggleRent={this.toggleRent}
             toggleSell={this.toggleSell}
             handleSubmit={this.handleSubmit}
+            clearAllFields={this.clearAllFields}
+            clearBasics={this.state.clearBasics}
+            clearPrices={this.state.clearPrices}
           />
         </Wrapper>
       </Layout>

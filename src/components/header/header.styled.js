@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
-import { small } from "../breakpoints"
+import { small, medium, large } from "../breakpoints"
 
 export const HeaderWrapper = styled.header`
   width: 100vw;
@@ -116,7 +116,7 @@ export const Nav = styled.nav`
       visibility: visible;
     }
   }
-  @media all and (max-width: ${small}) {
+  @media all and (max-width: ${medium}) {
     display: none;
   }
 `
@@ -129,6 +129,9 @@ export const Interaction = styled.section`
   justify-content: space-between;
 
   @media all and (max-width: ${small}) {
+    width: 30%;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
     width: 30%;
   }
 `
@@ -188,7 +191,7 @@ export const AddAdvertBtn = styled.button`
     outline: none;
   }
 
-  @media all and (max-width: ${small}) {
+  @media all and (max-width: ${medium}) {
     display: none;
   }
 `

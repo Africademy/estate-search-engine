@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
-import { small } from "../breakpoints"
+import { medium } from "../breakpoints"
 
 export const Wrapper = styled.main`
   display: none;
-  @media all and (max-width: ${small}) {
+  @media all and (max-width: ${medium}) {
     height: 100vh;
     width: 100vw;
     position: absolute;
