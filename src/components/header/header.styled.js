@@ -15,6 +15,22 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   overflow-x: hidden;
   overflow-y: auto;
+  transition: 0.3s ease-in-out;
+
+  ${props => {
+    if (props.scrolled) {
+      return `
+         box-shadow:
+  0 1.2px 2.2px -10px rgba(0, 0, 0, 0.025),
+  0 2.9px 5.3px -10px rgba(0, 0, 0, 0.036),
+  0 5.4px 10px -10px rgba(0, 0, 0, 0.045),
+  0 9.6px 17.9px -10px rgba(0, 0, 0, 0.054),
+  0 18px 33.4px -10px rgba(0, 0, 0, 0.065),
+  0 43px 80px -10px rgba(0, 0, 0, 0.09)
+;
+      `
+    }
+  }}
 `
 export const Logo = styled.div`
   height: 100%;

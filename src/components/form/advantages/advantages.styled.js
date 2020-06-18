@@ -3,7 +3,8 @@ import { colors } from "../../../theme"
 
 export const Wrapper = styled.section`
   width: 100%;
-  height: 40vh;
+  height: auto;
+  padding: 0 0 2vw;
 `
 export const List = styled.section`
   width: 100%;
@@ -20,15 +21,17 @@ export const Item = styled.button`
   background-color: ${props =>
     props.selected ? colors.accept : colors.purple};
   color: #fff;
-  margin: 0 10px 0 0;
+  margin: 0 10px 10px 0;
   cursor: pointer;
 `
 export const Selected = styled.section`
   width: 100%;
   height: 10vh;
   display: flex;
+  flex-flow: row wrap;
   margin: 50px 0 0;
 `
+export const SelectedItems = styled(List)``
 export const SelectedItem = styled(Item)`
   background-color: ${props =>
     props.selected ? colors.accept : colors.purple};

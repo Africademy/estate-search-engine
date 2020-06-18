@@ -1,11 +1,40 @@
 import styled from "styled-components"
 import { colors } from "../../../theme"
+import { small } from "../../breakpoints"
 import arrowDown from "../../../static/icons/nav-arrow-down.svg"
 import check from "../../../static/icons/check.svg"
 
 export const FormWrapper = styled.form`
   width: 50vw;
   height: auto;
+  margin: 0 0 10vw;
+
+  @media all and (max-width: ${small}) {
+    width: 100vw;
+    padding: 0 5vw 0;
+  }
+`
+export const Header = styled.section`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+  height: auto;
+`
+export const ClearBtn = styled.button`
+  font-size: 0.9em;
+  padding: 5px 10px 5px;
+  border: none;
+  background-color: #ff0043;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `
 export const Images = styled.section`
   width: 100%;
@@ -40,6 +69,13 @@ export const Inputs = styled.section`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 2vw;
+
+  @media all and (max-width: ${small}) {
+    display: flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    margin: 20px 0 0;
+  }
 `
 export const InputWrapper = styled.div`
   display: flex;
@@ -47,12 +83,17 @@ export const InputWrapper = styled.div`
   -webkit-flex-flow: column;
   width: 20vw;
   margin: 0 0 20px;
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+  }
 `
 export const Label = styled.label`
   margin: 0 0 10px;
 `
 export const Dropdown = styled.ul`
   position: absolute;
+  z-index: 2;
   top: 100%;
   width: 100%;
   height: auto;
@@ -112,6 +153,9 @@ export const Input = styled.input`
   &:focus {
     outline: #000;
   }
+  @media all and (max-width: ${small}) {
+    height: 60px;
+  }
 `
 export const ReadOnlyInput = styled(Input)``
 export const DropdownInput = styled(InputWrapper)`
@@ -124,6 +168,14 @@ export const Prices = styled(Basics)`
 `
 export const CheckboxWrapper = styled.section`
   display: flex;
+  margin: 2vw 0 0;
+
+  @media all and (max-width: ${small}) {
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    width: 100%;
+    margin: 10vw 0 0;
+  }
 `
 export const Wrapper = styled.section`
   width: 100%;
@@ -137,6 +189,10 @@ export const Wrapper = styled.section`
     props.sell ? "rgba(67, 97, 238, 0.5)" : "rgba(67, 97, 238, 0.2)"};
   padding: 20px;
   border-radius: 20px;
+
+  @media all and (max-width: ${small}) {
+    margin: 2vw 0 0;
+  }
 `
 export const RentWrapper = styled(Wrapper)`
   background-color: ${props =>
@@ -151,6 +207,10 @@ export const Select = styled.div`
   font-weight: 600;
   display: flex;
   align-items: center;
+
+  @media all and (max-width: ${small}) {
+    padding: 15px 30px 15px;
+  }
 `
 export const Checkbox = styled.input`
   margin: 0 10px 0 0;
@@ -183,6 +243,11 @@ export const PriceInputWrapper = styled(InputWrapper)`
 `
 export const PriceInput = styled(Input)`
   width: 100px;
+
+  @media all and (max-width: ${small}) {
+    height: 50px;
+    width: 50%;
+  }
 `
 export const PriceLabel = styled(Label)`
   margin: 0 0 0 10px;
@@ -225,4 +290,7 @@ export const CurDropdown = styled.ul`
   transform-origin: 95% 0;
   transform: scale(${props => (props.toggle ? 1 : 0)});
   transition: 0.3s ease-in-out;
+`
+export const ErrorMessage = styled.p`
+  color: #ff0043;
 `

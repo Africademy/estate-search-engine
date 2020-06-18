@@ -68,7 +68,7 @@ export const EstateImageContainer = styled.section`
 `
 export const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
   transition: 0.7s ease-in-out;

@@ -6,6 +6,8 @@ import {
   ImageContainer,
   Img,
   Basics,
+  Header,
+  ClearBtn,
   SubTitle,
   Inputs,
   InputWrapper,
@@ -28,14 +30,16 @@ import {
   PriceInput,
   PriceLabel,
   CurDropdown,
+  ErrorMessage,
 } from "./addForm.styled"
 import Advantages from "../advantages/advantages"
+import Submit from "../submit/submit"
 
 const AddForm = ({
-  estateName,
-  estateStreet,
-  estateCity,
-  estateDistrict,
+  name,
+  street,
+  city,
+  district,
   handleInput,
   insertType,
   handleInsertType,
@@ -44,11 +48,15 @@ const AddForm = ({
   toggleCurrency,
   toggleCurrencyDropdown,
   sell,
+  sellPrice,
+  rentPrice,
   rent,
   currency,
   handleInsertCurrency,
   toggleRent,
   toggleSell,
+  handleSubmit,
+  basicError,
 }) => {
   const [types] = useState([
     { key: 1, name: "Flat" },
@@ -71,7 +79,7 @@ const AddForm = ({
     { key: 5, name: "Security", selected: false },
   ])
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={e => handleSubmit(e)}>
       <Images>
         <SubTitle>Images</SubTitle>
         <Imgs>
@@ -79,15 +87,18 @@ const AddForm = ({
         </Imgs>
       </Images>
       <Basics>
-        <SubTitle>Basics</SubTitle>
+        <Header>
+          <SubTitle>Basics</SubTitle>
+          <ClearBtn>Clear all</ClearBtn>
+        </Header>
         <Inputs>
           <InputWrapper>
             <Label htmlFor="estateName">Name</Label>
             <Input
               onChange={e => handleInput(e)}
-              name="estateName"
+              name="name"
               type="text"
-              value={estateName}
+              value={name}
               placeholder="eg. Valley Apartments"
             />
           </InputWrapper>
@@ -95,9 +106,9 @@ const AddForm = ({
             <Label htmlFor="estateStreet">Street</Label>
             <Input
               onChange={e => handleInput(e)}
-              name="estateStreet"
+              name="street"
               type="text"
-              value={estateStreet}
+              value={street}
               placeholder="eg. State Street 40"
             />
           </InputWrapper>
@@ -105,9 +116,9 @@ const AddForm = ({
             <Label htmlFor="estateCity">City</Label>
             <Input
               onChange={e => handleInput(e)}
-              name="estateCity"
+              name="city"
               type="text"
-              value={estateCity}
+              value={city}
               placeholder="eg. State Street 40"
             />
           </InputWrapper>
@@ -115,9 +126,9 @@ const AddForm = ({
             <Label htmlFor="estateDistrict">District</Label>
             <Input
               onChange={e => handleInput(e)}
-              name="estateDistrict"
+              name="district"
               type="text"
-              value={estateDistrict}
+              value={district}
               placeholder="eg. State Street 40"
             />
           </InputWrapper>
@@ -143,9 +154,13 @@ const AddForm = ({
             </Dropdown>
           </DropdownInput>
         </Inputs>
+        {basicError === "" ? null : <ErrorMessage>{basicError}</ErrorMessage>}
       </Basics>
       <Prices>
-        <SubTitle>Prices</SubTitle>
+        <Header>
+          <SubTitle>Prices</SubTitle>
+          <ClearBtn>Clear all</ClearBtn>
+        </Header>
         <CheckboxWrapper>
           <RentWrapper rent={rent}>
             <Settings>
@@ -182,7 +197,7 @@ const AddForm = ({
             </Settings>
             <Inputs>
               <PriceInputWrapper>
-                <PriceInput name="monthly" type="text" />
+                <PriceInput value={rentPrice} name="monthly" type="text" />
                 <PriceLabel htmlFor="monthly">/ month</PriceLabel>
               </PriceInputWrapper>
             </Inputs>
@@ -222,13 +237,14 @@ const AddForm = ({
             </Settings>
             <Inputs>
               <PriceInputWrapper>
-                <PriceInput name="pay-once" type="text" />
+                <PriceInput value={sellPrice} name="pay-once" type="text" />
               </PriceInputWrapper>
             </Inputs>
           </Wrapper>
         </CheckboxWrapper>
       </Prices>
       <Advantages advantages={advantages} />
+      <Submit />
     </FormWrapper>
   )
 }
