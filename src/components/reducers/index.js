@@ -32,6 +32,12 @@ export const AddAdvantages = (state = initState.advantages, action) => {
     case "ADD_ADVANTAGES": {
       return [...state, action.payload]
     }
+    case "REMOVE_ADVANTAGE": {
+      const filtered = state.filter(adv => {
+        return adv.key !== action.payload
+      })
+      return filtered
+    }
     default: {
       return state
     }

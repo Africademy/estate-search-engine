@@ -4,13 +4,14 @@ import Estate from "../estate/estate"
 import DetailedEstate from "../detailedEstate/detailedEstate"
 import HomeOffersHeader from "./header/homeOffersHeader"
 import JSONEstates from "../../data/estates.json"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addToFavourites } from "../actions/addToFavourites"
 
 const HomeOffers = () => {
   const [offers] = useState(JSONEstates)
   const [updated, setUpdated] = useState(false)
   const dispatch = useDispatch()
+  const fav = useSelector(state => state.Favourites)
   const [isDetailed, setDetailed] = useState(false)
 
   const handleToggle = () => {

@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import {
   HeaderWrapper,
   Logo,
@@ -14,13 +14,12 @@ import Heart from "../icons/favourites"
 import Burger from "../burger/burger"
 import logo from "../../static/icons/location.svg"
 import { useSelector } from "react-redux"
-import { navigate } from "../../../.cache/gatsby-browser-entry"
 
 const Header = () => {
   const favs = useSelector(state => state.Favourites)
   return (
     <HeaderWrapper>
-      <Logo>
+      <Logo onClick={() => navigate("/")} role="button">
         <LogoSVG src={logo} />
       </Logo>
       <Dropdown></Dropdown>

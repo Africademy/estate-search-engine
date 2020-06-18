@@ -132,7 +132,7 @@ export const FavouritesIcon = styled.button`
     content: ${props => {
       if (props.length > 0) {
         return `
-          ${props.length}
+          ${props.length.toString()}
         `
       } else {
         return `
@@ -163,10 +163,13 @@ export const AddAdvertBtn = styled.button`
   color: #fff;
   transition: 0.3s ease-in-out;
 
-  :hover {
+  &:hover {
     background-color: #fff;
     color: #000;
     transition: 0.3s ease-in-out;
+  }
+  &:focus {
+    outline: none;
   }
 
   @media all and (max-width: ${small}) {

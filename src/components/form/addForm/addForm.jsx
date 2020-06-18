@@ -47,6 +47,8 @@ const AddForm = ({
   rent,
   currency,
   handleInsertCurrency,
+  toggleRent,
+  toggleSell,
 }) => {
   const [types] = useState([
     { key: 1, name: "Flat" },
@@ -62,11 +64,11 @@ const AddForm = ({
     { key: 3, name: "USD" },
   ])
   const [advantages] = useState([
-    { key: 1, name: "Garage" },
-    { key: 2, name: "TV" },
-    { key: 3, name: "Full AGD" },
-    { key: 4, name: "Internet" },
-    { key: 5, name: "Security" },
+    { key: 1, name: "Garage", selected: false },
+    { key: 2, name: "TV", selected: false },
+    { key: 3, name: "Full AGD", selected: false },
+    { key: 4, name: "Internet", selected: false },
+    { key: 5, name: "Security", selected: false },
   ])
   return (
     <FormWrapper>
@@ -148,7 +150,11 @@ const AddForm = ({
           <RentWrapper rent={rent}>
             <Settings>
               <Select>
-                <Checkbox type="checkbox" />
+                <Checkbox
+                  onChange={() => toggleRent()}
+                  name="rent"
+                  type="checkbox"
+                />
                 Rent
               </Select>
               <Currency>
@@ -181,11 +187,39 @@ const AddForm = ({
               </PriceInputWrapper>
             </Inputs>
           </RentWrapper>
-          <Wrapper>
-            <Select>
-              <Checkbox type="checkbox" />
-              Sell
-            </Select>
+          <Wrapper sell={sell}>
+            <Settings>
+              <Select>
+                <Checkbox
+                  onChange={() => toggleSell()}
+                  name="sell"
+                  type="checkbox"
+                />
+                Sell
+              </Select>
+              <Currency>
+                <CurInput
+                  placeholder="Currency"
+                  toggle={toggleDropdown}
+                  onClick={() => toggleCurrencyDropdown()}
+                  value={currency}
+                  type="text"
+                  readOnly
+                />
+                <CurDropdown toggle={toggleCurrency}>
+                  {currencies.map(cur => {
+                    return (
+                      <Item
+                        onClick={e => handleInsertCurrency(e, cur.name)}
+                        key={cur.key}
+                      >
+                        {cur.name}
+                      </Item>
+                    )
+                  })}
+                </CurDropdown>
+              </Currency>
+            </Settings>
             <Inputs>
               <PriceInputWrapper>
                 <PriceInput name="pay-once" type="text" />

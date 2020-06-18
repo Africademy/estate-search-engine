@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { colors } from "../../../theme"
 import arrowDown from "../../../static/icons/nav-arrow-down.svg"
+import check from "../../../static/icons/check.svg"
 
 export const FormWrapper = styled.form`
   width: 50vw;
@@ -132,20 +133,21 @@ export const Wrapper = styled.section`
   -webkit-flex-flow: column;
   justify-content: space-between;
   -webkit-justify-content: space-between;
-  background-color: rgba(67, 97, 238, 0.2);
+  background-color: ${props =>
+    props.sell ? "rgba(67, 97, 238, 0.5)" : "rgba(67, 97, 238, 0.2)"};
   padding: 20px;
   border-radius: 20px;
 `
 export const RentWrapper = styled(Wrapper)`
   background-color: ${props =>
-    props.rent ? "rgba(67, 97, 238, 0.2)" : "rgba(67, 97, 238, 0.1)"};
+    props.rent ? "rgba(67, 97, 238, 0.5)" : "rgba(67, 97, 238, 0.2)"};
 `
 export const Select = styled.div`
   width: max-content;
   height: max-content;
   padding: 20px 40px 20px;
   border-radius: 50px;
-  background-color: rgba(114, 9, 183, 0.2);
+  background-color: rgb(255, 255, 255);
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -169,7 +171,8 @@ export const Checkbox = styled.input`
     left: -20px;
   }
   &:checked:before {
-    background-color: #000;
+    background: ${colors.accept} url(${check}) no-repeat center center;
+    background-size: 18px;
   }
 `
 export const PriceInputWrapper = styled(InputWrapper)`

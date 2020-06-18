@@ -6,4 +6,5 @@ export const colors = {
   pinkHalf: "rgba(247,37,133,0.32)",
   pinkTransparent: "rgba(247, 37, 133, 0)",
   purple: "rgb(114, 9, 183)",
+  accept: "#5ad224",
 }

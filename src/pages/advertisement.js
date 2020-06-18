@@ -36,6 +36,21 @@ class Advertisement extends Component {
       this.setState({ toggleCurrency: false })
     })
   }
+  toggleRent = () => {
+    if (!this.state.sell) {
+      this.setState({ rent: true })
+    } else {
+      this.setState({ rent: !this.state.rent })
+    }
+  }
+  toggleSell = () => {
+    if (!this.state.rent) {
+      this.setState({ sell: true })
+    } else {
+      this.setState({ sell: !this.state.sell })
+    }
+  }
+
   toggleTypeDropdown = () => {
     this.setState({ toggleDropdown: !this.state.toggleDropdown })
   }
@@ -80,6 +95,8 @@ class Advertisement extends Component {
             toggleTypeDropdown={this.toggleTypeDropdown}
             toggleCurrencyDropdown={this.toggleCurrencyDropdown}
             handleInsertCurrency={this.handleInsertCurrency}
+            toggleRent={this.toggleRent}
+            toggleSell={this.toggleSell}
           />
         </Wrapper>
       </Layout>
