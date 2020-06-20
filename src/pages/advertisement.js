@@ -20,6 +20,7 @@ class Advertisement extends Component {
     toggleCurrency: false,
     sell: true,
     rent: false,
+    sellAndRent: false,
     sellPrice: 0,
     rentPrice: 0,
     currency: "",
@@ -29,6 +30,37 @@ class Advertisement extends Component {
   }
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value })
+  }
+  handleRentAndSellChoose = e => {
+    e.preventDefault()
+    switch (e.target.name) {
+      case "rent": {
+        this.setState({ [e.target.name]: true }, () => {
+          this.setState({ sell: false, sellAndRent: false })
+        })
+        return
+      }
+      case "sell": {
+        this.setState({ [e.target.name]: true }, () => {
+          this.setState({ rent: false, sellAndRent: false })
+        })
+        return
+      }
+      case "sellAndRent": {
+        this.setState({ [e.target.name]: true }, () => {
+          this.setState({ rent: false, sell: false })
+        })
+        return
+      }
+      default: {
+        return
+      }
+    }
+  }
+  getPrice = e => {
+    e.preventDefault()
+    console.log(e.which)
+    this.setState({ rentPrice: e.target.value })
   }
   handleInsertType = (e, name) => {
     e.preventDefault()
@@ -154,6 +186,7 @@ class Advertisement extends Component {
             sell={sell}
             sellPrice={sellPrice}
             rent={rent}
+            sellAndRent={this.state.sellAndRent}
             rentPrice={rentPrice}
             currency={currency}
             handleInput={this.handleInput}
@@ -167,6 +200,8 @@ class Advertisement extends Component {
             clearAllFields={this.clearAllFields}
             clearBasics={this.state.clearBasics}
             clearPrices={this.state.clearPrices}
+            getPrice={this.getPrice}
+            handleRentAndSellChoose={this.handleRentAndSellChoose}
           />
         </Wrapper>
       </Layout>

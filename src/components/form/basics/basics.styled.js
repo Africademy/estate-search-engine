@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import { Images } from "../addForm/addForm.styled"
+import { ImagesWrapper } from "../images/images.styled"
 import { large, medium, small } from "../../breakpoints"
 import { colors } from "../../../theme"
 
-export const BasicsWrapper = styled(Images)``
+export const BasicsWrapper = styled(ImagesWrapper)``
 export const Header = styled.section`
   width: 100%;
   display: flex;
@@ -33,7 +33,6 @@ export const SubTitle = styled.h3`
   align-self: flex-start;
 `
 export const Inputs = styled.section`
-  margin: 50px 0 0;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -51,7 +50,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-flow: column;
   -webkit-flex-flow: column;
-  width: 20vw;
+  width: auto;
   margin: 0 0 20px;
 
   @media all and (max-width: ${small}) {

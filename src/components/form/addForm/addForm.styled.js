@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { colors } from "../../../theme"
 import { small, medium, large } from "../../breakpoints"
 
 export const FormWrapper = styled.form`
@@ -18,23 +17,3 @@ export const FormWrapper = styled.form`
     width: 80vw;
   }
 `
-export const Images = styled.section`
-  width: 100%;
-  display: flex;
-  flex-flow: column;
-  -webkit-flex-flow: column;
-  align-items: center;
-  -webkit-align-items: center;
-  margin: 50px 0 0;
-`
-export const Imgs = styled.section`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-`
-export const ImageContainer = styled.div`
-  width: 100%;
-  height: 20vh;
-  background-color: #000;
-  overflow: hidden;
-`
-export const Img = styled.img``

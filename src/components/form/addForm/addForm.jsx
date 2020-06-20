@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { FormWrapper, Images, Imgs, ImageContainer } from "./addForm.styled"
-import { SubTitle } from "../basics/basics.styled"
+import { FormWrapper } from "./addForm.styled"
+import Images from "../images/images"
 import Basics from "../basics/basics"
 import Prices from "../prices/prices"
 import Advantages from "../advantages/advantages"
@@ -22,6 +22,7 @@ const AddForm = ({
   sellPrice,
   rentPrice,
   rent,
+  sellAndRent,
   currency,
   handleInsertCurrency,
   handleSubmit,
@@ -29,6 +30,8 @@ const AddForm = ({
   clearAllFields,
   clearBasics,
   clearPrices,
+  getPrice,
+  handleRentAndSellChoose,
 }) => {
   const [types] = useState([
     { key: 1, name: "Flat" },
@@ -52,12 +55,7 @@ const AddForm = ({
   ])
   return (
     <FormWrapper onSubmit={e => handleSubmit(e)}>
-      <Images>
-        <SubTitle>Images</SubTitle>
-        <Imgs>
-          <ImageContainer />
-        </Imgs>
-      </Images>
+      <Images />
       <Basics
         city={city}
         name={name}
@@ -83,9 +81,12 @@ const AddForm = ({
         sellPrice={sellPrice}
         rentPrice={rentPrice}
         rent={rent}
+        sellAndRent={sellAndRent}
         handleInsertCurrency={handleInsertCurrency}
         clearAllFields={clearAllFields}
         clearPrices={clearPrices}
+        getPrice={getPrice}
+        handleRentAndSellChoose={handleRentAndSellChoose}
       />
       <Advantages advantages={advantages} />
       <Submit />
