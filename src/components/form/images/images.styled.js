@@ -20,6 +20,7 @@ export const ImageInput = styled.input`
   height: 50px;
   width: 50%;
   position: relative;
+  cursor: pointer;
 
   &:focus {
     outline: none;
@@ -51,10 +52,55 @@ export const ImageContainer = styled.div`
   height: 10vw;
   display: flex;
   justify-content: center;
+  -webkit-justify-content: center;
   align-items: center;
+  -webkit-align-items: center;
+  border-radius: 15px;
   overflow: hidden;
+  position: relative;
 `
 export const Img = styled.img`
   object-fit: cover;
   width: 100%;
+`
+export const RemoveImage = styled.button`
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: #ff2222;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 60%;
+    left: 50%;
+    top: 50%;
+    background-color: #fff;
+    transform: rotate(45deg);
+    border-radius: 50px;
+    height: 3px;
+    margin: -1.5px 0 0 -30%;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 60%;
+    left: 50%;
+    top: 50%;
+    background-color: #fff;
+    transform: rotate(-45deg);
+    border-radius: 50px;
+    height: 3px;
+    margin: -1.5px 0 0 -30%;
+  }
+  &:focus {
+    outline: none;
+  }
 `

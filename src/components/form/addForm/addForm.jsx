@@ -88,7 +88,7 @@ const AddForm = ({
         getPrice={getPrice}
         handleRentAndSellChoose={handleRentAndSellChoose}
       />
-      <Advantages advantages={advantages} />
+      <Advantages clearPrices={clearPrices} advantages={advantages} />
       <Submit />
     </FormWrapper>
   )

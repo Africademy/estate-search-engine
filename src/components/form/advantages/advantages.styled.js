@@ -23,6 +23,10 @@ export const Item = styled.button`
   color: #fff;
   margin: 0 10px 10px 0;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `
 export const Selected = styled.section`
   width: 100%;

@@ -8,12 +8,12 @@ import {
   SelectedItems,
   Remove,
 } from "./advantages.styled"
-import { SubTitle } from "../basics/basics.styled"
+import { ClearBtn, Header, SubTitle } from "../basics/basics.styled"
 import { useDispatch, useSelector } from "react-redux"
 import { AddAdvantages } from "../../actions/addAdvantages"
 import { removeAdvantage } from "../../actions/removeAdvantage"
 
-const Advantages = ({ advantages }) => {
+const Advantages = ({ advantages, clearPrices }) => {
   const advs = useSelector(state => state.AddAdvantages)
   const dispatch = useDispatch()
 
@@ -32,7 +32,10 @@ const Advantages = ({ advantages }) => {
   }
   return (
     <Wrapper>
-      <SubTitle>Advantages</SubTitle>
+      <Header>
+        <SubTitle>Advantages</SubTitle>
+        <ClearBtn switch={clearPrices}>{clearPrices}</ClearBtn>
+      </Header>
       <List>
         {advantages.map(adv => {
           return (
