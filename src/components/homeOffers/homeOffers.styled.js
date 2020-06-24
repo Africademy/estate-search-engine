@@ -3,7 +3,7 @@ import { small } from "../breakpoints"
 
 export const HomeOffersWrapper = styled.main`
   width: 100vw;
-  height: 60vh;
+  height: auto;
   padding: 5vw;
   display: flex;
   flex-flow: column;

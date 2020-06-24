@@ -36,6 +36,7 @@ class Search extends Component {
       price: "Choose...",
       minPrice: 0,
       maxPrice: 0,
+      result: [],
       types: [
         { key: 1, name: "Flat" },
         { key: 2, name: "House" },
@@ -128,8 +129,11 @@ class Search extends Component {
       })
       res = choosen
     }
-    console.log(res)
-    navigate("/results")
+    this.setState({ result: res }, () => {
+      navigate("/results", {
+        state: this.state.result,
+      })
+    })
   }
 
   render() {

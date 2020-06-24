@@ -97,5 +97,34 @@
       "windows": "Plastic"
     },
     "liked": false
+  },
+  {
+    "key": 4,
+    "name": "New Invest",
+    "images": [
+      { "key": 1, "img": "estate3-1" },
+      { "key": 2, "img": "estate3-2" }
+    ],
+    "address": "ul. Mazowiecka 120",
+    "city": "Warsaw",
+    "district": "Wola",
+    "type": "Flat",
+    "prices": [
+      {
+        "type": "Rent",
+        "price": 1400
+      },
+      {
+        "type": "Sell",
+        "price": 500000
+      }
+    ],
+    "advantages": {
+      "garage": true,
+      "TV": true,
+      "AGD": true,
+      "windows": "Plastic"
+    },
+    "liked": false
   }
 ]
