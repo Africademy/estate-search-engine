@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react"
+import { navigate } from "gatsby"
 import {
   SearchWrapper,
   SearchBar,
@@ -128,6 +129,7 @@ class Search extends Component {
       res = choosen
     }
     console.log(res)
+    navigate("/results")
   }
 
   render() {

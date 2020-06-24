@@ -34,14 +34,14 @@ const Header = () => {
       <Logo onClick={() => navigate("/")} role="button">
         <LogoSVG src={logo} />
       </Logo>
-      <Dropdown></Dropdown>
+      <Dropdown />
       <Nav>
         <Link to="/buy">Buy</Link>
         <Link to="/rent">Rent</Link>
         <Link to="/coming">Coming</Link>
       </Nav>
       <Interaction>
-        <FavouritesIcon favs={favs}>
+        <FavouritesIcon favs={favs} onClick={() => navigate("/favourites")}>
           <Heart height={"100%"} />
         </FavouritesIcon>
         <Burger />

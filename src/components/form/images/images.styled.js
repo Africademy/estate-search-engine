@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import addPic from "../../../static/icons/add.svg"
+import { small } from "../../breakpoints"
 
 export const ImagesWrapper = styled.section`
   width: 100%;
@@ -15,12 +17,35 @@ export const AllImages = styled.section`
   height: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
+  @media all and (max-width: ${small}) {
+    display: flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+  }
+`
+export const FileInputsWrapper = styled.section`
+  width: 50vw;
+  height: 25vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1vw;
+  align-items: center;
+
+  @media all and (max-width: ${small}) {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+  }
 `
 export const ImageInput = styled.input`
-  height: 50px;
-  width: 50%;
+  height: 30vh;
+  width: 100%;
   position: relative;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
 
   &:focus {
     outline: none;
@@ -29,7 +54,7 @@ export const ImageInput = styled.input`
     visibility: hidden;
   }
   &:before {
-    content: "select file";
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -37,19 +62,33 @@ export const ImageInput = styled.input`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: max-content;
-    height: max-content;
-    background-color: #ccc;
+    width: 100%;
+    height: 100%;
+    border: 4px dashed #d8d8d8;
+    font-size: 1em;
+    border-radius: 20px;
+    background: url(${addPic}) #fff no-repeat center center;
+    background-size: 6vw;
+  }
+
+  @media all and (max-width: ${small}) {
+    width: 90vw;
+    height: 25vh;
+
+    &:before {
+      background-size: 12vw;
+    }
   }
 `
 export const UploadedContainer = styled.section`
   width: 100%;
   height: 100%;
   display: flex;
+  align-items: center;
 `
 export const ImageContainer = styled.div`
-  width: 20vw;
-  height: 10vw;
+  width: 100%;
+  height: 30vh;
   display: flex;
   justify-content: center;
   -webkit-justify-content: center;
@@ -58,10 +97,18 @@ export const ImageContainer = styled.div`
   border-radius: 15px;
   overflow: hidden;
   position: relative;
+  transform: ${props => (props.remove ? "scale(0)" : "scale(1)")};
+  transition: 0.3s ease-in-out;
+
+  @media all and (max-width: ${small}) {
+    width: 90vw;
+    height: 25vh;
+  }
 `
 export const Img = styled.img`
   object-fit: cover;
   width: 100%;
+  height: 100%;
 `
 export const RemoveImage = styled.button`
   height: 40px;
@@ -102,5 +149,9 @@ export const RemoveImage = styled.button`
   }
   &:focus {
     outline: none;
+  }
+  @media all and (max-width: ${small}) {
+    height: 50px;
+    width: 50px;
   }
 `

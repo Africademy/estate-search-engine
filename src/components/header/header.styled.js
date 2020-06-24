@@ -5,11 +5,12 @@ import { small, medium, large } from "../breakpoints"
 export const HeaderWrapper = styled.header`
   width: 100vw;
   height: 10vh;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.8);
   position: sticky;
   top: 0;
   z-index: 100;
   padding: 0 5vw 0;
+  backdrop-filter: blur(20px);
 
   display: flex;
   justify-content: space-between;

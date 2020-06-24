@@ -28,6 +28,7 @@ class Advertisement extends Component {
     clearBasics: "Clear all",
     clearPrices: "Clear all",
   }
+  // TODO whole validation
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value })
   }

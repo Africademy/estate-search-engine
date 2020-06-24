@@ -2,6 +2,7 @@ const initState = {
   favourites: [],
   toggleBurger: false,
   advantages: [],
+  results: [],
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -41,5 +42,11 @@ export const AddAdvantages = (state = initState.advantages, action) => {
     default: {
       return state
     }
+  }
+}
+
+export const SearchResults = (state = initState.results, action) => {
+  if (action.type === "SEARCH") {
+    return [action.payload]
   }
 }
