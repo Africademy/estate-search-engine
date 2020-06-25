@@ -1,5 +1,6 @@
 import React, { Component, createRef } from "react"
 import { navigate } from "gatsby"
+import { connect } from "react-redux"
 import {
   SearchWrapper,
   SearchBar,
@@ -15,6 +16,7 @@ import HomepageIllustration from "../homepageIllustration/homepageIllustration"
 import AdvancedSearch from "../advancedSearch/advancedSearch"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 import EstatesData from "../../data/estates.json"
+import { SearchResults } from "../actions/searchResults"
 
 class Search extends Component {
   constructor() {
@@ -27,7 +29,7 @@ class Search extends Component {
       toggleType: false,
       togglePayment: false,
       togglePrice: false,
-      toggleAdvanced: false,
+      toggleAdvanced: true,
       toggleSearchDropdown: false,
       estates: EstatesData,
       found: null,
@@ -120,6 +122,7 @@ class Search extends Component {
   }
   handleSearch = () => {
     const { estates, chooseType, city } = this.state
+    const dispatch = this.props.dispatch
     let res = estates.filter(estate => {
       return `${estate.city}, ${estate.district}` === this.state.city
     })
@@ -129,11 +132,8 @@ class Search extends Component {
       })
       res = choosen
     }
-    this.setState({ result: res }, () => {
-      navigate("/results", {
-        state: this.state.result,
-      })
-    })
+    dispatch(SearchResults(res))
+    navigate("/results")
   }
 
   render() {
@@ -242,4 +242,4 @@ class Search extends Component {
   }
 }
 
-export default Search
+export default connect()(Search)

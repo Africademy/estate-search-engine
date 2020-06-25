@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import { AdvancedWrapper } from "./advancedSearch.styled"
 import AdvancedFilter from "../searchEngine/advancedFilters/advancedFilters"
+import AdvantagesFilter from "../searchEngine/advantagesFilter/advantagesFilter"
+import advantages from "../../data/advantages.json"
 
 const AdvancedSearch = ({
   toggleAdvanced,
@@ -9,6 +11,7 @@ const AdvancedSearch = ({
   minRooms,
   maxRooms,
 }) => {
+  const [advs] = useState(advantages)
   return (
     <AdvancedWrapper toggleAdvanced={toggleAdvanced}>
       <AdvancedFilter
@@ -25,6 +28,7 @@ const AdvancedSearch = ({
         insertMaxRoom={insertMaxRoom}
         dropdown={true}
       />
+      <AdvantagesFilter advs={advs} />
     </AdvancedWrapper>
   )
 }

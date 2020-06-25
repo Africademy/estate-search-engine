@@ -47,6 +47,8 @@ export const AddAdvantages = (state = initState.advantages, action) => {
 
 export const SearchResults = (state = initState.results, action) => {
   if (action.type === "SEARCH") {
-    return [action.payload]
+    return action.payload
+  } else {
+    return state
   }
 }

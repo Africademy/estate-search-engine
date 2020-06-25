@@ -3,9 +3,15 @@ import { ResultsWrapper } from "./searchResults.styled"
 import Estate from "../estate/estate"
 
 const SearchResults = ({ results }) => {
-  const [estates] = useState(results[0])
-  console.log(results[0], estates)
-  return <ResultsWrapper></ResultsWrapper>
+  return (
+    <ResultsWrapper>
+      {results !== undefined
+        ? results.map(estate => {
+            return <Estate estate={estate} />
+          })
+        : null}
+    </ResultsWrapper>
+  )
 }
 
 export default SearchResults

@@ -3,12 +3,18 @@ import Layout from "../components/layout"
 import Search from "../components/search/search"
 import HomeOffers from "../components/homeOffers/homeOffers"
 import { createStore, combineReducers } from "redux"
-import { ToggleBurger, Favourites, AddAdvantages } from "../components/reducers"
+import {
+  ToggleBurger,
+  Favourites,
+  AddAdvantages,
+  SearchResults,
+} from "../components/reducers"
 
 const reducers = combineReducers({
   ToggleBurger,
   Favourites,
   AddAdvantages,
+  SearchResults,
 })
 
 export const store = createStore(

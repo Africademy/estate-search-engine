@@ -5,7 +5,7 @@ import { medium } from "../breakpoints"
 export const Wrapper = styled.main`
   display: none;
   @media all and (max-width: ${medium}) {
-    height: 100vh;
+    height: ${props => (props.toggle ? "100vh" : 0)};
     width: 100vw;
     position: absolute;
     z-index: 50;

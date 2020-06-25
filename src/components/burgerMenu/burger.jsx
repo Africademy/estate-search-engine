@@ -6,7 +6,7 @@ import { useSelector } from "react-redux"
 const BurgerMenu = () => {
   const toggle = useSelector(state => state.ToggleBurger)
   return (
-    <Wrapper>
+    <Wrapper toggle={toggle}>
       <Fade toggle={toggle} />
       <Menu toggle={toggle}>
         <Link to="/buy">Buy</Link>

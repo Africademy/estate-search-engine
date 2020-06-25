@@ -1,0 +1,7 @@
+[
+  { "key": 1, "name": "Parking", "checked": true },
+  { "key": 2, "name": "Full AGD", "checked": false },
+  { "key": 3, "name": "TV", "checked": false },
+  { "key": 4, "name": "Close to city center", "checked": false },
+  { "key": 5, "name": "Security", "checked": false }
+]
