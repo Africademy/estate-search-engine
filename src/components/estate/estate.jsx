@@ -13,6 +13,7 @@ import {
 } from "./estate.styled"
 import Heart from "../icons/favourites"
 import HeartFull from "../icons/favouritesFilled"
+import { addToFavourites } from "../actions/addToFavourites"
 
 const Estate = ({ estate, handleLike }) => {
   return (

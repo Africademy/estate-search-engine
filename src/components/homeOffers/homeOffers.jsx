@@ -3,15 +3,13 @@ import { HomeOffersWrapper, Grid } from "./homeOffers.styled"
 import Estate from "../estate/estate"
 import DetailedEstate from "../detailedEstate/detailedEstate"
 import HomeOffersHeader from "./header/homeOffersHeader"
-import JSONEstates from "../../data/estates.json"
 import { useDispatch, useSelector } from "react-redux"
 import { addToFavourites } from "../actions/addToFavourites"
 
 const HomeOffers = () => {
-  const [offers] = useState(JSONEstates)
+  const estates = useSelector(state => state.Estates)
   const [updated, setUpdated] = useState(false)
   const dispatch = useDispatch()
-  const fav = useSelector(state => state.Favourites)
   const [isDetailed, setDetailed] = useState(false)
 
   const handleToggle = () => {
@@ -27,7 +25,7 @@ const HomeOffers = () => {
       <HomeOffersHeader handleToggle={handleToggle} />
       <Grid isDetailed={isDetailed}>
         {isDetailed
-          ? offers.map(estate => {
+          ? estates.map(estate => {
               return (
                 <DetailedEstate
                   handleLike={handleLike}
@@ -36,7 +34,7 @@ const HomeOffers = () => {
                 />
               )
             })
-          : offers.map(estate => {
+          : estates.map(estate => {
               return (
                 <Estate
                   handleLike={handleLike}

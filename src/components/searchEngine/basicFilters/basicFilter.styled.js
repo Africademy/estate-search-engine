@@ -18,7 +18,7 @@ export const TypesWrapper = styled.section`
     width: 80%;
   }
 `
-export const Type = styled.button`
+export const Type = styled.div`
   height: 100%;
   color: #fff;
   display: flex;
@@ -41,6 +41,7 @@ export const Type = styled.button`
 `
 export const Dropdown = styled.section`
   position: absolute;
+  z-index: 5;
   width: 120%;
   height: max-content;
   background-color: #ffffff;

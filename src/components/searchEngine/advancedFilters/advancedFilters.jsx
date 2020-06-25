@@ -15,31 +15,33 @@ const AdvancedFilter = ({
   dropdown,
   insertMinRoom,
   insertMaxRoom,
-  minRooms,
-  maxRooms,
+  min,
+  max,
+  title,
+  icon,
+  array,
+  readOnly,
 }) => {
-  const [rooms, setMinRooms] = useState([
-    { key: 1 },
-    { key: 2 },
-    { key: 3 },
-    { key: 4 },
-  ])
   return (
     <Wrapper>
-      <Label>Amount of rooms</Label>
+      <Label>{title}</Label>
       <InputsWrapper>
         <InputWrapper>
-          <MinInput placeholder="min" readOnly value={minRooms} />
+          {readOnly ? (
+            <MinInput icon={icon} placeholder="min" readOnly value={min} />
+          ) : (
+            <MinInput icon={icon} placeholder="min" value={min} />
+          )}
           {dropdown ? (
             <Dropdown>
-              {rooms.map(room => {
+              {array.map(val => {
                 return (
                   <Item
                     name="minRooms"
                     onClick={e => insertMinRoom(e)}
-                    key={room.key}
+                    key={val.key}
                   >
-                    {room.key}
+                    {val.value}
                   </Item>
                 )
               })}
@@ -47,17 +49,21 @@ const AdvancedFilter = ({
           ) : null}
         </InputWrapper>
         <InputWrapper>
-          <MaxInput placeholder="max" readOnly value={maxRooms} />
+          {readOnly ? (
+            <MaxInput icon={icon} placeholder="max" readOnly value={max} />
+          ) : (
+            <MaxInput icon={icon} placeholder="max" value={max} />
+          )}
           {dropdown ? (
             <DropdownMax>
-              {rooms.map(room => {
+              {array.map(val => {
                 return (
                   <Item
                     name="maxRooms"
                     onClick={e => insertMaxRoom(e)}
-                    key={room.key}
+                    key={val.key}
                   >
-                    {room.key}
+                    {val.value}
                   </Item>
                 )
               })}

@@ -147,12 +147,11 @@ export const FavouritesIcon = styled.button`
   &:focus {
     outline: none;
   }
-  // TODO show how many estates in favs
   &:after {
     content: ${props => {
-      if (props.length > 0) {
+      if (props.favs > 0) {
         return `
-          ${props.length.toString()}
+          "${props.favs}";
         `
       } else {
         return `
@@ -171,6 +170,7 @@ export const FavouritesIcon = styled.button`
     width: 20px;
     border-radius: 50%;
     background-color: ${colors.darkBlue};
+    visibility: ${props => (props.favs > 0 ? "visible" : "hidden")};
   }
 `
 export const AddAdvertBtn = styled.button`
@@ -184,7 +184,7 @@ export const AddAdvertBtn = styled.button`
   transition: 0.3s ease-in-out;
 
   &:hover {
-    background-color: #fff;
+    background: none;
     color: #000;
     transition: 0.3s ease-in-out;
   }

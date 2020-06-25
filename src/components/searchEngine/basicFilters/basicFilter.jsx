@@ -41,7 +41,6 @@ const BasicFilter = ({
                 </Item>
               )
             })}
-            )}
           </Dropdown>
         </Type>
       ) : (

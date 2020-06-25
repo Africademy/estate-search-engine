@@ -60,6 +60,14 @@ class Search extends Component {
         { key: 1, name: "Sell" },
         { key: 2, name: "Rent" },
       ],
+      floor: [
+        { key: 1, amount: "Parter" },
+        { key: 2, amount: 1 },
+        { key: 3, amount: 2 },
+        { key: 4, amount: 3 },
+        { key: 5, amount: 4 },
+        { key: 6, amount: 5 },
+      ],
     }
     this.type = createRef()
   }
@@ -75,9 +83,14 @@ class Search extends Component {
   toggleDropdown = () => {
     this.setState({ toggleType: !this.state.toggleType })
   }
+
   insertAttributes = e => {
     this.setState({ [e.target.name]: e.target.innerText })
   }
+  insertValue = e => {
+    this.setState({ [e.target.name]: e.target.innerText })
+  }
+
   handleTransaction = () => {
     this.setState({
       togglePayment: !this.state.togglePayment,
@@ -172,6 +185,8 @@ class Search extends Component {
               title={"Type of estate"}
               array={types}
               insert={this.insertAttributes}
+              insertMinRoom={this.insertValue}
+              insertMaxRoom={this.insertValue}
               handleToggle={this.toggleDropdown}
               toggleState={this.state.toggleType}
               applyPrice={this.applyPrice}
@@ -235,6 +250,7 @@ class Search extends Component {
             insertMinRoom={this.insertMinRoom}
             insertMaxRoom={this.insertMaxRoom}
             toggleAdvanced={this.state.toggleAdvanced}
+            floor={this.state.floor}
           />
         </SearchBar>
       </SearchWrapper>

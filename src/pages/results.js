@@ -7,7 +7,6 @@ import Filters from "../components/filters/filters"
 
 const Results = () => {
   const results = useSelector(state => state.SearchResults)
-  console.log(results)
   return (
     <Layout>
       <Container>

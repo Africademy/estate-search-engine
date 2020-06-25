@@ -1,10 +1,12 @@
 import styled from "styled-components"
+import { colors } from "../../theme"
 
 export const AdvancedWrapper = styled.section`
   width: 100%;
-  height: ${props => (props.toggleAdvanced ? "30vh" : 0)};
+  height: auto;
   transform: scale(${props => (props.toggleAdvanced ? 1 : 0)});
-  transform-origin: 80% -30%;
+  visibility: ${props => (props.toggleAdvanced ? "visible" : "hidden")};
+  transform-origin: 80% 0;
   background-color: #ffffff;
   position: absolute;
   z-index: 0;
@@ -21,5 +23,43 @@ export const AdvancedWrapper = styled.section`
   padding: 10px;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas: "filter filter1 filter2 filter3 filter4" "filter5 filter6 . . footer";
+`
+export const GridFooter = styled.section`
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-area: footer;
+  align-items: baseline;
+`
+export const Footer = styled.div`
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+`
+export const ClearFieldsBtn = styled.button`
+  font-size: 1em;
+  width: max-content;
+  height: max-content;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+`
+export const SubmitBtn = styled(ClearFieldsBtn)`
+  font-size: 1em;
+  width: max-content;
+  height: max-content;
+  padding: 20px 40px 20px;
+  border: none;
+  background-color: ${colors.pink};
+  color: #fff;
+  border-radius: 5px;
 `

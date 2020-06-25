@@ -8,6 +8,7 @@ import {
   Favourites,
   AddAdvantages,
   SearchResults,
+  Estates,
 } from "../components/reducers"
 
 const reducers = combineReducers({
@@ -15,11 +16,12 @@ const reducers = combineReducers({
   Favourites,
   AddAdvantages,
   SearchResults,
+  Estates,
 })
 
 export const store = createStore(
-  reducers
-  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 const IndexPage = () => (

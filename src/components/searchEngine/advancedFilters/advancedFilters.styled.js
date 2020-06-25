@@ -22,6 +22,7 @@ export const InputWrapper = styled.div`
 `
 export const Dropdown = styled.ul`
   position: absolute;
+  z-index: 2;
   top: 100%;
   height: auto;
   width: max-content;
@@ -41,11 +42,22 @@ export const MinInput = styled.input`
   width: 100%;
   border: 1px solid #a0a0a0;
   border-radius: 5px;
-  padding: 10px 10px 10px 25px;
-  background-image: url(${dollar});
-  background-size: 18px;
-  background-repeat: no-repeat;
-  background-position: 3px center;
+  
+  ${props => {
+    if (props.icon) {
+      return `
+        background-image: url(${dollar});
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 3px center;
+        padding: 10px 10px 10px 25px;
+      `
+    } else {
+      return `
+        padding: 10px;
+      `
+    }
+  }}
 
   &:focus ~ ${Dropdown} {
     transform: scale(1);
@@ -61,6 +73,7 @@ export const Item = styled.button`
   border: none;
   background: none;
   text-align: left;
+  cursor: pointer;
 
   &:hover {
     background-color: #ccc;

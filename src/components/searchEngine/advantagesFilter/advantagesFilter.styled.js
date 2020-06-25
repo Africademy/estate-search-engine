@@ -12,12 +12,18 @@ export const Wrapper = styled.div`
 export const Title = styled.h3`
   font-size: 1.2em;
 `
-export const Advantage = styled.div`
+export const Advantage = styled.button`
   display: flex;
   align-items: center;
   -webkit-align-items: center;
   width: 100%;
   margin: 0 0 5px;
+  border: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
 `
 export const Checkbox = styled.input`
   margin: 0 5px 0 0;
@@ -37,24 +43,35 @@ export const Checkbox = styled.input`
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    
-    ${props => {
-      if (props.checked) {
-        return `
-          background: url(${check}) no-repeat ${colors.pink};
-          border: none;
-        `
-      } else {
-        return `
-           background-color: #fff;
     border: 2px solid #ccc;
-        `
-      }
-    }}
+  }
+  &:checked:before {
+    background: url(${check}) no-repeat ${colors.pink} center center;
+    background-size: 15px;
+    border: none;
+  }
+
   &:focus {
     outline: none;
   }
 `
 export const Label = styled.label`
-  font-size: 1em;
+  font-size: 1.1em;
 `
+
+/*
+${props => {
+      if (props.toggle) {
+        return `
+          background: url(${check}) no-repeat ${colors.pink} center center;
+          background-size: 15px;
+          border: none;
+        `
+      } else {
+        return `
+          background-color: #fff;
+          border: 2px solid #ccc;
+        `
+      }
+    }}
+ */

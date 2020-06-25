@@ -1,15 +1,25 @@
+import estates from "../../data/estates.json"
+
 const initState = {
   favourites: [],
   toggleBurger: false,
   advantages: [],
   results: [],
+  estates: estates,
 }
 
 export const Favourites = (state = initState.favourites, action) => {
   switch (action.type) {
     case "ADD_TO_FAVOURITES": {
-      action.payload.liked = !action.payload.liked
-      return [...state, action.payload]
+      if (action.payload.liked) {
+        action.payload.liked = false
+        return state.filter(estate => {
+          return estate.key !== action.payload.key
+        })
+      } else {
+        action.payload.liked = !action.payload.liked
+        return [...state, action.payload]
+      }
     }
     default: {
       return state
@@ -47,7 +57,19 @@ export const AddAdvantages = (state = initState.advantages, action) => {
 
 export const SearchResults = (state = initState.results, action) => {
   if (action.type === "SEARCH") {
-    return action.payload
+    if (action.payload.length === 0) {
+      return null
+    } else {
+      return action.payload
+    }
+  } else {
+    return state
+  }
+}
+
+export const Estates = (state = initState.estates, action) => {
+  if (action.type === "FILTER") {
+    return state
   } else {
     return state
   }

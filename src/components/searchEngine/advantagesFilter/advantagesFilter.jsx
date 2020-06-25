@@ -7,14 +7,22 @@ import {
   Label,
 } from "./advantagesFilter.styled"
 
-const AdvantagesFilter = ({ advs }) => {
+const AdvantagesFilter = ({ array, title }) => {
+  const handleSelect = adv => {
+    console.log(adv.checked)
+    const status = adv.checked
+    adv.checked = !status
+  }
   return (
     <Wrapper>
-      <Title>Advantages</Title>
-      {advs.map(advantage => {
+      <Title>{title}</Title>
+      {array.map(advantage => {
         return (
-          <Advantage key={advantage.key}>
-            <Checkbox checked={advantage.checked} type="checkbox" />
+          <Advantage
+            onClick={() => handleSelect(advantage)}
+            key={advantage.key}
+          >
+            <Checkbox toggle={advantage.checked} type="checkbox" />
             <Label>{advantage.name}</Label>
           </Advantage>
         )

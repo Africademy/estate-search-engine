@@ -41,7 +41,10 @@ const Header = () => {
         <Link to="/coming">Coming</Link>
       </Nav>
       <Interaction>
-        <FavouritesIcon favs={favs} onClick={() => navigate("/favourites")}>
+        <FavouritesIcon
+          favs={favs.length}
+          onClick={() => navigate("/favourites")}
+        >
           <Heart height={"100%"} />
         </FavouritesIcon>
         <Burger />
