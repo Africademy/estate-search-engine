@@ -2,6 +2,8 @@
   {
     "key": 1,
     "name": "Vistula Apartments",
+    "seen": false,
+    "slug": "vistula-apartments",
     "images": [
       {
         "key": 1,
@@ -12,31 +14,53 @@
         "img": "estate1-2"
       }
     ],
-    "address": "ul. Pra 20",
+    "address": "ul. Krucza 30",
+    "coords": {
+      "lat": 21.018751,
+      "long": 52.227895
+    },
     "city": "Warsaw",
     "district": "Śródmieście",
     "type": "House",
     "prices": [
       {
         "type": "Rent",
-        "price": 1000
+        "price": 1700
       },
       {
         "type": "Sell",
         "price": 250000
       }
     ],
-    "advantages": {
-      "garage": true,
-      "TV": true,
-      "AGD": true,
-      "windows": "Plastic"
-    },
+    "advantages": [
+      {
+        "key": 1,
+        "name": "Garage",
+        "status": true
+      },
+      {
+        "key": 2,
+        "name": "TV",
+        "status": true
+      },
+      {
+        "key": 3,
+        "name": "AGD",
+        "status": true
+      },
+      {
+        "key": 4,
+        "name": "Plastic",
+        "status": true
+      }
+    ],
     "liked": false
   },
   {
     "key": 2,
     "name": "Golden Gate Valley",
+    "seen": false,
+    "slug": "golden-gate-valley",
     "images": [
       {
         "key": 1,
@@ -47,7 +71,7 @@
         "img": "estate2-2"
       }
     ],
-    "address": "ul. Pro 20",
+    "address": "ul. Straszewskiego 2",
     "city": "Cracow",
     "district": "Stare Miasto",
     "type": "Flat",
@@ -61,17 +85,35 @@
         "price": 300000
       }
     ],
-    "advantages": {
-      "garage": true,
-      "TV": true,
-      "AGD": true,
-      "windows": "Plastic"
-    },
+    "advantages": [
+      {
+        "key": 1,
+        "name": "Garage",
+        "status": true
+      },
+      {
+        "key": 2,
+        "name": "TV",
+        "status": true
+      },
+      {
+        "key": 3,
+        "name": "AGD",
+        "status": true
+      },
+      {
+        "key": 4,
+        "name": "Plastic",
+        "status": true
+      }
+    ],
     "liked": false
   },
   {
     "key": 3,
     "name": "Urban Premium",
+    "seen": false,
+    "slug": "urban-premium",
     "images": [
       { "key": 1, "img": "estate3-1" },
       { "key": 2, "img": "estate3-2" }
@@ -90,17 +132,35 @@
         "price": 500000
       }
     ],
-    "advantages": {
-      "garage": true,
-      "TV": true,
-      "AGD": true,
-      "windows": "Plastic"
-    },
+    "advantages": [
+      {
+        "key": 1,
+        "name": "Garage",
+        "status": true
+      },
+      {
+        "key": 2,
+        "name": "TV",
+        "status": true
+      },
+      {
+        "key": 3,
+        "name": "AGD",
+        "status": true
+      },
+      {
+        "key": 4,
+        "name": "Plastic",
+        "status": true
+      }
+    ],
     "liked": false
   },
   {
     "key": 4,
     "name": "New Invest",
+    "seen": false,
+    "slug": "new-invest",
     "images": [
       { "key": 1, "img": "estate3-1" },
       { "key": 2, "img": "estate3-2" }
@@ -112,19 +172,35 @@
     "prices": [
       {
         "type": "Rent",
-        "price": 1400
+        "price": 1500
       },
       {
         "type": "Sell",
         "price": 500000
       }
     ],
-    "advantages": {
-      "garage": true,
-      "TV": true,
-      "AGD": true,
-      "windows": "Plastic"
-    },
+    "advantages": [
+      {
+        "key": 1,
+        "name": "Garage",
+        "status": true
+      },
+      {
+        "key": 2,
+        "name": "TV",
+        "status": true
+      },
+      {
+        "key": 3,
+        "name": "AGD",
+        "status": true
+      },
+      {
+        "key": 4,
+        "name": "Plastic",
+        "status": true
+      }
+    ],
     "liked": false
   }
 ]

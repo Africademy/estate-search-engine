@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { navigate } from "gatsby"
 import {
   EstateWrapper,
   EstateImageContainer,
@@ -18,13 +19,15 @@ import { addToFavourites } from "../actions/addToFavourites"
 const Estate = ({ estate, handleLike }) => {
   return (
     <EstateWrapper>
-      <EstateImageContainer>
+      <EstateImageContainer seen={estate.seen}>
         {estate.images.map(img => {
           return <Image key={img.key} src={`./photos/${img.img}.jpeg`} />
         })}
       </EstateImageContainer>
       <EstateContent>
-        <Name>{estate.name}</Name>
+        <Name onClick={() => navigate(`/results/${estate.slug}`)}>
+          {estate.name}
+        </Name>
         <Address>
           {estate.address}, {estate.city}
         </Address>

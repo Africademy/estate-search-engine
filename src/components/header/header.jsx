@@ -17,6 +17,7 @@ import { useSelector } from "react-redux"
 
 const Header = () => {
   const favs = useSelector(state => state.Favourites)
+  const toggle = useSelector(state => state.ToggleModal)
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
     if (window) {
@@ -30,7 +31,7 @@ const Header = () => {
     }
   })
   return (
-    <HeaderWrapper scrolled={scrolled}>
+    <HeaderWrapper toggle={toggle} scrolled={scrolled}>
       <Logo onClick={() => navigate("/")} role="button">
         <LogoSVG src={logo} />
       </Logo>

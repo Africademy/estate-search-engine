@@ -4,6 +4,7 @@ import SearchResults from "../components/results/searchResults"
 import { useSelector } from "react-redux"
 import { Container } from "../components/results/searchResults.styled"
 import Filters from "../components/filters/filters"
+import Sorting from "../components/sorting/sorting"
 
 const Results = () => {
   const results = useSelector(state => state.SearchResults)
@@ -11,6 +12,7 @@ const Results = () => {
     <Layout>
       <Container>
         <Filters />
+        <Sorting />
         <SearchResults results={results} />
       </Container>
     </Layout>

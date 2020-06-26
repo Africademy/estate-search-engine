@@ -6,6 +6,7 @@ const initState = {
   advantages: [],
   results: [],
   estates: estates,
+  modal: false,
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -70,6 +71,14 @@ export const SearchResults = (state = initState.results, action) => {
 export const Estates = (state = initState.estates, action) => {
   if (action.type === "FILTER") {
     return state
+  } else {
+    return state
+  }
+}
+
+export const ToggleModal = (state = initState.modal, action) => {
+  if (action.type === "TOGGLE_MODAL") {
+    return !state
   } else {
     return state
   }

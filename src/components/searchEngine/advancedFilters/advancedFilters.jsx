@@ -30,7 +30,12 @@ const AdvancedFilter = ({
           {readOnly ? (
             <MinInput icon={icon} placeholder="min" readOnly value={min} />
           ) : (
-            <MinInput icon={icon} placeholder="min" value={min} />
+            <MinInput
+              icon={icon}
+              placeholder="min"
+              onChange={e => console.log(e)}
+              value={min}
+            />
           )}
           {dropdown ? (
             <Dropdown>
@@ -52,7 +57,12 @@ const AdvancedFilter = ({
           {readOnly ? (
             <MaxInput icon={icon} placeholder="max" readOnly value={max} />
           ) : (
-            <MaxInput icon={icon} placeholder="max" value={max} />
+            <MaxInput
+              icon={icon}
+              placeholder="max"
+              onChange={e => console.log(e)}
+              value={max}
+            />
           )}
           {dropdown ? (
             <DropdownMax>

@@ -29,7 +29,7 @@ class Search extends Component {
       toggleType: false,
       togglePayment: false,
       togglePrice: false,
-      toggleAdvanced: true,
+      toggleAdvanced: false,
       toggleSearchDropdown: false,
       estates: EstatesData,
       found: null,
@@ -76,6 +76,12 @@ class Search extends Component {
     this.setState({ city: e.target.value }, () => {
       const foundedEstates = estates.filter(estate => {
         return estate.city.includes(this.formatSearchInput())
+      })
+      const reduced = foundedEstates.filter((el, pos, arr) => {
+        console.log(
+          el.district,
+          arr.forEach(el => console.log(el.district))
+        )
       })
       this.setState({ found: foundedEstates })
     })

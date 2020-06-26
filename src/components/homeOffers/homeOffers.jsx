@@ -22,7 +22,7 @@ const HomeOffers = () => {
 
   return (
     <HomeOffersWrapper>
-      <HomeOffersHeader handleToggle={handleToggle} />
+      <HomeOffersHeader isDetailed={isDetailed} handleToggle={handleToggle} />
       <Grid isDetailed={isDetailed}>
         {isDetailed
           ? estates.map(estate => {

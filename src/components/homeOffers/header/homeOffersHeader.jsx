@@ -11,24 +11,43 @@ import {
   Line,
 } from "./homeOffersHeader.styled"
 
-const HomeOffersHeader = ({ handleToggle }) => {
+const HomeOffersHeader = ({ handleToggle, isDetailed }) => {
   return (
     <Wrapper>
       <Title>Newest</Title>
       <SwitchDisplayStyle>
-        <MostImportant onClick={() => handleToggle()}>
-          <Icon>
-            <BigRect />
-            <SmallRect />
-          </Icon>
-        </MostImportant>
-        <MoreDetails>
-          <Icon>
-            <Line />
-            <Line />
-            <Line />
-          </Icon>
-        </MoreDetails>
+        {isDetailed ? (
+          <MostImportant isDetailed={isDetailed} onClick={() => handleToggle()}>
+            <Icon>
+              <BigRect />
+              <SmallRect />
+            </Icon>
+          </MostImportant>
+        ) : (
+          <MostImportant disabled="disabled">
+            <Icon>
+              <BigRect />
+              <SmallRect />
+            </Icon>
+          </MostImportant>
+        )}
+        {!isDetailed ? (
+          <MoreDetails onClick={() => handleToggle()}>
+            <Icon>
+              <Line />
+              <Line />
+              <Line />
+            </Icon>
+          </MoreDetails>
+        ) : (
+          <MoreDetails disabled="disabled">
+            <Icon>
+              <Line />
+              <Line />
+              <Line />
+            </Icon>
+          </MoreDetails>
+        )}
       </SwitchDisplayStyle>
     </Wrapper>
   )

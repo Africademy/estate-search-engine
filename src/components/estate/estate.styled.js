@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { small } from "../breakpoints"
+import { colors } from "../../theme"
+import eye from "../../static/icons/eye-empty.svg"
 
 export const EstateContent = styled.section`
   width: 90%;
@@ -60,6 +62,29 @@ export const EstateImageContainer = styled.section`
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
+  ${props => {
+    if (props.seen) {
+      return `
+        border: 4px solid ${colors.blue};
+        
+        &:after {
+          content: "Seen";
+          color: #fff;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: max-content;
+          width: max-content;
+          padding: 5px 10px 5px 40px;
+          background: url(${eye}) no-repeat ${colors.blue} 10% center;
+          background-size: 25px;
+          border-radius: 0 0 0 10px;
+          font-size: 1.1em;
+        }
+      `
+    }
+  }}
 
   &:hover img {
     transition: 0.7s ease-in-out;
@@ -75,6 +100,12 @@ export const Image = styled.img`
 `
 export const Name = styled.h3`
   font-size: 1.7em;
+  cursor: pointer;
+
+  &:hover {
+    color: ${colors.pink};
+  }
+
   @media all and (max-width: ${small}) {
     font-size: 1.5em;
   }

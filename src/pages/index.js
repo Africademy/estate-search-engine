@@ -9,6 +9,7 @@ import {
   AddAdvantages,
   SearchResults,
   Estates,
+  ToggleModal,
 } from "../components/reducers"
 
 const reducers = combineReducers({
@@ -17,12 +18,10 @@ const reducers = combineReducers({
   AddAdvantages,
   SearchResults,
   Estates,
+  ToggleModal,
 })
 
-export const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+export const store = createStore(reducers)
 
 const IndexPage = () => (
   <Layout>

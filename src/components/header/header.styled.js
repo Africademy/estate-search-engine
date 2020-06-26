@@ -31,6 +31,11 @@ export const HeaderWrapper = styled.header`
 ;
       `
     }
+    if (props.toggle) {
+      return `
+        transform: translateY(-100%);
+      `
+    }
   }}
 `
 export const Logo = styled.div`

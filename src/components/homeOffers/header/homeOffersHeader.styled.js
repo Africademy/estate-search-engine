@@ -44,6 +44,7 @@ export const MostImportant = styled.button`
   &:focus {
     outline: none;
   }
+
   &:hover {
     transition: 0.3s ease-in-out;
     background-color: ${colors.darkBlue};
