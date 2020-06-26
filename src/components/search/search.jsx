@@ -18,6 +18,12 @@ import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 import EstatesData from "../../data/estates.json"
 import { SearchResults } from "../actions/searchResults"
 
+const mapStateToProps = state => {
+  return {
+    lang: state.SwitchLanguage,
+  }
+}
+
 class Search extends Component {
   constructor() {
     super()
@@ -157,6 +163,7 @@ class Search extends Component {
 
   render() {
     const { types, transaction, found } = this.state
+    const { lang } = this.props
     return (
       <SearchWrapper>
         <HomepageIllustration />
@@ -167,7 +174,7 @@ class Search extends Component {
               onChange={e => this.handleSearchInput(e)}
               value={this.state.city}
               type="search"
-              placeholder="Search..."
+              placeholder={lang ? "Search..." : "Szukaj..."}
               isEmpty={this.state.city}
               toggle={this.state.toggleSearchDropdown}
             />
@@ -249,7 +256,9 @@ class Search extends Component {
               </svg>
             </ToggleAdvanced>
           </Filters>
-          <SearchBtn onClick={() => this.handleSearch()}>Search</SearchBtn>
+          <SearchBtn onClick={() => this.handleSearch()}>
+            {lang ? "Search" : "Szukaj"}
+          </SearchBtn>
           <AdvancedSearch
             minRooms={this.state.minRooms}
             maxRooms={this.state.maxRooms}
@@ -264,4 +273,4 @@ class Search extends Component {
   }
 }
 
-export default connect()(Search)
+export default connect(mapStateToProps)(Search)

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../../theme"
-import { small } from "../../breakpoints"
+import { medium, small } from "../../breakpoints"
 
 export const PriceWrapper = styled.div`
   width: 30vw;
@@ -19,6 +19,9 @@ export const PriceWrapper = styled.div`
     width: 100%;
     flex-flow: column;
     -webkit-flex-flow: column;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 100%;
   }
 `
 export const DropdownContainer = styled.div`
@@ -101,6 +104,10 @@ export const Item = styled.button`
 export const PriceValue = styled.h3`
   font-size: 1.5em;
   font-weight: 500;
+
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    font-size: 1.2em;
+  }
 `
 export const Label = styled.label`
   font-size: 1.2em;

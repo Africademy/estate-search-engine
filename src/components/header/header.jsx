@@ -9,16 +9,21 @@ import {
   Interaction,
   FavouritesIcon,
   AddAdvertBtn,
+  SwitchLanguage,
+  Language,
 } from "./header.styled"
 import Heart from "../icons/favourites"
 import Burger from "../burger/burger"
 import logo from "../../static/icons/location.svg"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { switchLanguage } from "../actions/switchLanguage"
 
 const Header = () => {
   const favs = useSelector(state => state.Favourites)
   const toggle = useSelector(state => state.ToggleModal)
+  const lang = useSelector(state => state.SwitchLanguage)
   const [scrolled, setScrolled] = useState(false)
+  const dispatch = useDispatch()
   useEffect(() => {
     if (window) {
       window.addEventListener("scroll", () => {
@@ -36,11 +41,19 @@ const Header = () => {
         <LogoSVG src={logo} />
       </Logo>
       <Dropdown />
-      <Nav>
-        <Link to="/buy">Buy</Link>
-        <Link to="/rent">Rent</Link>
-        <Link to="/coming">Coming</Link>
-      </Nav>
+      {lang ? (
+        <Nav>
+          <Link to="/buy">Buy</Link>
+          <Link to="/rent">Rent</Link>
+          <Link to="/coming">Coming</Link>
+        </Nav>
+      ) : (
+        <Nav>
+          <Link to="/buy">Kup</Link>
+          <Link to="/rent">Wynajem</Link>
+          <Link to="/coming">Inwestycje</Link>
+        </Nav>
+      )}
       <Interaction>
         <FavouritesIcon
           favs={favs.length}
@@ -54,8 +67,12 @@ const Header = () => {
             navigate("/advertisement")
           }}
         >
-          Add advertisement
+          {lang ? "Add advertisement" : "Dodaj ogłoszenie"}
         </AddAdvertBtn>
+        <SwitchLanguage>
+          <Language onClick={() => dispatch(switchLanguage())}>PL</Language>
+          <Language>EN</Language>
+        </SwitchLanguage>
       </Interaction>
     </HeaderWrapper>
   )

@@ -1,12 +1,13 @@
 import estates from "../../data/estates.json"
 
-const initState = {
+export const initState = {
   favourites: [],
   toggleBurger: false,
   advantages: [],
   results: [],
   estates: estates,
   modal: false,
+  english: true,
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -76,8 +77,8 @@ export const Estates = (state = initState.estates, action) => {
   }
 }
 
-export const ToggleModal = (state = initState.modal, action) => {
-  if (action.type === "TOGGLE_MODAL") {
+export const SwitchLanguage = (state = initState.english, action) => {
+  if (action.type === "SWITCH_LANGUAGE") {
     return !state
   } else {
     return state

@@ -72,6 +72,10 @@
       }
     ],
     "address": "ul. Straszewskiego 2",
+    "coords": {
+      "lat": 19.934979,
+      "long": 50.055547
+    },
     "city": "Cracow",
     "district": "Stare Miasto",
     "type": "Flat",
@@ -119,6 +123,10 @@
       { "key": 2, "img": "estate3-2" }
     ],
     "address": "ul. Mazowiecka 120",
+    "coords": {
+      "lat": 21.249101,
+      "long": 52.224090
+    },
     "city": "Warsaw",
     "district": "Wola",
     "type": "Flat",
@@ -166,6 +174,10 @@
       { "key": 2, "img": "estate3-2" }
     ],
     "address": "ul. Mazowiecka 120",
+    "coords": {
+      "lat": 21.249101,
+      "long": 52.224090
+    },
     "city": "Warsaw",
     "district": "Wola",
     "type": "Flat",

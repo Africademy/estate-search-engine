@@ -201,3 +201,11 @@ export const AddAdvertBtn = styled.button`
     display: none;
   }
 `
+export const SwitchLanguage = styled.div`
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+`
+export const Language = styled.button``

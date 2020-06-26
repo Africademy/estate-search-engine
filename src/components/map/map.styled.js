@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { small } from "../breakpoints"
+import { medium } from "../breakpoints"
 
 export const MapWrapper = styled.main`
   width: 30vw;
@@ -8,7 +8,7 @@ export const MapWrapper = styled.main`
   border-radius: 15px;
   overflow: hidden;
 
-  @media all and (max-width: ${small}) {
+  @media all and (max-width: ${medium}) {
     width: 100%;
   }
 `

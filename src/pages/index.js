@@ -9,7 +9,7 @@ import {
   AddAdvantages,
   SearchResults,
   Estates,
-  ToggleModal,
+  SwitchLanguage,
 } from "../components/reducers"
 
 const reducers = combineReducers({
@@ -18,7 +18,7 @@ const reducers = combineReducers({
   AddAdvantages,
   SearchResults,
   Estates,
-  ToggleModal,
+  SwitchLanguage,
 })
 
 export const store = createStore(reducers)

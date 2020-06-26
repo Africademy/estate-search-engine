@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import arrow from "../../static/icons/nav-arrow-down.svg"
-import { small } from "../breakpoints"
+import { small, medium, large } from "../breakpoints"
+import { colors } from "../../theme"
 
 export const TemplateWrapper = styled.main`
   width: 100vw;
@@ -28,23 +29,43 @@ export const LeftColumn = styled.div`
   z-index: 10;
   left: 0;
   top: 0;
-  background-color: #ccc;
   display: flex;
   justify-content: center;
+  -webkit-justify-content: center;
   align-items: center;
+  -webkit-align-items: center;
+
+  @media all and (max-width: ${small}) {
+    width: 15vw;
+  }
 `
-export const RightColumn = styled(LeftColumn)`
+export const RightColumn = styled.div`
+  width: 5vw;
+  height: 50vh;
+  position: absolute;
+  z-index: 10;
   right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+
+  @media all and (max-width: ${small}) {
+    width: 15vw;
+  }
 `
 export const LeftBtn = styled.button`
-  height: 100%;
+  height: 5vw;
   width: 5vw;
   cursor: pointer;
-  background: url(${arrow}) no-repeat center center;
+  background: url(${arrow}) rgba(255, 255, 255, 0.5) no-repeat center center;
   border-radius: 50px;
   background-size: 50px;
   border: none;
   transition: 0.3s ease-in-out;
+  transform: rotate(90deg);
 
   &:hover {
     transform: rotate(90deg) scale(1.1);
@@ -53,13 +74,12 @@ export const LeftBtn = styled.button`
     outline: none;
   }
   @media all and (max-width: ${small}) {
-    width: 10vw;
+    width: 15vw;
   }
 `
 export const RightBtn = styled(LeftBtn)`
-  right: 0;
-  top: 50%;
   transform: rotate(-90deg);
+  background-color: ${colors.pink};
 
   &:hover {
     transform: rotate(-90deg) scale(1.1);
@@ -108,6 +128,9 @@ export const ContentContainer = styled.section`
     width: 100vw;
     top: 100%;
     padding: 5vw;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 90vw;
   }
 `
 export const Header = styled.section`
@@ -166,9 +189,15 @@ export const Main = styled.section`
   @media all and (max-width: ${small}) {
     width: 100%;
   }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 45%;
+  }
 `
 export const PriceAndMap = styled(Main)`
   @media all and (max-width: ${small}) {
     width: 90vw;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 45%;
   }
 `

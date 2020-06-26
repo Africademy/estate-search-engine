@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { small } from "../../breakpoints"
+import { medium } from "../../breakpoints"
 
 export const AdvantagesWrapper = styled.section`
   width: 100%;
@@ -14,7 +14,7 @@ export const List = styled.div`
   grid-row-gap: 1vw;
   margin: 2vw 0 0;
 
-  @media all and (max-width: ${small}) {
+  @media all and (max-width: ${medium}) {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2vw;
     grid-row-gap: 2vw;

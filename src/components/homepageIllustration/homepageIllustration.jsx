@@ -1,13 +1,21 @@
 import React from "react"
 import { IllustrationWrapper, Accent } from "./homepageIllustration.styled"
 import { HeroText } from "../search/search.styled"
+import { useSelector } from "react-redux"
 
 const HomepageIllustration = () => {
+  const lang = useSelector(state => state.SwitchLanguage)
   return (
     <IllustrationWrapper>
-      <HeroText>
-        Find your dream <Accent>home</Accent>
-      </HeroText>
+      {lang ? (
+        <HeroText>
+          Find your dream <Accent>home</Accent>
+        </HeroText>
+      ) : (
+        <HeroText>
+          Znajdź swój wymarzony <Accent>dom</Accent>
+        </HeroText>
+      )}
       <svg
         height={250}
         xmlns="http://www.w3.org/2000/svg"
