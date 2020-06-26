@@ -7,6 +7,7 @@ import {
   SortDropdown,
   Item,
 } from "./sorting.styled"
+import DisplayType from "../displayType/displayType"
 
 const Sorting = () => {
   const [sorting] = useState([
@@ -15,6 +16,7 @@ const Sorting = () => {
   ])
   return (
     <SortingWrapper>
+      <DisplayType />
       <SortContainer>
         <Label>Sort by</Label>
         <SortInput readOnly placeholder="price" />

@@ -10,7 +10,8 @@ import {
   FavouritesIcon,
   AddAdvertBtn,
   SwitchLanguage,
-  Language,
+  Polish,
+  English,
 } from "./header.styled"
 import Heart from "../icons/favourites"
 import Burger from "../burger/burger"
@@ -70,8 +71,32 @@ const Header = () => {
           {lang ? "Add advertisement" : "Dodaj ogłoszenie"}
         </AddAdvertBtn>
         <SwitchLanguage>
-          <Language onClick={() => dispatch(switchLanguage())}>PL</Language>
-          <Language>EN</Language>
+          {lang ? (
+            <Polish lang={lang} onClick={() => dispatch(switchLanguage())}>
+              PL
+            </Polish>
+          ) : (
+            <Polish
+              disabled="disabled"
+              lang={lang}
+              onClick={() => dispatch(switchLanguage())}
+            >
+              PL
+            </Polish>
+          )}
+          {lang ? (
+            <English
+              disabled="disabled"
+              lang={lang}
+              onClick={() => dispatch(switchLanguage())}
+            >
+              EN
+            </English>
+          ) : (
+            <English lang={lang} onClick={() => dispatch(switchLanguage())}>
+              EN
+            </English>
+          )}
         </SwitchLanguage>
       </Interaction>
     </HeaderWrapper>

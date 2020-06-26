@@ -14,6 +14,7 @@ import {
   ErrorMessage,
   Item,
 } from "./basics.styled"
+import { useSelector } from "react-redux"
 
 const Basics = ({
   clearAllFields,
@@ -30,10 +31,11 @@ const Basics = ({
   basicError,
   clearBasics,
 }) => {
+  const lang = useSelector(state => state.SwitchLanguage)
   return (
     <BasicsWrapper>
       <Header>
-        <SubTitle>Basics</SubTitle>
+        <SubTitle>{lang ? "Basics" : "Podstawowe informacje"}</SubTitle>
         <ClearBtn
           switch={clearBasics}
           name="basics"
@@ -44,17 +46,19 @@ const Basics = ({
       </Header>
       <Inputs>
         <InputWrapper>
-          <Label htmlFor="estateName">Name</Label>
+          <Label htmlFor="estateName">{lang ? "Name" : "Nazwa"}</Label>
           <Input
             onChange={e => handleInput(e)}
             name="name"
             type="text"
             value={name}
-            placeholder="eg. Valley Apartments"
+            placeholder={
+              lang ? "eg. Valley Apartments" : "np. Valley Apartments"
+            }
           />
         </InputWrapper>
         <InputWrapper>
-          <Label htmlFor="estateStreet">Street</Label>
+          <Label htmlFor="estateStreet">{lang ? "Street" : "Ulica"}</Label>
           <Input
             onChange={e => handleInput(e)}
             name="street"
@@ -64,7 +68,7 @@ const Basics = ({
           />
         </InputWrapper>
         <InputWrapper>
-          <Label htmlFor="estateCity">City</Label>
+          <Label htmlFor="estateCity">{lang ? "City" : "Miasto"}</Label>
           <Input
             onChange={e => handleInput(e)}
             name="city"
@@ -74,7 +78,9 @@ const Basics = ({
           />
         </InputWrapper>
         <InputWrapper>
-          <Label htmlFor="estateDistrict">District</Label>
+          <Label htmlFor="estateDistrict">
+            {lang ? "District" : "Dzielnica"}
+          </Label>
           <Input
             onChange={e => handleInput(e)}
             name="district"
@@ -84,7 +90,7 @@ const Basics = ({
           />
         </InputWrapper>
         <DropdownInput>
-          <Label>Type of estate</Label>
+          <Label>{lang ? "Type of estate" : "Typ nieruchomości"}</Label>
           <ReadOnlyInput
             onClick={() => toggleTypeDropdown()}
             value={insertType}

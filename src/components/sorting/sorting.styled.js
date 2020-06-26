@@ -8,7 +8,8 @@ export const SortingWrapper = styled.section`
   display: flex;
   align-items: center;
   -webkit-align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
   padding: 10px;
 `
 export const SortContainer = styled.div`

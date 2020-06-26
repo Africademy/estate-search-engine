@@ -10,6 +10,9 @@ import {
   FileInputsWrapper,
 } from "./images.styled"
 import { SubTitle, Header, ClearBtn } from "../basics/basics.styled"
+import { connect } from "react-redux"
+
+const mapStateToProps = state => ({ lang: state.SwitchLanguage })
 
 class Images extends Component {
   constructor() {
@@ -46,10 +49,11 @@ class Images extends Component {
   }
   render() {
     const { firstFile, secondFile, thirdFile, remove } = this.state
+    const { lang } = this.props
     return (
       <ImagesWrapper>
         <Header>
-          <SubTitle>Images</SubTitle>
+          <SubTitle>{lang ? "Images" : "Zdjęcia"}</SubTitle>
           <ClearBtn switch={this.state.clearAll}>
             {this.state.clearAll}
           </ClearBtn>
@@ -113,7 +117,7 @@ class Images extends Component {
   }
 }
 
-export default Images
+export default connect(mapStateToProps)(Images)
 
 /*
 images.map(img => {

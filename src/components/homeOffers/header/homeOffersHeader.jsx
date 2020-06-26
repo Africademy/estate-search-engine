@@ -10,11 +10,13 @@ import {
   SmallRect,
   Line,
 } from "./homeOffersHeader.styled"
+import { useSelector } from "react-redux"
 
 const HomeOffersHeader = ({ handleToggle, isDetailed }) => {
+  const lang = useSelector(state => state.SwitchLanguage)
   return (
     <Wrapper>
-      <Title>Newest</Title>
+      <Title>{lang ? "Newest" : "Najnowsze"}</Title>
       <SwitchDisplayStyle>
         {isDetailed ? (
           <MostImportant isDetailed={isDetailed} onClick={() => handleToggle()}>

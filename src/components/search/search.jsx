@@ -195,7 +195,7 @@ class Search extends Component {
           <Filters>
             <BasicFilter
               chooseType={this.state.chooseType}
-              title={"Type of estate"}
+              title={lang ? "Type of estate" : "Typ budynku"}
               array={types}
               insert={this.insertAttributes}
               insertMinRoom={this.insertValue}
@@ -207,7 +207,7 @@ class Search extends Component {
             />
             <BasicFilter
               chooseType={this.state.choosePayment}
-              title={"Rent or buy?"}
+              title={lang ? "Rent or buy?" : "Wynajem czy zakup?"}
               array={transaction}
               insert={this.insertAttributes}
               handleToggle={this.handleTransaction}
@@ -218,7 +218,7 @@ class Search extends Component {
             <BasicFilter
               chooseType={this.state.price}
               array={null}
-              title={"Price"}
+              title={lang ? "Price" : "Cena"}
               handleToggle={this.handlePrice}
               toggleState={this.state.togglePrice}
               applyPrice={this.applyPrice}

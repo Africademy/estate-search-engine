@@ -203,9 +203,36 @@ export const AddAdvertBtn = styled.button`
 `
 export const SwitchLanguage = styled.div`
   height: 100%;
-  width: auto;
+  width: 50px;
   display: flex;
   align-items: center;
   -webkit-align-items: center;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
 `
-export const Language = styled.button``
+export const Polish = styled.button`
+  font-size: 1em;
+  border: none;
+  background: none;
+  cursor: pointer;
+  ${props => {
+    if (!props.lang) return `color: ${colors.pink}; font-weight: 600;`
+  }}
+
+  &:focus {
+    outline: none;
+  }
+`
+export const English = styled.button`
+  font-size: 1em;
+  border: none;
+  background: none;
+  cursor: pointer;
+  ${props => {
+    if (props.lang) return `color: ${colors.pink}; font-weight: 600;`
+  }}
+
+  &:focus {
+    outline: none;
+  }
+`

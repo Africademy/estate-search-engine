@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import {
   Wrapper,
   Title,
@@ -8,6 +9,8 @@ import {
 import Layout from "../components/layout"
 import AddForm from "../components/form/addForm/addForm"
 import { advantages } from "../components/form/submit/submit"
+
+const mapStateToProps = state => ({ lang: state.SwitchLanguage })
 
 class Advertisement extends Component {
   state = {
@@ -167,14 +170,26 @@ class Advertisement extends Component {
       toggleCurrency,
       currency,
     } = this.state
+    const { lang } = this.props
     return (
       <Layout>
         <Wrapper>
-          <Title>Sell or rent your estate?</Title>
-          <Description>
-            Would you rather sell or rent your estate? No matter what you
-            prefer, it is best <Highlight>place</Highlight> to do it
-          </Description>
+          <Title>
+            {lang
+              ? "Sell or rent your estate?"
+              : "Sprzedajesz czy wynajmujesz?"}
+          </Title>
+          {lang ? (
+            <Description>
+              Would you rather sell or rent your estate? No matter what you
+              prefer, it is best <Highlight>place</Highlight> to do it
+            </Description>
+          ) : (
+            <Description>
+              Sprzedajesz czy wynajmujesz swoją nieruchomość? Nie zależnie od
+              wyboru to jest najlepsze <Highlight>miejsce</Highlight> do tego
+            </Description>
+          )}
           <AddForm
             name={name}
             street={street}
@@ -210,4 +225,4 @@ class Advertisement extends Component {
   }
 }
 
-export default Advertisement
+export default connect(mapStateToProps)(Advertisement)
