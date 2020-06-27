@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const FiltersWrapper = styled.section`
   width: 100%;
-  height: 15vh;
+  height: 10vh;
   background-color: #ccc;
   display: flex;
   flex-flow: column;

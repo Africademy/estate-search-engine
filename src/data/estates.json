@@ -173,10 +173,10 @@
       { "key": 1, "img": "estate3-1" },
       { "key": 2, "img": "estate3-2" }
     ],
-    "address": "ul. Mazowiecka 120",
+    "address": "ul. Złota 44",
     "coords": {
-      "lat": 21.249101,
-      "long": 52.224090
+      "lat": 21.002489,
+      "long": 52.231207
     },
     "city": "Warsaw",
     "district": "Wola",

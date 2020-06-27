@@ -5,20 +5,31 @@ import Map from "../icons/map"
 import ViewGrid from "../icons/grid"
 
 const DisplayType = () => {
-  const [path, setPath] = useState(null)
+  const [path, setPath] = useState(false)
+  // TODO color of button depending on pathname
+  // TODO make page with all estates on map
   useEffect(() => {
     if (window !== undefined) {
-      console.log(window.location.pathname.includes("map"))
+      if (window.location.pathname.includes("map")) {
+        setPath(true)
+      } else if (window.location.pathname === "/results") {
+        setPath(false)
+      }
     }
   }, [])
   return (
     <DisplayWrapper>
-      <ShowOnMap onClick={() => navigate("/results/map")}>
-        <Map color={"#000"} height={"25px"} />
+      <ShowOnMap path={path} onClick={() => navigate("/results/map")}>
+        <Map path={path} color={"#fff"} height={"25px"} secondColor={"#000"} />
         Map
       </ShowOnMap>
-      <ShowList onClick={() => navigate("/results")}>
-        <ViewGrid height={"25px"} color={"#000"} />
+      <ShowList path={path} onClick={() => navigate("/results")}>
+        <ViewGrid
+          path={path}
+          height={"25px"}
+          color={"#000"}
+          secondColor={"#fff"}
+        />
         List
       </ShowList>
     </DisplayWrapper>

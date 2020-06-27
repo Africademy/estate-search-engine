@@ -1,6 +1,6 @@
 import React from "react"
 import { MapWrapper } from "./map.styled"
-import ReactMapboxGl, { Layer, Feature, Marker } from "react-mapbox-gl"
+import ReactMapboxGl, { Marker } from "react-mapbox-gl"
 import MarkerIcon from "../icons/marker"
 import { colors } from "../../theme"
 
