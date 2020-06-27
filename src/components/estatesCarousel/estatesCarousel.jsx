@@ -5,9 +5,10 @@ import CarouselItem from "../carouselItem/carouselItem"
 
 const EstatesCarousel = ({ showSelectedEstate, results }) => {
   const estate = useSelector(state => state.Estates)
+  console.log(results)
   return (
     <EstatesCarouselWrapper>
-      {results === []
+      {results === [] || results.length === 0
         ? estate.map(estate => {
             return (
               <CarouselItem

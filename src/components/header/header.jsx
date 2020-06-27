@@ -72,13 +72,16 @@ const Header = () => {
         </AddAdvertBtn>
         <SwitchLanguage>
           {lang ? (
-            <Polish lang={lang} onClick={() => dispatch(switchLanguage())}>
+            <Polish
+              lang={lang.toString()}
+              onClick={() => dispatch(switchLanguage())}
+            >
               PL
             </Polish>
           ) : (
             <Polish
               disabled="disabled"
-              lang={lang}
+              lang={lang.toString()}
               onClick={() => dispatch(switchLanguage())}
             >
               PL

@@ -83,12 +83,28 @@ class Search extends Component {
       const foundedEstates = estates.filter(estate => {
         return estate.city.includes(this.formatSearchInput())
       })
-      const reduced = foundedEstates.filter((el, pos, arr) => {
-        console.log(
-          el.district,
-          arr.forEach(el => console.log(el.district))
-        )
+      const districts = []
+      let results = []
+      let reduced
+      let result = []
+      foundedEstates.forEach(estate => {
+        districts.push(estate.district)
+        reduced = [...new Set(districts)]
       })
+      const obj = new Object()
+      foundedEstates.forEach(estate => {
+        reduced.map(item => {
+          obj.city = estate.city
+          obj.district = item
+          console.log(obj)
+          result.push(obj)
+        })
+      })
+      /*reduced.map(item => {
+        results.push({ district: item })
+      }) */
+
+      console.log(result)
       this.setState({ found: foundedEstates })
     })
   }
@@ -151,6 +167,11 @@ class Search extends Component {
     let res = estates.filter(estate => {
       return `${estate.city}, ${estate.district}` === this.state.city
     })
+    if (city === "") {
+      dispatch(SearchResults(estates))
+      navigate("/results")
+      return
+    }
     if (chooseType !== "Choose...") {
       let choosen = res.filter(estate => {
         return estate.type === chooseType
@@ -183,7 +204,10 @@ class Search extends Component {
                 {found !== null
                   ? found.map(estate => {
                       return (
-                        <Result onClick={() => this.insertLocation(estate)}>
+                        <Result
+                          key={estate.key}
+                          onClick={() => this.insertLocation(estate)}
+                        >
                           {estate.city}, {estate.district}
                         </Result>
                       )

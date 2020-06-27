@@ -8,4 +8,6 @@ export const EstatesCarouselWrapper = styled.section`
   height: 15vh;
   display: flex;
   padding: 0 1vw 1vw;
+  overflow-x: scroll;
+  overflow-y: initial;
 `

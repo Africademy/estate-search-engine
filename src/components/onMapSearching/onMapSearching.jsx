@@ -27,10 +27,12 @@ const OnMapSearching = ({ results }) => {
 
   useEffect(() => {
     console.log("invoked")
-    if (results.length > 0) {
-      const { coords } = results[0]
-      console.log(coords)
-      setNewCenter([coords.lat, coords.long])
+    if (results !== null) {
+      if (results.length > 0) {
+        const { coords } = results[0]
+        console.log(coords)
+        setNewCenter([coords.lat, coords.long])
+      }
     }
   }, [results])
 
@@ -40,10 +42,12 @@ const OnMapSearching = ({ results }) => {
     setNewCenter([coords.lat, coords.long])
   }
   const showAll = () => {
-    if (results.length > 0) {
-      const { coords } = results[0]
-      setZoom(12)
-      setNewCenter([coords.lat, coords.long])
+    if (results !== null) {
+      if (results.length > 0) {
+        const { coords } = results[0]
+        setZoom(12)
+        setNewCenter([coords.lat, coords.long])
+      }
     }
     setNewCenter(defaultCenter)
     setZoom(6)
@@ -77,7 +81,7 @@ const OnMapSearching = ({ results }) => {
           pitch={[pitch]}
           center={newCenter === null ? defaultCenter : newCenter}
         >
-          {results === []
+          {results === [] || results.length === 0
             ? estate.map(estate => {
                 const { coords, prices, type } = estate
                 return (
