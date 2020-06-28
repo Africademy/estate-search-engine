@@ -8,7 +8,7 @@ import {
 import { SearchInput } from "../search/search.styled"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 
-const Filters = () => {
+const Filters = ({ searchInput, handleSearchInput }) => {
   const [types] = useState([
     { key: 1, name: "Flat" },
     { key: 2, name: "House" },
@@ -27,7 +27,11 @@ const Filters = () => {
     <FiltersWrapper>
       <BasicSearchWrapper>
         <SearchWrapper>
-          <SearchInput type="text" />
+          <SearchInput
+            value={searchInput !== undefined ? searchInput : ""}
+            type="text"
+            onChange={e => handleSearchInput(e)}
+          />
           <BasicFilter
             array={types}
             title={"Type of estate"}

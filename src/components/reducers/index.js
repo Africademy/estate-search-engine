@@ -62,7 +62,10 @@ export const SearchResults = (state = initState.results, action) => {
     if (action.payload.length === 0) {
       return null
     } else {
-      return action.payload
+      return {
+        results: action.payload.results,
+        value: action.payload.props,
+      }
     }
   } else {
     return state

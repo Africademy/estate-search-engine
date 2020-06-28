@@ -30,7 +30,7 @@ const BasicFilter = ({
   return (
     <TypesWrapper>
       {array !== null ? (
-        <Type onClick={() => handleToggle()}>
+        <Type onClick={e => handleToggle(e)}>
           <Title>{title}</Title>
           {chooseType}
           <Dropdown toggleState={toggleState}>
@@ -45,7 +45,7 @@ const BasicFilter = ({
         </Type>
       ) : (
         <Type>
-          <Title onClick={() => openPrice()}>{title}</Title>
+          <Title onClick={e => openPrice(e)}>{title}</Title>
           {chooseType}
           <PriceDropdown toggleState={toggleState}>
             <PriceFilter>
@@ -64,7 +64,7 @@ const BasicFilter = ({
                   placeholder="max"
                 />
               </InputWrapper>
-              <ApplyBtn onClick={() => applyPrice()}>Apply</ApplyBtn>
+              <ApplyBtn onClick={e => applyPrice(e)}>Apply</ApplyBtn>
             </PriceFilter>
           </PriceDropdown>
         </Type>

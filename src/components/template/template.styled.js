@@ -133,6 +133,24 @@ export const ContentContainer = styled.section`
     width: 90vw;
   }
 `
+export const Return = styled.div`
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: flex-start;
+`
+export const ReturnBtn = styled.button`
+  font-size: 1em;
+  border: none;
+  background: none;
+  text-align: left;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+`
 export const Header = styled.section`
   width: 100%;
   height: auto;

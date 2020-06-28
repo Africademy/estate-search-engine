@@ -14,9 +14,12 @@ import {
 } from "./estate.styled"
 import Heart from "../icons/favourites"
 import HeartFull from "../icons/favouritesFilled"
-import { addToFavourites } from "../actions/addToFavourites"
 
 const Estate = ({ estate, handleLike }) => {
+  const handleSeen = estate => {
+    estate.seen = true
+    navigate(`/results/${estate.slug}`)
+  }
   return (
     <EstateWrapper>
       <EstateImageContainer seen={estate.seen}>
@@ -25,9 +28,7 @@ const Estate = ({ estate, handleLike }) => {
         })}
       </EstateImageContainer>
       <EstateContent>
-        <Name onClick={() => navigate(`/results/${estate.slug}`)}>
-          {estate.name}
-        </Name>
+        <Name onClick={() => handleSeen(estate)}>{estate.name}</Name>
         <Address>
           {estate.address}, {estate.city}
         </Address>

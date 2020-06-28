@@ -78,56 +78,58 @@ class Search extends Component {
     this.type = createRef()
   }
   handleSearchInput = e => {
+    e.preventDefault()
     const { estates } = this.state
     this.setState({ city: e.target.value }, () => {
       const foundedEstates = estates.filter(estate => {
         return estate.city.includes(this.formatSearchInput())
       })
       const districts = []
-      let results = []
       let reduced
       let result = []
+      let city
       foundedEstates.forEach(estate => {
         districts.push(estate.district)
         reduced = [...new Set(districts)]
       })
       const obj = new Object()
       foundedEstates.forEach(estate => {
-        reduced.map(item => {
-          obj.city = estate.city
-          obj.district = item
-          console.log(obj)
-          result.push(obj)
-        })
+        city = estate.city
       })
-      /*reduced.map(item => {
-        results.push({ district: item })
-      }) */
-
-      console.log(result)
-      this.setState({ found: foundedEstates })
+      reduced.map(item => {
+        obj.city = city
+        obj.district = item
+        result = [...result, { city: city, district: item }]
+      })
+      this.setState({ found: result })
     })
   }
-  toggleDropdown = () => {
+  toggleDropdown = e => {
+    e.preventDefault()
     this.setState({ toggleType: !this.state.toggleType })
   }
 
   insertAttributes = e => {
+    e.preventDefault()
     this.setState({ [e.target.name]: e.target.innerText })
   }
   insertValue = e => {
+    e.preventDefault()
     this.setState({ [e.target.name]: e.target.innerText })
   }
 
-  handleTransaction = () => {
+  handleTransaction = e => {
+    e.preventDefault()
     this.setState({
       togglePayment: !this.state.togglePayment,
     })
   }
-  openPrice = () => {
+  openPrice = e => {
+    e.preventDefault()
     this.setState({ togglePrice: true })
   }
   handlePrice = e => {
+    e.preventDefault()
     this.setState(
       {
         [e.target.name]: e.target.value,
@@ -139,13 +141,16 @@ class Search extends Component {
       }
     )
   }
-  applyPrice = () => {
+  applyPrice = e => {
+    e.preventDefault()
     this.setState({ togglePrice: false })
   }
   handleRangeChange = e => {
+    e.preventDefault()
     this.setState({ price: e.target.value })
   }
-  handleAdvancedSettings = () => {
+  handleAdvancedSettings = e => {
+    e.preventDefault()
     this.setState({ toggleAdvanced: !this.state.toggleAdvanced })
   }
   formatSearchInput = () => {
@@ -155,30 +160,61 @@ class Search extends Component {
     const search = capital.concat(rest)
     return search
   }
-  insertLocation = estate => {
+  insertLocation = (estate, e) => {
+    e.preventDefault()
     this.setState({
       city: `${estate.city}, ${estate.district}`,
       toggleSearchDropdown: false,
     })
   }
-  handleSearch = () => {
-    const { estates, chooseType, city } = this.state
+  handleSearch = e => {
+    e.preventDefault()
+    const {
+      estates,
+      chooseType,
+      city,
+      choosePayment,
+      price,
+      minPrice,
+      maxPrice,
+    } = this.state
     const dispatch = this.props.dispatch
     let res = estates.filter(estate => {
       return `${estate.city}, ${estate.district}` === this.state.city
     })
-    if (city === "") {
+    res = estates
+    /*if (city === "") {
       dispatch(SearchResults(estates))
       navigate("/results")
-      return
-    }
+    } */
     if (chooseType !== "Choose...") {
       let choosen = res.filter(estate => {
         return estate.type === chooseType
       })
       res = choosen
     }
-    dispatch(SearchResults(res))
+    if (choosePayment !== "Choose...") {
+      res.filter(estate => {
+        return estate.prices.forEach(price => {
+          return price.type === choosePayment
+        })
+      })
+    }
+    console.log(res)
+    if (price !== "Choose...") {
+      if (choosePayment === "Rent") {
+        res.filter(estate => {
+          return (
+            estate.prices[0].price > parseInt(minPrice) &&
+            estate.prices[0].price < parseInt(maxPrice)
+          )
+        })
+      }
+    }
+    console.log(res)
+    dispatch(
+      SearchResults(res, city, chooseType, choosePayment, minPrice, maxPrice)
+    )
     navigate("/results")
   }
 
@@ -188,7 +224,7 @@ class Search extends Component {
     return (
       <SearchWrapper>
         <HomepageIllustration />
-        <SearchBar>
+        <SearchBar onSubmit={e => this.handleSearch(e)}>
           <InputWrapper>
             <SearchInput
               onFocus={() => this.setState({ toggleSearchDropdown: true })}
@@ -206,7 +242,7 @@ class Search extends Component {
                       return (
                         <Result
                           key={estate.key}
-                          onClick={() => this.insertLocation(estate)}
+                          onClick={e => this.insertLocation(estate, e)}
                         >
                           {estate.city}, {estate.district}
                         </Result>
@@ -255,7 +291,7 @@ class Search extends Component {
             />
             <ToggleAdvanced
               toggleAdvanced={this.state.toggleAdvanced}
-              onClick={() => this.handleAdvancedSettings()}
+              onClick={e => this.handleAdvancedSettings(e)}
             >
               <svg
                 height="24"
@@ -280,9 +316,7 @@ class Search extends Component {
               </svg>
             </ToggleAdvanced>
           </Filters>
-          <SearchBtn onClick={() => this.handleSearch()}>
-            {lang ? "Search" : "Szukaj"}
-          </SearchBtn>
+          <SearchBtn>{lang ? "Search" : "Szukaj"}</SearchBtn>
           <AdvancedSearch
             minRooms={this.state.minRooms}
             maxRooms={this.state.maxRooms}

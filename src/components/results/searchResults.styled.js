@@ -17,5 +17,6 @@ export const ResultsWrapper = styled.main`
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 1vw;
   grid-column-gap: 1vw;
+
   padding: 5vw 0 0;
 `

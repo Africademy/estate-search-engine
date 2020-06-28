@@ -11,6 +11,8 @@ import {
   RightBtn,
   Img,
   ContentContainer,
+  Return,
+  ReturnBtn,
   Name,
   Header,
   AddToFavourites,
@@ -46,6 +48,11 @@ const Template = ({ pageContext: { state } }) => {
       setSlider(prevState => Math.max(prevState - 1, 0))
     }
   }
+  const handleReturn = () => {
+    if (window) {
+      window.history.back()
+    }
+  }
   return (
     <Layout>
       <TemplateWrapper toggle={toggle}>
@@ -72,6 +79,9 @@ const Template = ({ pageContext: { state } }) => {
           })}
         </SliderContainer>
         <ContentContainer toggle={toggle}>
+          <Return>
+            <ReturnBtn onClick={() => handleReturn()}>Return</ReturnBtn>
+          </Return>
           <Header>
             <Name>{state.name}</Name>
             <AddToFavourites>

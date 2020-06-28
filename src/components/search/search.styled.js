@@ -26,7 +26,7 @@ export const HeroText = styled.h1`
     width: 100vw;
   }
 `
-export const SearchBar = styled.section`
+export const SearchBar = styled.form`
   width: 80%;
   height: 100px;
   background-color: ${colors.darkBlue};
