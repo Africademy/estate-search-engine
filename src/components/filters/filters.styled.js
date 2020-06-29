@@ -3,11 +3,11 @@ import styled from "styled-components"
 export const FiltersWrapper = styled.section`
   width: 100%;
   height: 10vh;
-  background-color: #ccc;
+  background-color: #d7d7d7;
   display: flex;
   flex-flow: column;
   -webkit-flex-flow: column;
-  padding: 1vw;
+  padding: 1vw 5vw 1vw;
 `
 export const BasicSearchWrapper = styled.div`
   width: 100%;
@@ -15,6 +15,8 @@ export const BasicSearchWrapper = styled.div`
   display: flex;
   align-items: center;
   -webkit-align-items: center;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
 `
 export const SearchWrapper = styled.div`
   width: 30%;

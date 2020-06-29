@@ -200,7 +200,6 @@ class Search extends Component {
         })
       })
     }
-    console.log(res)
     if (price !== "Choose...") {
       if (choosePayment === "Rent") {
         res.filter(estate => {
@@ -211,7 +210,6 @@ class Search extends Component {
         })
       }
     }
-    console.log(res)
     dispatch(
       SearchResults(res, city, chooseType, choosePayment, minPrice, maxPrice)
     )

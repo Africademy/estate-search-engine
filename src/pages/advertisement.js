@@ -9,8 +9,13 @@ import {
 import Layout from "../components/layout"
 import AddForm from "../components/form/addForm/addForm"
 import { advantages } from "../components/form/submit/submit"
+import { addEstate } from "../components/actions/addEstate"
 
-const mapStateToProps = state => ({ lang: state.SwitchLanguage })
+const mapStateToProps = state => ({
+  lang: state.SwitchLanguage,
+  advantages: state.AddAdvantages,
+  estates: state.Estates,
+})
 
 class Advertisement extends Component {
   state = {
@@ -23,47 +28,57 @@ class Advertisement extends Component {
     toggleCurrency: false,
     sell: true,
     rent: false,
-    sellAndRent: false,
     sellPrice: 0,
     rentPrice: 0,
     currency: "",
     basicError: "",
+    priceError: "",
+    advantagesError: "",
     clearBasics: "Clear all",
     clearPrices: "Clear all",
+    uniqueKey: 0,
+    validBasics: false,
+    validPrices: false,
+    validAdvantages: false,
+    firstFile: null,
+    secondFile: null,
+    thirdFile: null,
   }
-  // TODO whole validation
+
+  componentDidMount() {
+    const { estates } = this.props
+    this.setState({ uniqueKey: estates.length + 1 })
+  }
+
+  handleFiles = e => {
+    e.preventDefault()
+    const reader = new FileReader()
+    const name = e.target.name
+    const file = e.target.files[0]
+    console.log(file, reader)
+    reader.readAsDataURL(file)
+    reader.onloadend = e => {
+      this.setState({ [name]: e.target.result })
+    }
+  }
+
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
   handleRentAndSellChoose = e => {
     e.preventDefault()
-    switch (e.target.name) {
-      case "rent": {
-        this.setState({ [e.target.name]: true }, () => {
-          this.setState({ sell: false, sellAndRent: false })
-        })
-        return
-      }
-      case "sell": {
-        this.setState({ [e.target.name]: true }, () => {
-          this.setState({ rent: false, sellAndRent: false })
-        })
-        return
-      }
-      case "sellAndRent": {
-        this.setState({ [e.target.name]: true }, () => {
-          this.setState({ rent: false, sell: false })
-        })
-        return
-      }
-      default: {
-        return
-      }
+    if (e.target.name === "rent") {
+      this.setState({ [e.target.name]: true }, () => {
+        this.setState({ sell: false })
+      })
+    } else if (e.target.name === "sell") {
+      this.setState({ [e.target.name]: true }, () => {
+        this.setState({ rent: false })
+      })
     }
   }
   getPrice = e => {
     e.preventDefault()
-    console.log(e.which)
     this.setState({ rentPrice: e.target.value })
   }
   handleInsertType = (e, name) => {
@@ -110,8 +125,51 @@ class Advertisement extends Component {
     ) {
       this.setState({ basicError: "You have to fill all fields" })
     } else {
-      this.setState({ basicError: "" })
+      this.setState({ basicError: "", validBasics: true })
     }
+  }
+  validatePrice = () => {
+    if (this.state.rent) {
+      if (
+        typeof parseInt(this.state.rentPrice) !== "number" ||
+        parseInt(this.state.rentPrice) === 0 ||
+        isNaN(parseInt(this.state.rentPrice)) ||
+        this.state.rentPrice === ""
+      ) {
+        this.setState({ priceError: "Please fill all required fields" })
+      } else {
+        this.setState({ priceError: "", validPrices: true })
+      }
+    }
+  }
+  validateAdvantages = () => {
+    const { advantages } = this.props
+    if (advantages.length === 0) {
+      this.setState({ advantagesError: "Please choose at least one advantage" })
+    } else {
+      this.setState({ advantagesError: "", validAdvantages: true })
+    }
+  }
+  resetAllFields = () => {
+    this.setState({
+      name: "",
+      street: "",
+      city: "",
+      district: "",
+      insertType: "choose",
+      toggleDropdown: false,
+      toggleCurrency: false,
+      sell: true,
+      rent: false,
+      sellPrice: 0,
+      rentPrice: 0,
+      currency: "",
+      clearBasics: "Clear all",
+      clearPrices: "Clear all",
+      validBasics: false,
+      validPrices: false,
+      validAdvantages: false,
+    })
   }
   clearAllFields = e => {
     e.preventDefault()
@@ -127,6 +185,10 @@ class Advertisement extends Component {
         return
       }
       case "prices": {
+        this.setState({
+          rentPrice: 0,
+          currency: "",
+        })
         return
       }
       default: {
@@ -136,23 +198,52 @@ class Advertisement extends Component {
   }
   handleSubmit = e => {
     e.preventDefault()
-    const { name, street, city, district, insertType, currency } = this.state
+    let newEstate
+    const {
+      uniqueKey,
+      name,
+      street,
+      city,
+      district,
+      insertType,
+      currency,
+      rentPrice,
+    } = this.state
+    const { dispatch } = this.props
     this.validateBasics()
-    const newEstate = {
-      name: name,
-      address: street,
-      city: city,
-      district: district,
-      type: insertType,
-      prices: [
-        {
-          type: "Sell",
-          price: "",
-          currency: currency,
-        },
-      ],
-      advantages: advantages,
-    }
+    this.validatePrice()
+    this.validateAdvantages()
+    const { validBasics, validPrices, validAdvantages } = this.state
+    console.log(validBasics, validPrices, validAdvantages)
+    setTimeout(() => {
+      if (validBasics && validPrices && validAdvantages) {
+        console.log("valid")
+        this.setState(
+          prevState => ({ uniqueKey: prevState.uniqueKey + 1 }),
+          e => {
+            newEstate = {
+              key: uniqueKey,
+              name: name,
+              address: street,
+              city: city,
+              district: district,
+              type: insertType,
+              seen: false,
+              prices: [
+                {
+                  type: "Sell",
+                  price: rentPrice,
+                  currency: currency,
+                },
+              ],
+              advantages: advantages,
+            }
+            dispatch(addEstate(newEstate))
+          }
+        )
+      }
+    }, 800)
+    this.resetAllFields()
   }
 
   render() {
@@ -170,11 +261,11 @@ class Advertisement extends Component {
       toggleCurrency,
       currency,
     } = this.state
-    const { lang } = this.props
+    const { lang, dispatch } = this.props
     return (
       <Layout>
         <Wrapper>
-          <Title>
+          <Title lang={lang}>
             {lang
               ? "Sell or rent your estate?"
               : "Sprzedajesz czy wynajmujesz?"}
@@ -202,7 +293,6 @@ class Advertisement extends Component {
             sell={sell}
             sellPrice={sellPrice}
             rent={rent}
-            sellAndRent={this.state.sellAndRent}
             rentPrice={rentPrice}
             currency={currency}
             handleInput={this.handleInput}
@@ -218,6 +308,12 @@ class Advertisement extends Component {
             clearPrices={this.state.clearPrices}
             getPrice={this.getPrice}
             handleRentAndSellChoose={this.handleRentAndSellChoose}
+            priceError={this.state.priceError}
+            advantagesError={this.state.advantagesError}
+            firstFile={this.state.firstFile}
+            secondFile={this.state.secondFile}
+            thirdFile={this.state.thirdFile}
+            handleFiles={this.handleFiles}
           />
         </Wrapper>
       </Layout>

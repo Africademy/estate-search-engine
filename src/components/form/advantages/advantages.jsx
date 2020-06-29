@@ -8,13 +8,19 @@ import {
   SelectedItems,
   Remove,
 } from "./advantages.styled"
-import { ClearBtn, Header, SubTitle } from "../basics/basics.styled"
+import {
+  ClearBtn,
+  ErrorMessage,
+  Header,
+  SubTitle,
+} from "../basics/basics.styled"
 import { useDispatch, useSelector } from "react-redux"
 import { AddAdvantages } from "../../actions/addAdvantages"
 import { removeAdvantage } from "../../actions/removeAdvantage"
 
-const Advantages = ({ advantages, clearPrices }) => {
+const Advantages = ({ advantages, clearPrices, advantagesError }) => {
   const advs = useSelector(state => state.AddAdvantages)
+  const lang = useSelector(state => state.SwitchLanguage)
   const dispatch = useDispatch()
 
   const handleSelect = (adv, e) => {
@@ -33,7 +39,7 @@ const Advantages = ({ advantages, clearPrices }) => {
   return (
     <Wrapper>
       <Header>
-        <SubTitle>Advantages</SubTitle>
+        <SubTitle>{lang ? "Advantages" : "Zalety"}</SubTitle>
         <ClearBtn switch={clearPrices}>{clearPrices}</ClearBtn>
       </Header>
       <List>
@@ -44,7 +50,7 @@ const Advantages = ({ advantages, clearPrices }) => {
               selected={adv.selected}
               key={adv.key}
             >
-              {adv.name}
+              {lang ? adv.name.en : adv.name.pl}
             </Item>
           )
         })}
@@ -60,13 +66,16 @@ const Advantages = ({ advantages, clearPrices }) => {
                     selected={adv.selected}
                     key={adv.key}
                   >
-                    {adv.name} <Remove />
+                    {lang ? adv.name.en : adv.name.pl} <Remove />
                   </SelectedItem>
                 )
               })
             : null}
         </SelectedItems>
       </Selected>
+      {advantagesError !== "" ? (
+        <ErrorMessage>{advantagesError}</ErrorMessage>
+      ) : null}
     </Wrapper>
   )
 }

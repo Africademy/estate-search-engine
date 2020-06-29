@@ -5,7 +5,9 @@ import {
   Logo,
   LogoSVG,
   Nav,
+  NavItem,
   Dropdown,
+  Item,
   Interaction,
   FavouritesIcon,
   AddAdvertBtn,
@@ -25,6 +27,15 @@ const Header = () => {
   const lang = useSelector(state => state.SwitchLanguage)
   const [scrolled, setScrolled] = useState(false)
   const dispatch = useDispatch()
+  const [types] = useState([
+    { key: 1, name: "Flat" },
+    { key: 2, name: "House" },
+    { key: 3, name: "Garage" },
+    { key: 4, name: "Commercial" },
+    { key: 5, name: "Parcels" },
+    { key: 6, name: "Rooms" },
+  ])
+
   useEffect(() => {
     if (window) {
       window.addEventListener("scroll", () => {
@@ -41,20 +52,18 @@ const Header = () => {
       <Logo onClick={() => navigate("/")} role="button">
         <LogoSVG src={logo} />
       </Logo>
-      <Dropdown />
-      {lang ? (
-        <Nav>
-          <Link to="/buy">Buy</Link>
-          <Link to="/rent">Rent</Link>
-          <Link to="/coming">Coming</Link>
-        </Nav>
-      ) : (
-        <Nav>
-          <Link to="/buy">Kup</Link>
-          <Link to="/rent">Wynajem</Link>
-          <Link to="/coming">Inwestycje</Link>
-        </Nav>
-      )}
+      <Nav>
+        <NavItem>
+          <Link to="/buy">{lang ? "Buy" : "Kup"}</Link>
+          <Dropdown>
+            {types.map(type => {
+              return <Item key={type.key}>{type.name}</Item>
+            })}
+          </Dropdown>
+        </NavItem>
+        <Link to="/rent">{lang ? "Rent" : "Wynajem"}</Link>
+        <Link to="/coming">{lang ? "Coming" : "Inwestycje"}</Link>
+      </Nav>
       <Interaction>
         <FavouritesIcon
           favs={favs.length}

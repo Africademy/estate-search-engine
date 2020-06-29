@@ -32,14 +32,21 @@ const Filters = ({ searchInput, handleSearchInput }) => {
             type="text"
             onChange={e => handleSearchInput(e)}
           />
-          <BasicFilter
-            array={types}
-            title={"Type of estate"}
-            name={"chooseType"}
-            handleToggle={toggleDropdown}
-            toggleState={toggle}
-          />
         </SearchWrapper>
+        <BasicFilter
+          array={types}
+          title={"Type of estate"}
+          name={"chooseType"}
+          handleToggle={toggleDropdown}
+          toggleState={toggle}
+        />
+        <BasicFilter
+          array={types}
+          title={"Rent or buy"}
+          name={"chooseType"}
+          handleToggle={toggleDropdown}
+          toggleState={toggle}
+        />
       </BasicSearchWrapper>
       <AdvancedSearchWrapper></AdvancedSearchWrapper>
     </FiltersWrapper>

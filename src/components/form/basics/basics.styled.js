@@ -102,7 +102,10 @@ export const Dropdown = styled.ul`
     0 33px 80px -7px rgba(0, 0, 0, 0.07);
 `
 export const ErrorMessage = styled.p`
-  color: #ff0043;
+  background-color: #ff0043;
+  color: #fff;
+  padding: 15px 30px 15px;
+  border-radius: 10px;
 `
 export const Item = styled.button`
   border: none;

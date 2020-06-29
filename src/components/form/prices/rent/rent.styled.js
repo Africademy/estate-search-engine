@@ -14,12 +14,14 @@ export const RentWrapper = styled.section`
   border-radius: 15px;
   padding: 1vw;
   background-color: ${colors.pinkHalf};
+  margin: 1vw 0 0;
 
   @media all and (max-width: ${small}) {
     flex-flow: column;
     -webkit-flex-flow: column;
     height: auto;
     padding: 2vw;
+    margin: 5vw 0 0;
   }
 `
 export const Currency = styled.div`
@@ -117,16 +119,17 @@ export const PriceProvider = styled.div`
 export const PriceInput = styled.input`
   font-size: 1em;
   height: 50px;
-  width: 15vw;
+  width: ${props => (props.rent ? "15vw" : "20vw")};
   border: none;
   padding: 10px;
   border-radius: 10px;
+  transition: 0.3s ease-in-out;
 
   &:focus {
     outline: none;
   }
   @media all and (max-width: ${small}) {
-    width: 60%;
+    width: ${props => (props.rent ? "60%" : "100%")};
   }
 `
 export const Label = styled.label`

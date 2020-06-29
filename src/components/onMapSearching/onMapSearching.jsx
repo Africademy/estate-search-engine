@@ -26,11 +26,9 @@ const OnMapSearching = ({ results }) => {
   const [pitch, setPitch] = useState(40)
 
   useEffect(() => {
-    console.log("invoked")
     if (results !== null) {
       if (results.length > 0) {
         const { coords } = results[0]
-        console.log(coords)
         setNewCenter([coords.lat, coords.long])
       }
     }
@@ -81,29 +79,14 @@ const OnMapSearching = ({ results }) => {
           pitch={[pitch]}
           center={newCenter === null ? defaultCenter : newCenter}
         >
-          {results === [] || results.length === 0
-            ? estate.map(estate => {
-                const { coords, prices, type } = estate
-                return (
-                  <Marker
-                    key={estate.key}
-                    coordinates={[coords.lat, coords.long]}
-                  >
-                    <EstateMarker price={prices[0].price} type={type} />
-                  </Marker>
-                )
-              })
-            : results.map(estate => {
-                const { coords, prices, type } = estate
-                return (
-                  <Marker
-                    key={estate.key}
-                    coordinates={[coords.lat, coords.long]}
-                  >
-                    <EstateMarker price={prices[0].price} type={type} />
-                  </Marker>
-                )
-              })}
+          {estate.map(estate => {
+            const { coords, prices, type } = estate
+            return (
+              <Marker key={estate.key} coordinates={[coords.lat, coords.long]}>
+                <EstateMarker price={prices.price} type={type} />
+              </Marker>
+            )
+          })}
         </MapElement>
       </MapContainer>
     </OnMapWrapper>

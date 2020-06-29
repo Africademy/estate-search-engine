@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const OnMapWrapper = styled.main`
-  width: 100%;
+  width: 90%;
   height: 65vh;
   background-color: #ccc;
   border-radius: 15px;

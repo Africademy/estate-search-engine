@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { navigate } from "gatsby"
 import {
   EstateWrapper,
@@ -23,9 +23,11 @@ const Estate = ({ estate, handleLike }) => {
   return (
     <EstateWrapper>
       <EstateImageContainer seen={estate.seen}>
-        {estate.images.map(img => {
-          return <Image key={img.key} src={`./photos/${img.img}.jpeg`} />
-        })}
+        {estate.images !== undefined
+          ? estate.images.map(img => {
+              return <Image key={img.key} src={`./photos/${img.img}.jpeg`} />
+            })
+          : null}
       </EstateImageContainer>
       <EstateContent>
         <Name onClick={() => handleSeen(estate)}>{estate.name}</Name>
@@ -34,7 +36,8 @@ const Estate = ({ estate, handleLike }) => {
         </Address>
         <Footer>
           <Price>
-            $<Highlight>{estate.prices[0].price}</Highlight> / month
+            $<Highlight>{estate.prices.price}</Highlight>
+            {estate.prices.type === "Rent" ? "/ month" : null}
           </Price>
           <AddToFavourites onClick={() => handleLike(estate)}>
             {estate.liked ? (
@@ -50,3 +53,6 @@ const Estate = ({ estate, handleLike }) => {
 }
 
 export default Estate
+
+/*
+ */

@@ -45,12 +45,43 @@ export const Menu = styled.nav`
     line-height: 1.5em;
   }
 `
+export const Languages = styled.div`
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+`
+export const Polish = styled.button`
+  width: 45%;
+  border: none;
+  font-size: 1em;
+  background-color: ${props => (props.lang ? "transparent" : colors.pink)};
+  color: ${props => (props.lang ? "#000" : "#fff")};
+  border-radius: 15px;
+
+  &:focus {
+    outline: none;
+  }
+`
+export const English = styled.button`
+  width: 45%;
+  border: none;
+  font-size: 1em;
+  background-color: ${props => (props.lang ? colors.pink : "transparent")};
+  color: ${props => (props.lang ? "#fff" : "#000")};
+  border-radius: 15px;
+
+  &:focus {
+    outline: none;
+  }
+`
 export const CTABtn = styled.button`
-  padding: 15px 30px 15px;
+  padding: 20px 40px 20px;
   border: none;
   background-color: ${colors.pink};
   color: #fff;
   font-size: 1em;
-  font-weight: 600;
+  font-weight: 500;
   margin: 50px 0 0;
 `

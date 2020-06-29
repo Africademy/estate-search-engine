@@ -18,38 +18,25 @@ class Images extends Component {
   constructor() {
     super()
     this.state = {
-      firstFile: null,
-      secondFile: null,
-      thirdFile: null,
-      remove: false,
+      firstFileRemove: false,
+      secondFileRemove: false,
+      thirdFileRemove: false,
       clearAll: "Clear all",
     }
   }
 
-  handleFiles = e => {
-    e.preventDefault()
-    const reader = new FileReader()
-    const name = e.target.name
-    const file = e.target.files[0]
-    reader.readAsDataURL(file)
-    reader.onloadend = e => {
-      this.setState({ [name]: e.target.result }, () => {
-        console.log(this.state.firstImage)
-      })
-    }
-  }
-  // TODO remove particular image
   handleRemove = e => {
     e.preventDefault()
     const name = e.target.name
-    this.setState({ remove: !this.state.remove })
+    this.setState({ [e.target.id]: true })
     setTimeout(() => {
       this.setState({ [name]: null })
     }, 500)
   }
+
   render() {
-    const { firstFile, secondFile, thirdFile, remove } = this.state
-    const { lang } = this.props
+    const { remove } = this.state
+    const { lang, firstFile, secondFile, thirdFile, handleFiles } = this.props
     return (
       <ImagesWrapper>
         <Header>
@@ -66,12 +53,13 @@ class Images extends Component {
                   <RemoveImage
                     onClick={e => this.handleRemove(e)}
                     name="firstFile"
+                    id="firstFileRemove"
                   />
                   <Img src={firstFile} />
                 </ImageContainer>
               ) : (
                 <ImageInput
-                  onChange={e => this.handleFiles(e)}
+                  onChange={e => handleFiles(e)}
                   type="file"
                   name="firstFile"
                   accept="image/png, image/jpg, image/jpeg"
@@ -82,12 +70,13 @@ class Images extends Component {
                   <RemoveImage
                     onClick={e => this.handleRemove(e)}
                     name="secondFile"
+                    id="secondFileRemove"
                   />
                   <Img src={secondFile} />
                 </ImageContainer>
               ) : (
                 <ImageInput
-                  onChange={e => this.handleFiles(e)}
+                  onChange={e => handleFiles(e)}
                   type="file"
                   name="secondFile"
                   accept="image/png, image/jpg, image/jpeg"
@@ -98,12 +87,13 @@ class Images extends Component {
                   <RemoveImage
                     onClick={e => this.handleRemove(e)}
                     name="thirdFile"
+                    id="thirdFileRemove"
                   />
                   <Img src={thirdFile} />
                 </ImageContainer>
               ) : (
                 <ImageInput
-                  onChange={e => this.handleFiles(e)}
+                  onChange={e => handleFiles(e)}
                   type="file"
                   name="thirdFile"
                   accept="image/png, image/jpg, image/jpeg"

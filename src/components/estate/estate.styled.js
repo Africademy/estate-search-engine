@@ -4,18 +4,20 @@ import { colors } from "../../theme"
 import eye from "../../static/icons/eye-empty.svg"
 
 export const EstateContent = styled.section`
-  width: 90%;
+  width: 95%;
   height: 50%;
   background-color: #ffffff;
   position: absolute;
+  z-index: 0;
   bottom: 0;
+  left: 0;
   box-shadow: 0 0.4px 2.2px -10px rgba(0, 0, 0, 0.039),
     0 0.9px 5.3px -10px rgba(0, 0, 0, 0.057),
     0 1.6px 10px -10px rgba(0, 0, 0, 0.07),
     0 2.9px 17.9px -10px rgba(0, 0, 0, 0.083),
     0 5.4px 33.4px -10px rgba(0, 0, 0, 0.101),
     0 13px 80px -10px rgba(0, 0, 0, 0.14);
-  padding: 15px;
+  padding: 40px 15px 15px;
 
   display: flex;
   flex-flow: column;
@@ -23,6 +25,7 @@ export const EstateContent = styled.section`
   justify-content: space-between;
   -webkit-justify-content: space-between;
   transition: 0.3s ease-in-out;
+  border-radius: 0 0 20px 20px;
 
   @media all and (max-width: ${small}) {
     width: 95%;
@@ -34,19 +37,9 @@ export const EstateWrapper = styled.div`
   position: relative;
   display: flex;
   flex-flow: column;
+  -webkit-flex-flow: column;
   align-items: center;
-
-  :hover ${EstateContent} {
-    transform: translateY(-10px);
-    box-shadow: 0 1.1px 2.2px -6px rgba(0, 0, 0, 0.028),
-      0 2.6px 5.3px -6px rgba(0, 0, 0, 0.04),
-      0 4.9px 10px -6px rgba(0, 0, 0, 0.05),
-      0 8.7px 17.9px -6px rgba(0, 0, 0, 0.06),
-      0 16.3px 33.4px -6px rgba(0, 0, 0, 0.072),
-      0 39px 80px -6px rgba(0, 0, 0, 0.1);
-
-    transition: 0.3s ease-in-out;
-  }
+  -webkit-align-items: center;
 
   @media all and (max-width: ${small}) {
     height: 45vh;
@@ -62,6 +55,7 @@ export const EstateImageContainer = styled.section`
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
+  z-index: 2;
   ${props => {
     if (props.seen) {
       return `

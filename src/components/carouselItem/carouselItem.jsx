@@ -14,7 +14,7 @@ const CarouselItem = ({ estate, showSelectedEstate }) => {
       <Address>
         {address}, {city}, {district}
       </Address>
-      <Price>${prices[0].price}</Price>
+      <Price>${prices.price}</Price>
     </CarouselItemWrapper>
   )
 }

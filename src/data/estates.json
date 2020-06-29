@@ -22,16 +22,11 @@
     "city": "Warsaw",
     "district": "Śródmieście",
     "type": "House",
-    "prices": [
-      {
-        "type": "Rent",
-        "price": 1700
-      },
-      {
-        "type": "Sell",
-        "price": 250000
-      }
-    ],
+    "prices": {
+      "type": "Sell",
+      "price": 250000
+    },
+    "currency": "USD",
     "advantages": [
       {
         "key": 1,
@@ -79,16 +74,11 @@
     "city": "Cracow",
     "district": "Stare Miasto",
     "type": "Flat",
-    "prices": [
-      {
-        "type": "Rent",
-        "price": 1200
-      },
-      {
-        "type": "Sell",
-        "price": 300000
-      }
-    ],
+    "prices": {
+      "type": "Rent",
+      "price": 1200
+    },
+    "currency": "USD",
     "advantages": [
       {
         "key": 1,
@@ -125,21 +115,17 @@
     "address": "ul. Mazowiecka 120",
     "coords": {
       "lat": 21.249101,
-      "long": 52.224090
+      "long": 52.22409
     },
     "city": "Warsaw",
     "district": "Wola",
     "type": "Flat",
-    "prices": [
-      {
-        "type": "Rent",
-        "price": 1400
-      },
-      {
-        "type": "Sell",
-        "price": 500000
-      }
-    ],
+    "prices": {
+      "type": "Sell",
+      "price": 500000
+    },
+
+    "currency": "USD",
     "advantages": [
       {
         "key": 1,
@@ -181,16 +167,11 @@
     "city": "Warsaw",
     "district": "Wola",
     "type": "Flat",
-    "prices": [
-      {
-        "type": "Rent",
-        "price": 1500
-      },
-      {
-        "type": "Sell",
-        "price": 500000
-      }
-    ],
+    "prices": {
+      "type": "Rent",
+      "price": 1500
+    },
+    "currency": "USD",
     "advantages": [
       {
         "key": 1,

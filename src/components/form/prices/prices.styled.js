@@ -61,6 +61,9 @@ export const Checkbox = styled.input`
     top: -10px;
     left: -20px;
   }
+  &:focus {
+    outline: none;
+  }
 `
 export const ChooseWrapper = styled.section`
   width: 100%;

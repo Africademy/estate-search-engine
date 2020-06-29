@@ -11,25 +11,28 @@ import {
 } from "./rent.styled"
 
 const Rent = ({
-  toggleDropdown,
   toggleCurrencyDropdown,
   currency,
   toggleCurrency,
   currencies,
   rentPrice,
+  sellPrice,
   getPrice,
+  handleInsertCurrency,
+  rent,
 }) => {
-  const [togglePrice, setPrice] = useState(false)
+  const [togglePrice] = useState(false)
   return (
     <RentWrapper>
       <PriceProvider>
         <PriceInput
           onChange={e => getPrice(e)}
-          value={rentPrice}
+          value={rent ? rentPrice : sellPrice}
           toggle={togglePrice}
           placeholder="Choose price..."
+          rent={rent}
         />
-        <Label>/ month</Label>
+        {rent ? <Label>/ month</Label> : null}
       </PriceProvider>
       <Currency>
         <CurrencyInput
@@ -42,7 +45,14 @@ const Rent = ({
         />
         <CurrencyDropdown toggle={toggleCurrency}>
           {currencies.map(cur => {
-            return <Item key={cur.key}>{cur.name}</Item>
+            return (
+              <Item
+                key={cur.key}
+                onClick={e => handleInsertCurrency(e, cur.name)}
+              >
+                {cur.name}
+              </Item>
+            )
           })}
         </CurrencyDropdown>
       </Currency>

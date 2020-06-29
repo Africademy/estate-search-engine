@@ -6,8 +6,10 @@ import {
   Checkbox,
   Label,
 } from "./advantagesFilter.styled"
+import { useSelector } from "react-redux"
 
 const AdvantagesFilter = ({ array, title }) => {
+  const lang = useSelector(state => state.SwitchLanguage)
   const handleSelect = adv => {
     console.log(adv.checked)
     const status = adv.checked
@@ -23,7 +25,7 @@ const AdvantagesFilter = ({ array, title }) => {
             key={advantage.key}
           >
             <Checkbox toggle={advantage.checked} type="checkbox" />
-            <Label>{advantage.name}</Label>
+            <Label>{lang ? advantage.name.en : advantage.name.pl}</Label>
           </Advantage>
         )
       })}

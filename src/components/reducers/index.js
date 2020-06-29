@@ -75,6 +75,8 @@ export const SearchResults = (state = initState.results, action) => {
 export const Estates = (state = initState.estates, action) => {
   if (action.type === "FILTER") {
     return state
+  } else if (action.type === "ADD_NEW") {
+    return [...state, action.payload]
   } else {
     return state
   }

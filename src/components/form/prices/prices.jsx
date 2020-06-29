@@ -6,6 +6,7 @@ import {
   ClearBtn,
   Inputs,
   Item,
+  ErrorMessage,
 } from "../basics/basics.styled"
 import Rent from "./rent/rent"
 
@@ -20,11 +21,11 @@ const Prices = ({
   handleInsertCurrency,
   rentPrice,
   sell,
-  sellAndRent,
   sellPrice,
   clearPrices,
   getPrice,
   handleRentAndSellChoose,
+  priceError,
 }) => {
   return (
     <PricesWrapper>
@@ -57,15 +58,6 @@ const Prices = ({
           />
           Sell
         </Choose>
-        <Choose>
-          <Checkbox
-            onChange={e => handleRentAndSellChoose(e)}
-            status={sellAndRent}
-            name="sellAndRent"
-            type="checkbox"
-          />
-          Rent & Sell
-        </Choose>
       </ChooseWrapper>
       <Rent
         toggleCurrencyDropdown={toggleCurrencyDropdown}
@@ -74,8 +66,13 @@ const Prices = ({
         currency={currency}
         currencies={currencies}
         rentPrice={rentPrice}
+        sellPrice={sellPrice}
         getPrice={getPrice}
+        handleInsertCurrency={handleInsertCurrency}
+        sell={sell}
+        rent={rent}
       />
+      {priceError !== "" ? <ErrorMessage>{priceError}</ErrorMessage> : null}
     </PricesWrapper>
   )
 }

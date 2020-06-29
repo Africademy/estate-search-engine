@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { ResultsWrapper } from "./searchResults.styled"
 import Estate from "../estate/estate"
 import NoResults from "../noResults/noResults"
@@ -8,8 +8,8 @@ import { useSelector } from "react-redux"
 const SearchResults = ({ results }) => {
   const estates = useSelector(state => state.Estates)
   const compare = (a, b) => {
-    const priceA = a.prices[0].price
-    const priceB = b.prices[0].price
+    const priceA = a.prices.price
+    const priceB = b.prices.price
 
     let comparison = 0
     if (priceA > priceB) {
@@ -20,24 +20,18 @@ const SearchResults = ({ results }) => {
     return comparison
   }
   const renderResults = () => {
+    const {
+      value: { type, payment, minPrice, maxPrice },
+    } = results
     if (results) {
       if (results.results.length === 0) {
-        console.log(results.props)
-        if (results.props) {
-          if (
-            results.props.city !== "" ||
-            results.props.type !== "Choose..." ||
-            results.props.payment !== "Choose..." ||
-            results.props.minPrice !== 0 ||
-            results.props.maxPrice !== 0
-          ) {
-            console.log(results.props)
-            return <NoResults />
-          } else {
-            return estates.map(estate => {
-              return <Estate key={estate.key} estate={estate} />
-            })
-          }
+        if (
+          type !== "Choose..." ||
+          payment !== "Choose..." ||
+          minPrice !== 0 ||
+          maxPrice !== 0
+        ) {
+          return <NoResults />
         }
       } else {
         return results.results.map(estate => {
@@ -45,33 +39,15 @@ const SearchResults = ({ results }) => {
         })
       }
     }
-    /*if (results.results.length === 0) {
-      if (results.value === undefined) {
-        return <NoResults />
-      } else {
-        console.log(results.length)
-        return estates.map(estate => {
-          return <Estate key={estate.key} estate={estate} />
-        })
-      }
-    } else {
-      results.results.map(estate => {
-        return <Estate key={estate.key} estate={estate} />
-      })
-    } */
   }
 
-  return <ResultsWrapper results={results}>{renderResults()}</ResultsWrapper>
+  return (
+    <ResultsWrapper>
+      {estates.map(estate => {
+        return <Estate key={estate.key} estate={estate} />
+      })}
+    </ResultsWrapper>
+  )
 }
 
 export default SearchResults
-
-/*
-{results !== null || results.length !== 0
-        ? results.map(estate => {
-            return <Estate estate={estate} />
-          })
-        : estatesNew.map(estate => {
-            return <Estate estate={estate} />
-          })}
- */

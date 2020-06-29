@@ -10,7 +10,7 @@ export const SortingWrapper = styled.section`
   -webkit-align-items: center;
   justify-content: space-between;
   -webkit-justify-content: space-between;
-  padding: 10px;
+  padding: 10px 5vw 10px;
 `
 export const SortContainer = styled.div`
   width: max-content;

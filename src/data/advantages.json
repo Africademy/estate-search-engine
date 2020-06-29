@@ -1,7 +1,38 @@
 [
-  { "key": 1, "name": "Parking", "checked": true },
-  { "key": 2, "name": "Full AGD", "checked": false },
-  { "key": 3, "name": "TV", "checked": false },
-  { "key": 4, "name": "Close to city center", "checked": false },
-  { "key": 5, "name": "Security", "checked": false }
+  {
+    "key": 1,
+    "name": {
+      "pl": "Parking",
+      "en": "Parking"
+    },
+    "checked": true
+  },
+  {
+    "key": 2,
+    "name": {
+      "pl": "Pełne AGD",
+      "en": "Full AGD"
+    },
+    "checked": false
+  },
+  {
+    "key": 3,
+    "name": {
+      "pl": "TV",
+      "en": "TV"
+    },
+    "checked": false
+  },
+  {
+    "key": 4,
+    "name": {
+      "pl": "Blisko centrum",
+      "en": "Close to the city center"
+    },
+    "checked": false
+  },
+  { "key": 5, "name": {
+    "pl": "Ochrona",
+    "en": "Security"
+  }, "checked": false }
 ]

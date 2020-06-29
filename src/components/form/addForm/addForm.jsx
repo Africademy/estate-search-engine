@@ -3,8 +3,10 @@ import { FormWrapper } from "./addForm.styled"
 import Images from "../images/images"
 import Basics from "../basics/basics"
 import Prices from "../prices/prices"
+import Localization from "../map/localization"
 import Advantages from "../advantages/advantages"
 import Submit from "../submit/submit"
+import advantagesJSON from "../../../data/advantages.json"
 
 const AddForm = ({
   name,
@@ -22,7 +24,6 @@ const AddForm = ({
   sellPrice,
   rentPrice,
   rent,
-  sellAndRent,
   currency,
   handleInsertCurrency,
   handleSubmit,
@@ -32,6 +33,12 @@ const AddForm = ({
   clearPrices,
   getPrice,
   handleRentAndSellChoose,
+  priceError,
+  advantagesError,
+  firstFile,
+  secondFile,
+  thirdFile,
+  handleFiles,
 }) => {
   const [types] = useState([
     { key: 1, name: "Flat" },
@@ -46,16 +53,14 @@ const AddForm = ({
     { key: 2, name: "EUR" },
     { key: 3, name: "USD" },
   ])
-  const [advantages] = useState([
-    { key: 1, name: "Garage", selected: false },
-    { key: 2, name: "TV", selected: false },
-    { key: 3, name: "Full AGD", selected: false },
-    { key: 4, name: "Internet", selected: false },
-    { key: 5, name: "Security", selected: false },
-  ])
   return (
     <FormWrapper onSubmit={e => handleSubmit(e)}>
-      <Images />
+      <Images
+        firstFile={firstFile}
+        secondFile={secondFile}
+        thirdFile={thirdFile}
+        handleFiles={handleFiles}
+      />
       <Basics
         city={city}
         name={name}
@@ -81,14 +86,19 @@ const AddForm = ({
         sellPrice={sellPrice}
         rentPrice={rentPrice}
         rent={rent}
-        sellAndRent={sellAndRent}
         handleInsertCurrency={handleInsertCurrency}
         clearAllFields={clearAllFields}
         clearPrices={clearPrices}
         getPrice={getPrice}
         handleRentAndSellChoose={handleRentAndSellChoose}
+        priceError={priceError}
       />
-      <Advantages clearPrices={clearPrices} advantages={advantages} />
+      <Localization />
+      <Advantages
+        clearPrices={clearPrices}
+        advantages={advantagesJSON}
+        advantagesError={advantagesError}
+      />
       <Submit />
     </FormWrapper>
   )

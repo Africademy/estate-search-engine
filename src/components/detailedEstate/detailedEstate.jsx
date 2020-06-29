@@ -36,7 +36,8 @@ const DetailedEstate = ({ updated, handleLike, estate }) => {
         </Address>
         <Footer>
           <Price>
-            $<Highlight>{estate.prices[0].price}</Highlight>
+            $<Highlight>{estate.prices.price}</Highlight>{" "}
+            {estate.prices.type === "Rent" ? "/ month" : null}
           </Price>
           <AddToFavourites onClick={() => handleLike(estate)}>
             {estate.liked ? (
