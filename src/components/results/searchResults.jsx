@@ -1,12 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { ResultsWrapper } from "./searchResults.styled"
 import Estate from "../estate/estate"
 import NoResults from "../noResults/noResults"
 import { useSelector } from "react-redux"
 
 // TODO FUNCTIONALITY - possibility to filter only already seen estates
-const SearchResults = ({ results }) => {
-  const estates = useSelector(state => state.Estates)
+const SearchResults = () => {
+  const estates = useSelector(state => state.Filter)
   const compare = (a, b) => {
     const priceA = a.prices.price
     const priceB = b.prices.price
@@ -19,28 +19,6 @@ const SearchResults = ({ results }) => {
     }
     return comparison
   }
-  const renderResults = () => {
-    const {
-      value: { type, payment, minPrice, maxPrice },
-    } = results
-    if (results) {
-      if (results.results.length === 0) {
-        if (
-          type !== "Choose..." ||
-          payment !== "Choose..." ||
-          minPrice !== 0 ||
-          maxPrice !== 0
-        ) {
-          return <NoResults />
-        }
-      } else {
-        return results.results.map(estate => {
-          return <Estate key={estate.key} estate={estate} />
-        })
-      }
-    }
-  }
-
   return (
     <ResultsWrapper>
       {estates.map(estate => {

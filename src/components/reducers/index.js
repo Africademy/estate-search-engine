@@ -8,6 +8,7 @@ export const initState = {
   estates: estates,
   modal: false,
   english: true,
+  filtering: estates,
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -87,5 +88,45 @@ export const SwitchLanguage = (state = initState.english, action) => {
     return !state
   } else {
     return state
+  }
+}
+
+export const Filter = (state = initState.filtering, action) => {
+  switch (action.type) {
+    case "FILTER_BY_CITY": {
+      let filter
+      if (action.payload !== "") {
+        filter = state.filter(estate => {
+          return `${estate.city}, ${estate.district}` === action.payload
+        })
+        return filter
+      } else {
+        return state
+      }
+    }
+    case "FILTER_BY_TYPE": {
+      const filtered = state.filter(estate => {
+        return estate.type === action.payload
+      })
+      return filtered
+    }
+    case "FILTER_BY_TRANSACTION": {
+      const filtered = state.filter(estate => {
+        return estate.prices.type === action.payload
+      })
+      return filtered
+    }
+    case "FILTER_BY_PRICE": {
+      const filtered = state.filter(estate => {
+        return (
+          estate.prices.price >= action.payload.minPrice &&
+          estate.prices.price <= action.payload.maxPrice
+        )
+      })
+      return filtered
+    }
+    default: {
+      return state
+    }
   }
 }

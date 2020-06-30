@@ -19,7 +19,7 @@ const MapElement = ReactMapboxGl({
 })
 
 const OnMapSearching = ({ results }) => {
-  const estate = useSelector(state => state.Estates)
+  const estate = useSelector(state => state.Filter)
   const [zoom, setZoom] = useState(6)
   const [defaultCenter] = useState([19.478517, 52.0637])
   const [newCenter, setNewCenter] = useState(null)

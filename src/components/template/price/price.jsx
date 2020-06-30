@@ -26,9 +26,9 @@ const Price = ({ prices }) => {
         )}
       </DropdownContainer>
       {type === false ? (
-        <PriceValue>${prices[0].price} / month</PriceValue>
+        <PriceValue>${prices.price} / month</PriceValue>
       ) : (
-        <PriceValue>${prices[1].price}</PriceValue>
+        <PriceValue>${prices.price}</PriceValue>
       )}
     </PriceWrapper>
   )

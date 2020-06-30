@@ -10,6 +10,7 @@ import {
   SearchResults,
   Estates,
   SwitchLanguage,
+  Filter,
 } from "../components/reducers"
 
 const reducers = combineReducers({
@@ -19,7 +20,10 @@ const reducers = combineReducers({
   SearchResults,
   Estates,
   SwitchLanguage,
+  Filter,
 })
+
+//window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 export const store = createStore(
   reducers,

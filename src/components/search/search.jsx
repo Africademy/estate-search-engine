@@ -17,10 +17,16 @@ import AdvancedSearch from "../advancedSearch/advancedSearch"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 import EstatesData from "../../data/estates.json"
 import { SearchResults } from "../actions/searchResults"
+import { filterByCity } from "../actions/filterByCity"
+import { filterByType } from "../actions/filterByType"
+import { filterByTransaction } from "../actions/filterByTransaction"
+import { filterByPrice } from "../actions/filterByPrice"
+import { dispatch } from "gatsby-cli/lib/reporter/redux"
 
 const mapStateToProps = state => {
   return {
     lang: state.SwitchLanguage,
+    filter: state.Filter,
   }
 }
 
@@ -74,6 +80,10 @@ class Search extends Component {
         { key: 5, amount: 4 },
         { key: 6, amount: 5 },
       ],
+      filters: [
+        { name: "city", value: "Warsaw, Wola" },
+        { name: "type", value: "Flat" },
+      ],
     }
     this.type = createRef()
   }
@@ -111,7 +121,24 @@ class Search extends Component {
 
   insertAttributes = e => {
     e.preventDefault()
-    this.setState({ [e.target.name]: e.target.innerText })
+    const { dispatch } = this.props
+    switch (e.target.name) {
+      case "chooseType": {
+        this.setState({ [e.target.name]: e.target.innerText }, () => {
+          dispatch(filterByType(this.state.chooseType))
+        })
+        return
+      }
+      case "choosePayment": {
+        this.setState({ [e.target.name]: e.target.innerText }, () => {
+          dispatch(filterByTransaction(this.state.choosePayment))
+        })
+        return
+      }
+      default: {
+        this.setState({ [e.target.name]: e.target.innerText })
+      }
+    }
   }
   insertValue = e => {
     e.preventDefault()
@@ -143,7 +170,11 @@ class Search extends Component {
   }
   applyPrice = e => {
     e.preventDefault()
-    this.setState({ togglePrice: false })
+    const { dispatch } = this.props
+    const { minPrice, maxPrice } = this.state
+    this.setState({ togglePrice: false }, () => {
+      dispatch(filterByPrice(minPrice, maxPrice))
+    })
   }
   handleRangeChange = e => {
     e.preventDefault()
@@ -178,47 +209,18 @@ class Search extends Component {
       minPrice,
       maxPrice,
     } = this.state
-    const dispatch = this.props.dispatch
-    let res = estates.filter(estate => {
-      return `${estate.city}, ${estate.district}` === this.state.city
-    })
-    res = estates
-    /*if (city === "") {
-      dispatch(SearchResults(estates))
+    const { dispatch } = this.props
+    dispatch(filterByCity(this.state.city))
+
+    setTimeout(() => {
       navigate("/results")
-    } */
-    if (chooseType !== "Choose...") {
-      let choosen = res.filter(estate => {
-        return estate.type === chooseType
-      })
-      res = choosen
-    }
-    if (choosePayment !== "Choose...") {
-      res.filter(estate => {
-        return estate.prices.forEach(price => {
-          return price.type === choosePayment
-        })
-      })
-    }
-    if (price !== "Choose...") {
-      if (choosePayment === "Rent") {
-        res.filter(estate => {
-          return (
-            estate.prices[0].price > parseInt(minPrice) &&
-            estate.prices[0].price < parseInt(maxPrice)
-          )
-        })
-      }
-    }
-    dispatch(
-      SearchResults(res, city, chooseType, choosePayment, minPrice, maxPrice)
-    )
-    navigate("/results")
+    }, 500)
   }
 
   render() {
     const { types, transaction, found } = this.state
-    const { lang } = this.props
+    const { lang, filter } = this.props
+    console.log(filter)
     return (
       <SearchWrapper>
         <HomepageIllustration />

@@ -36,7 +36,7 @@ export const HeaderWrapper = styled.header`
     }
   }}
 `
-export const Logo = styled.div`
+export const Logo = styled.button`
   height: 100%;
   width: 10%;
   display: flex;
@@ -44,6 +44,13 @@ export const Logo = styled.div`
   -webkit-justify-content: center;
   align-items: center;
   -webkit-align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `
 export const LogoSVG = styled.img`
   height: 50%;
