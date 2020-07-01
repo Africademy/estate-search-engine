@@ -16,12 +16,11 @@ import HomepageIllustration from "../homepageIllustration/homepageIllustration"
 import AdvancedSearch from "../advancedSearch/advancedSearch"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 import EstatesData from "../../data/estates.json"
-import { SearchResults } from "../actions/searchResults"
 import { filterByCity } from "../actions/filterByCity"
 import { filterByType } from "../actions/filterByType"
 import { filterByTransaction } from "../actions/filterByTransaction"
 import { filterByPrice } from "../actions/filterByPrice"
-import { dispatch } from "gatsby-cli/lib/reporter/redux"
+import { getFilterProps } from "../actions/getFilterProps"
 
 const mapStateToProps = state => {
   return {
@@ -201,7 +200,6 @@ class Search extends Component {
   handleSearch = e => {
     e.preventDefault()
     const {
-      estates,
       chooseType,
       city,
       choosePayment,
@@ -209,18 +207,23 @@ class Search extends Component {
       minPrice,
       maxPrice,
     } = this.state
+    const props = {
+      city: city,
+      chooseType: chooseType,
+      choosePayment: choosePayment,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+    }
     const { dispatch } = this.props
     dispatch(filterByCity(this.state.city))
+    dispatch(getFilterProps(props))
 
-    setTimeout(() => {
-      navigate("/results")
-    }, 500)
+    navigate("/results")
   }
 
   render() {
     const { types, transaction, found } = this.state
-    const { lang, filter } = this.props
-    console.log(filter)
+    const { lang } = this.props
     return (
       <SearchWrapper>
         <HomepageIllustration />

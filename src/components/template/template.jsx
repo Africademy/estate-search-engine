@@ -31,7 +31,7 @@ import Advantages from "./advantages/advantages"
 const Template = ({ pageContext: { state } }) => {
   const [slider, setSlider] = useState(0)
   const [imageWidth, setImageWidth] = useState()
-  const toggle = useSelector(state => state.ToggleModal)
+  const toggle = useSelector(state => state.modal)
   const dispatch = useDispatch()
   useEffect(() => {
     if (document) {

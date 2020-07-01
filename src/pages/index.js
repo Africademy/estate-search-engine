@@ -11,6 +11,8 @@ import {
   Estates,
   SwitchLanguage,
   Filter,
+  ToggleFullScreen,
+  FilterProps,
 } from "../components/reducers"
 
 const reducers = combineReducers({
@@ -21,14 +23,13 @@ const reducers = combineReducers({
   Estates,
   SwitchLanguage,
   Filter,
+  modal: ToggleFullScreen,
+  filterProps: FilterProps,
 })
 
 //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
-export const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+export const store = createStore(reducers)
 
 const IndexPage = () => (
   <Layout>

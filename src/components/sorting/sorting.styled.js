@@ -19,16 +19,17 @@ export const SortContainer = styled.div`
 `
 export const SortDropdown = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   width: 75%;
   height: auto;
   top: 100%;
   right: 0;
   background-color: #f3f3f3;
-  transform: scale(0);
   display: flex;
   flex-flow: column;
   -webkit-flex-flow: column;
+  transition: 0.3s ease-in-out;
+  transform-origin: center 0;
 `
 export const SortInput = styled.input`
   height: 40px;
@@ -40,9 +41,6 @@ export const SortInput = styled.input`
   &:focus {
     outline: none;
     border-radius: 10px 10px 0 0;
-  }
-  &:focus ~ ${SortDropdown} {
-    transform: scale(1);
   }
 `
 export const Label = styled.label`
@@ -59,5 +57,8 @@ export const Item = styled.button`
 
   &:hover {
     background-color: #d9d9d9;
+  }
+  &:focus {
+    outline: none;
   }
 `

@@ -5,7 +5,7 @@ export const EstatesCarouselWrapper = styled.section`
   z-index: 40;
   bottom: 0;
   width: 100%;
-  height: 15vh;
+  height: 18vh;
   display: flex;
   padding: 0 1vw 1vw;
   overflow-x: scroll;

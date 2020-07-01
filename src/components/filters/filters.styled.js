@@ -26,3 +26,23 @@ export const AdvancedSearchWrapper = styled.div`
   width: 100%;
   height: auto;
 `
+export const FilterWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
+`
+export const Label = styled.label``
+export const MinPrice = styled.input`
+  padding: 10px;
+  font-size: 1em;
+`
+export const ChooseValue = styled.div`
+  position: relative;
+`
+export const Dropdown = styled.div`
+  width: 100%;
+  height: 10vh;
+  position: absolute;
+  background-color: #ccc;
+  z-index: 10;
+`

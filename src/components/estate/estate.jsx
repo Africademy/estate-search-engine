@@ -14,6 +14,7 @@ import {
 } from "./estate.styled"
 import Heart from "../icons/favourites"
 import HeartFull from "../icons/favouritesFilled"
+import NoImage from "../noImage/noImage"
 
 const Estate = ({ estate, handleLike }) => {
   const handleSeen = estate => {
@@ -23,11 +24,13 @@ const Estate = ({ estate, handleLike }) => {
   return (
     <EstateWrapper>
       <EstateImageContainer seen={estate.seen}>
-        {estate.images !== undefined
-          ? estate.images.map(img => {
-              return <Image key={img.key} src={`./photos/${img.img}.jpeg`} />
-            })
-          : null}
+        {estate.images.length > 0 ? (
+          estate.images.map(img => {
+            return <Image key={img.key} src={`./photos/${img.img}.jpeg`} />
+          })
+        ) : (
+          <NoImage height={"120px"} color={"#ddd"} />
+        )}
       </EstateImageContainer>
       <EstateContent>
         <Name onClick={() => handleSeen(estate)}>{estate.name}</Name>

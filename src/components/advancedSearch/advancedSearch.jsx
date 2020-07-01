@@ -10,7 +10,6 @@ import AdvancedFilter from "../searchEngine/advancedFilters/advancedFilters"
 import AdvantagesFilter from "../searchEngine/advantagesFilter/advantagesFilter"
 import advantages from "../../data/advantages.json"
 
-// TODO ADVANCED SEARCHING
 const AdvancedSearch = ({
   toggleAdvanced,
   insertMinRoom,
@@ -20,11 +19,19 @@ const AdvancedSearch = ({
 }) => {
   const [advs] = useState(advantages)
   const [filters] = useState([
-    { key: 1, name: "Luxurious", checked: false },
-    { key: 2, name: "Only with price", checked: false },
-    { key: 3, name: "Only with photo", checked: false },
+    { key: 1, name: { en: "Luxurious", pl: "Luksusowe" }, checked: false },
+    {
+      key: 2,
+      name: { en: "Only with price", pl: "Tylko z ceną" },
+      checked: false,
+    },
+    {
+      key: 3,
+      name: { en: "Only with photo", pl: "Tylko ze zdjęciem" },
+      checked: false,
+    },
   ])
-  const [rooms, setMinRooms] = useState([
+  const [rooms] = useState([
     { key: 1, value: 1 },
     { key: 2, value: 2 },
     { key: 3, value: 3 },
@@ -43,7 +50,6 @@ const AdvancedSearch = ({
     { key: 10, value: 2020 },
   ])
 
-  const [floor] = useState()
   return (
     <AdvancedWrapper toggleAdvanced={toggleAdvanced}>
       <AdvancedFilter

@@ -4,7 +4,7 @@ import { medium, small } from "../../breakpoints"
 
 export const PriceWrapper = styled.div`
   width: 30vw;
-  height: 15vh;
+  height: max-content;
   display: flex;
   justify-content: space-between;
   -webkit-justify-content: space-between;
@@ -22,54 +22,6 @@ export const PriceWrapper = styled.div`
   }
   @media all and (min-width: ${small}) and (max-width: ${medium}) {
     width: 100%;
-  }
-`
-export const DropdownContainer = styled.div`
-  height: auto;
-  width: 45%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  -webkit-align-items: center;
-  justify-content: space-between;
-`
-export const SwitchPrices = styled.input`
-  cursor: pointer;
-  width: 60px;
-  height: 30px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: relative;
-
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 30px;
-    background-color: #ccc;
-    border-radius: 50px;
-    padding: 10px;
-  }
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    top: 50%;
-    left: 5px;
-    margin: -10px 0 0;
-    border-radius: 50%;
-    background-color: ${colors.pink};
-  }
-  &:focus {
-    outline: none;
-  }
-  &:checked:after {
-    left: 60%;
   }
 `
 export const Item = styled.button`

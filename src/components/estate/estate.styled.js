@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { small } from "../breakpoints"
+import { small, medium, large } from "../breakpoints"
 import { colors } from "../../theme"
 import eye from "../../static/icons/eye-empty.svg"
 
@@ -101,6 +101,13 @@ export const Name = styled.h3`
   }
 
   @media all and (max-width: ${small}) {
+    font-size: 1.5em;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    font-size: 1.4em;
+    margin: 2vw 0 0;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
     font-size: 1.5em;
   }
 `

@@ -17,6 +17,14 @@ const Details = ({ estate }) => {
           <Category>Type</Category>
           <Value>{estate.type}</Value>
         </Position>
+        <Position>
+          <Category>Rooms</Category>
+          <Value>{estate.rooms}</Value>
+        </Position>
+        <Position>
+          <Category>Floor</Category>
+          <Value>{estate.floor}</Value>
+        </Position>
       </Grid>
     </DetailsWrapper>
   )

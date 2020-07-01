@@ -14,8 +14,7 @@ import { useSelector } from "react-redux"
 import EstateMarker from "../estateMarker/estateMarker"
 
 const MapElement = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1IjoiamFjazB3c2t5IiwiYSI6ImNqeTBpMjZnODAwYmczaW9pbzJzcmw1ZmIifQ.Cm3FLzzV89Dh6elS6STIag",
+  accessToken: process.env.GATSBY_MAPBOX_TOKEN,
 })
 
 const OnMapSearching = ({ results }) => {

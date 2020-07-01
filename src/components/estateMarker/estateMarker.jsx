@@ -12,6 +12,9 @@ const EstateMarker = ({ price, type }) => {
       case "House": {
         return <House height={"20px"} groupColor={"#fff"} color={"#000"} />
       }
+      default: {
+        return <Building height={"20px"} />
+      }
     }
   }
   return (

@@ -10,7 +10,7 @@ const Advantages = ({ estate }) => {
         {estate.advantages.map(adv => {
           return (
             <Item key={adv.key}>
-              <Icon src={`../icons/${adv.name.toLowerCase()}.svg`} />
+              <Icon src={`./static/icons/${adv.name.toLowerCase()}.svg`} />
               {adv.name}
             </Item>
           )

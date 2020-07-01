@@ -8,8 +8,7 @@ import { Header, SubTitle, ClearBtn } from "../basics/basics.styled"
 import mapboxgl from "mapbox-gl"
 import { connect } from "react-redux"
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiamFjazB3c2t5IiwiYSI6ImNqeTBpMjZnODAwYmczaW9pbzJzcmw1ZmIifQ.Cm3FLzzV89Dh6elS6STIag"
+mapboxgl.accessToken = process.env.GATSBY_MAPBOX_TOKEN
 
 const mapStateToProps = state => {
   return {
@@ -20,7 +19,6 @@ const mapStateToProps = state => {
 class Localization extends Component {
   constructor() {
     super()
-    this.mapContainer = createRef(null)
     this.state = {
       lng: 19.479767,
       lat: 52.068956,

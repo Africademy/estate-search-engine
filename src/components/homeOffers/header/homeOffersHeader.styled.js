@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../../theme"
-import { small } from "../../breakpoints"
+import { small, medium, large, xlarge } from "../../breakpoints"
 
 export const Wrapper = styled.section`
   width: 100%;
@@ -25,6 +25,15 @@ export const SwitchDisplayStyle = styled.section`
 
   @media all and (max-width: ${small}) {
     width: 20vw;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 100px;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 10vw;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 100px;
   }
 `
 export const MostImportant = styled.button`

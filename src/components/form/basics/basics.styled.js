@@ -76,6 +76,8 @@ export const Input = styled.input`
   &:focus {
     outline: #000;
   }
+  &:required {
+  }
   @media all and (max-width: ${small}) {
     height: 60px;
   }

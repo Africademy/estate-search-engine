@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
-import { small, medium, large } from "../breakpoints"
+import { small, medium, large, xlarge } from "../breakpoints"
 
 export const HeaderWrapper = styled.header`
   width: 100vw;
@@ -105,6 +105,9 @@ export const NavItem = styled.div`
   width: max-content;
   height: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
 
   a {
     height: 100%;
@@ -172,7 +175,10 @@ export const Interaction = styled.section`
     width: 30%;
   }
   @media all and (min-width: ${medium}) and (max-width: ${large}) {
-    width: 30%;
+    width: 35%;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 35%;
   }
 `
 export const FavouritesIcon = styled.button`
@@ -272,5 +278,34 @@ export const English = styled.button`
 
   &:focus {
     outline: none;
+  }
+`
+export const NavBtn = styled.button`
+  font-size: 1em;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: ${props => (props.mark ? colors.pink : "#000")};
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+  &:before {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    height: 3px;
+    background-color: ${colors.pink};
+    bottom: -20%;
+    transition: 0.3s ease-in-out;
+  }
+  &:hover:before {
+    width: 100%;
+    transition: 0.3s ease-in-out;
+  }
+  &:hover {
+    font-weight: 500;
   }
 `

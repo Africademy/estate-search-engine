@@ -55,6 +55,7 @@ const Basics = ({
             placeholder={
               lang ? "eg. Valley Apartments" : "np. Valley Apartments"
             }
+            required
           />
         </InputWrapper>
         <InputWrapper>
@@ -65,6 +66,7 @@ const Basics = ({
             type="text"
             value={street}
             placeholder="eg. State Street 40"
+            required
           />
         </InputWrapper>
         <InputWrapper>
@@ -75,6 +77,7 @@ const Basics = ({
             type="text"
             value={city}
             placeholder="eg. State Street 40"
+            required
           />
         </InputWrapper>
         <InputWrapper>
@@ -87,6 +90,7 @@ const Basics = ({
             type="text"
             value={district}
             placeholder="eg. State Street 40"
+            required
           />
         </InputWrapper>
         <DropdownInput>
@@ -96,6 +100,7 @@ const Basics = ({
             value={insertType}
             type="text"
             readOnly
+            required
           />
           <Dropdown toggle={toggleDropdown}>
             {types.map(type => {

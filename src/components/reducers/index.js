@@ -9,6 +9,8 @@ export const initState = {
   modal: false,
   english: true,
   filtering: estates,
+  fullScreenModal: false,
+  filterProps: {},
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -76,8 +78,6 @@ export const SearchResults = (state = initState.results, action) => {
 export const Estates = (state = initState.estates, action) => {
   if (action.type === "FILTER") {
     return state
-  } else if (action.type === "ADD_NEW") {
-    return [...state, action.payload]
   } else {
     return state
   }
@@ -88,6 +88,17 @@ export const SwitchLanguage = (state = initState.english, action) => {
     return !state
   } else {
     return state
+  }
+}
+
+export const ToggleFullScreen = (state = initState.fullScreenModal, action) => {
+  switch (action.type) {
+    case "TOGGLE_MODAL": {
+      return !state
+    }
+    default: {
+      return state
+    }
   }
 }
 
@@ -124,6 +135,42 @@ export const Filter = (state = initState.filtering, action) => {
         )
       })
       return filtered
+    }
+    case "ADD_NEW": {
+      state = [...state, action.payload]
+      return state
+    }
+    case "SORT_FROM_LOWEST": {
+      const compare = (a, b) => {
+        const priceA = a.prices.price
+        const priceB = b.prices.price
+
+        let comparison = 0
+        if (priceA > priceB) {
+          comparison = 1
+        } else if (priceA < priceB) {
+          comparison = -1
+        }
+        return comparison
+      }
+      return state.sort(compare)
+    }
+    case "SORT_FROM_HIGHEST": {
+      return state
+    }
+    case "RESET_RESULTS": {
+      return (state = initState.estates)
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+export const FilterProps = (state = initState.filterProps, action) => {
+  switch (action.type) {
+    case "GET_FILTER_PROPS": {
+      return (state = action.payload)
     }
     default: {
       return state

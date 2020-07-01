@@ -13,7 +13,7 @@ const Map = ({ coords }) => {
   return (
     <MapWrapper id="mapContainer">
       <MapElement
-        style="mapbox://styles/mapbox/streets-v9"
+        style={"mapbox://styles/mapbox/streets-v9"}
         containerStyle={{
           height: "100%",
           width: "100%",

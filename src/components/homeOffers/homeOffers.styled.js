@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { small } from "../breakpoints"
+import { small, medium, large } from "../breakpoints"
 
 export const HomeOffersWrapper = styled.main`
   width: 100vw;
@@ -29,5 +29,17 @@ export const Grid = styled.section`
     grid-template-columns: 1fr;
     height: auto;
     grid-row-gap: 5vw;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    grid-template-columns: ${props =>
+      props.isDetailed ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+    grid-column-gap: 2vw;
+    grid-row-gap: 2vw;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    grid-template-columns: ${props =>
+      props.isDetailed ? "repeat(2, 1fr)" : "repeat(2, 1fr)"};
+    grid-column-gap: 2vw;
+    grid-row-gap: 2vw;
   }
 `

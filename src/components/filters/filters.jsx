@@ -4,11 +4,16 @@ import {
   BasicSearchWrapper,
   SearchWrapper,
   AdvancedSearchWrapper,
+  FilterWrapper,
+  Label,
+  MinPrice,
+  ChooseValue,
+  Dropdown,
 } from "./filters.styled"
 import { SearchInput } from "../search/search.styled"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 
-const Filters = ({ searchInput, handleSearchInput }) => {
+const Filters = ({ searchInput, handleSearchInput, lang }) => {
   const [types] = useState([
     { key: 1, name: "Flat" },
     { key: 2, name: "House" },
@@ -30,6 +35,7 @@ const Filters = ({ searchInput, handleSearchInput }) => {
           <SearchInput
             value={searchInput !== undefined ? searchInput : ""}
             type="text"
+            placeholder={lang ? "Search..." : "Szukaj..."}
             onChange={e => handleSearchInput(e)}
           />
         </SearchWrapper>
@@ -47,6 +53,13 @@ const Filters = ({ searchInput, handleSearchInput }) => {
           handleToggle={toggleDropdown}
           toggleState={toggle}
         />
+        <FilterWrapper>
+          <Label>Price</Label>
+          <ChooseValue>
+            <MinPrice min={0} max={2000} type="number" />
+            <Dropdown></Dropdown>
+          </ChooseValue>
+        </FilterWrapper>
       </BasicSearchWrapper>
       <AdvancedSearchWrapper></AdvancedSearchWrapper>
     </FiltersWrapper>

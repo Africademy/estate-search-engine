@@ -19,6 +19,8 @@
       "lat": 21.018751,
       "long": 52.227895
     },
+    "rooms": 4,
+    "floor": "1 floor",
     "city": "Warsaw",
     "district": "Śródmieście",
     "type": "House",
@@ -56,23 +58,16 @@
     "name": "Golden Gate Valley",
     "seen": false,
     "slug": "golden-gate-valley",
-    "images": [
-      {
-        "key": 1,
-        "img": "estate2-1"
-      },
-      {
-        "key": 2,
-        "img": "estate2-2"
-      }
-    ],
+    "images": [],
     "address": "ul. Straszewskiego 2",
     "coords": {
       "lat": 19.934979,
       "long": 50.055547
     },
+    "rooms": 6,
     "city": "Cracow",
     "district": "Stare Miasto",
+    "floor": "13th",
     "type": "Flat",
     "prices": {
       "type": "Rent",
@@ -117,8 +112,10 @@
       "lat": 21.249101,
       "long": 52.22409
     },
+    "rooms": 2,
     "city": "Warsaw",
     "district": "Wola",
+    "floor": "5th",
     "type": "Flat",
     "prices": {
       "type": "Sell",
@@ -164,8 +161,10 @@
       "lat": 21.002489,
       "long": 52.231207
     },
+    "rooms": 4,
     "city": "Warsaw",
     "district": "Wola",
+    "floor": "2nd",
     "type": "Flat",
     "prices": {
       "type": "Rent",
