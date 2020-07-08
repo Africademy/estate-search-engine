@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { navigate } from "gatsby"
 import {
   HeaderWrapper,
@@ -28,8 +28,9 @@ const Header = () => {
   const toggle = useSelector(state => state.ToggleModal)
   const lang = useSelector(state => state.SwitchLanguage)
   const [scrolled, setScrolled] = useState(false)
-  const [mark, setMark] = useState(false)
+  const [mark] = useState(false)
   const dispatch = useDispatch()
+  const header = useRef()
   const [types] = useState([
     { key: 1, name: "Flat" },
     { key: 2, name: "House" },
@@ -61,7 +62,7 @@ const Header = () => {
     navigate("/")
   }
   return (
-    <HeaderWrapper toggle={toggle} scrolled={scrolled}>
+    <HeaderWrapper ref={header} toggle={toggle} scrolled={scrolled}>
       <Logo onClick={() => returnHome()} role="button">
         <LogoSVG src={logo} />
       </Logo>

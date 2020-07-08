@@ -117,10 +117,10 @@ export const Item = styled.button`
   transition: 0.3s ease-in-out;
   color: #000;
 
-  :hover {
+  &:hover {
     color: ${colors.pink};
   }
-  :before {
+  &:before {
     content: "";
     display: block;
     height: 100%;
@@ -131,10 +131,10 @@ export const Item = styled.button`
     top: 0;
     visibility: hidden;
   }
-  :hover:before {
+  &:hover:before {
     visibility: visible;
   }
-  :focus {
+  &:focus {
     outline: none;
   }
 `
@@ -144,4 +144,18 @@ export const Separator = styled.span`
   height: 2px;
   background-color: #000;
   margin: 0 10px 0;
+`
+export const Input = styled.input`
+  height: 40px;
+  font-size: 1em;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  width: 80%;
+
+  &:focus {
+    outline: none;
+  }
 `

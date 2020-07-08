@@ -13,14 +13,18 @@ import {
   Filters,
 } from "./search.styled"
 import HomepageIllustration from "../homepageIllustration/homepageIllustration"
-import AdvancedSearch from "../advancedSearch/advancedSearch"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
+import AdvancedSearching from "../searchEngine/advancedSearching/advancedSearching"
 import EstatesData from "../../data/estates.json"
 import { filterByCity } from "../actions/filterByCity"
 import { filterByType } from "../actions/filterByType"
 import { filterByTransaction } from "../actions/filterByTransaction"
 import { filterByPrice } from "../actions/filterByPrice"
 import { getFilterProps } from "../actions/getFilterProps"
+import { toggleAmountOfRooms } from "../actions/advancedActions/toggleAmountOfRooms"
+import { toggleMaxAmountOfRooms } from "../actions/advancedActions/toggleMaxAmountOfRooms"
+import { toggleMinFloor } from "../actions/advancedActions/toggleMinFloor"
+import { toggleMaxFloor } from "../actions/advancedActions/toggleMaxFloor"
 
 const mapStateToProps = state => {
   return {
@@ -35,29 +39,33 @@ class Search extends Component {
     this.state = {
       rent: false,
       city: "",
-      chooseType: "Choose...",
-      choosePayment: "Choose...",
+      chooseType: "",
+      choosePayment: "",
       toggleType: false,
       togglePayment: false,
       togglePrice: false,
-      toggleAdvanced: false,
+      toggleAdvancedSettings: false,
       toggleSearchDropdown: false,
       estates: EstatesData,
       found: null,
-      minRooms: "",
-      maxRooms: "",
-      price: "Choose...",
+      minRooms: 0,
+      maxRooms: 0,
+      price: "",
       minPrice: 0,
       maxPrice: 0,
+      minPriceForMeter: 0,
+      maxPriceForMeter: 0,
+      minFloor: 0,
+      maxFloor: 0,
       result: [],
       types: [
+        { key: 8, name: "All" },
         { key: 1, name: "Flat" },
         { key: 2, name: "House" },
         { key: 3, name: "Garage" },
         { key: 4, name: "Commercial" },
         { key: 5, name: "Parcels" },
         { key: 6, name: "Rooms" },
-        { key: 7, name: "All" },
       ],
       rooms: [
         { key: 1, amount: "Studio" },
@@ -65,10 +73,10 @@ class Search extends Component {
         { key: 3, amount: 2 },
         { key: 4, amount: 3 },
         { key: 5, amount: 4 },
-        { key: 6, amount: "More than 4" },
+        { key: 6, amount: "+4" },
       ],
       transaction: [
-        { key: 1, name: "Sell" },
+        { key: 1, name: "Buy" },
         { key: 2, name: "Rent" },
       ],
       floor: [
@@ -139,9 +147,26 @@ class Search extends Component {
       }
     }
   }
-  insertValue = e => {
+  insertValue = (e, value) => {
     e.preventDefault()
-    this.setState({ [e.target.name]: e.target.innerText })
+    const { dispatch } = this.props
+    const name = e.target.name
+    console.log(name)
+    this.setState({ [e.target.name]: value }, () => {
+      if (name === "minRooms") {
+        dispatch(toggleAmountOfRooms(value))
+      }
+      if (name === "maxRooms") {
+        dispatch(toggleMaxAmountOfRooms(value))
+      }
+      if (name === "minFloor") {
+        dispatch(toggleMinFloor(value))
+      }
+      if (name === "maxFloor") {
+        console.log(name)
+        dispatch(toggleMaxFloor(value))
+      }
+    })
   }
 
   handleTransaction = e => {
@@ -181,7 +206,9 @@ class Search extends Component {
   }
   handleAdvancedSettings = e => {
     e.preventDefault()
-    this.setState({ toggleAdvanced: !this.state.toggleAdvanced })
+    this.setState({
+      toggleAdvancedSettings: !this.state.toggleAdvancedSettings,
+    })
   }
   formatSearchInput = () => {
     const { city } = this.state
@@ -293,7 +320,7 @@ class Search extends Component {
               handlePrice={this.handlePrice}
             />
             <ToggleAdvanced
-              toggleAdvanced={this.state.toggleAdvanced}
+              toggle={this.state.toggleAdvancedSettings}
               onClick={e => this.handleAdvancedSettings(e)}
             >
               <svg
@@ -319,15 +346,16 @@ class Search extends Component {
               </svg>
             </ToggleAdvanced>
           </Filters>
-          <SearchBtn>{lang ? "Search" : "Szukaj"}</SearchBtn>
-          <AdvancedSearch
+          <AdvancedSearching
             minRooms={this.state.minRooms}
             maxRooms={this.state.maxRooms}
-            insertMinRoom={this.insertMinRoom}
-            insertMaxRoom={this.insertMaxRoom}
-            toggleAdvanced={this.state.toggleAdvanced}
-            floor={this.state.floor}
+            insertValue={this.insertValue}
+            rooms={this.state.rooms}
+            floors={this.state.floor}
+            minFloor={this.state.minFloor}
+            maxFloor={this.state.maxFloor}
           />
+          <SearchBtn>{lang ? "Search" : "Szukaj"}</SearchBtn>
         </SearchBar>
       </SearchWrapper>
     )

@@ -6,10 +6,8 @@ import {
   Checkbox,
   Label,
 } from "./advantagesFilter.styled"
-import { useSelector } from "react-redux"
 
-const AdvantagesFilter = ({ array, title }) => {
-  const lang = useSelector(state => state.SwitchLanguage)
+const AdvantagesFilter = ({ array, title, pl, lang }) => {
   const handleSelect = adv => {
     console.log(adv.checked)
     const status = adv.checked
@@ -17,7 +15,7 @@ const AdvantagesFilter = ({ array, title }) => {
   }
   return (
     <Wrapper>
-      <Title>{title}</Title>
+      <Title>{lang ? title : pl}</Title>
       {array.map(advantage => {
         return (
           <Advantage

@@ -29,7 +29,7 @@ export const Dropdown = styled.ul`
   min-width: 45%;
   background-color: #e7e7e7;
   transition: 0.3s ease-in-out;
-  transform: scale(0);
+  transform: ${props => (props.toggle ? "scale(1)" : "scale(0)")};
   transform-origin: 50% 0;
   padding: 2px 0 2px;
   display: flex;

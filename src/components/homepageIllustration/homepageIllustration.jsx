@@ -1,12 +1,26 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { IllustrationWrapper, Accent } from "./homepageIllustration.styled"
 import { HeroText } from "../search/search.styled"
 import { useSelector } from "react-redux"
+import gsap from "gsap"
+import { CSSPlugin } from "gsap/CSSPlugin"
+gsap.registerPlugin(CSSPlugin)
 
 const HomepageIllustration = () => {
   const lang = useSelector(state => state.SwitchLanguage)
+  const title = useRef()
+
+  useEffect(() => {
+    gsap.from(title.current.children[0], {
+      x: -70,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+    })
+  }, [])
+
   return (
-    <IllustrationWrapper>
+    <IllustrationWrapper ref={title}>
       {lang ? (
         <HeroText>
           Find your dream <Accent>home</Accent>

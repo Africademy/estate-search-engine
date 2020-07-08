@@ -56,6 +56,8 @@ export const InputWrapper = styled.section`
 `
 export const Filters = styled.section`
   display: flex;
+  align-items: center;
+  -webkit-align-items: center;
   @media all and (max-width: ${small}) {
     display: grid;
     width: 100%;
@@ -180,7 +182,7 @@ export const ToggleAdvanced = styled.button`
 
   svg {
     transition: 0.3s ease-in-out;
-    transform: rotate(${props => (props.toggleAdvanced ? "90deg" : 0)});
+    transform: rotate(${props => (props.toggle ? "90deg" : 0)});
   }
 
   :focus {

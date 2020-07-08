@@ -10,6 +10,7 @@ import {
   ApplyBtn,
   InputWrapper,
   Separator,
+  Input,
 } from "./basicFilter.styled"
 import { MaxInput, MinInput } from "../advancedFilters/advancedFilters.styled"
 
@@ -32,7 +33,7 @@ const BasicFilter = ({
       {array !== null ? (
         <Type onClick={e => handleToggle(e)}>
           <Title>{title}</Title>
-          {chooseType}
+          <Input placeholder={"Choose..."} readOnly value={chooseType} />
           <Dropdown toggleState={toggleState}>
             {array.map(item => {
               return (
@@ -46,7 +47,7 @@ const BasicFilter = ({
       ) : (
         <Type>
           <Title onClick={e => openPrice(e)}>{title}</Title>
-          {chooseType}
+          <Input readOnly placeholder={chooseType} value={chooseType} />
           <PriceDropdown toggleState={toggleState}>
             <PriceFilter>
               <InputWrapper>

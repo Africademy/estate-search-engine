@@ -11,6 +11,11 @@ export const initState = {
   filtering: estates,
   fullScreenModal: false,
   filterProps: {},
+  roomsDropdown: false,
+  maxRoomsDropdown: false,
+  minFloorDrop: false,
+  maxFloorDrop: false,
+  selectedAdvantages: [],
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -171,6 +176,108 @@ export const FilterProps = (state = initState.filterProps, action) => {
   switch (action.type) {
     case "GET_FILTER_PROPS": {
       return (state = action.payload)
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+export const FilterByAdvantages = (
+  state = initState.selectedAdvantages,
+  action
+) => {
+  switch (action.type) {
+    case "FILTER_BY_ADVANTAGES": {
+      return (state = [...state, action.payload])
+    }
+    case "REMOVE_SELECTED": {
+      return state.filter(item => {
+        return item.key !== action.payload.key
+      })
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+export const ToggleAmountOfRooms = (
+  state = initState.roomsDropdown,
+  action
+) => {
+  switch (action.type) {
+    case "TOGGLE_AMOUNT_OF_ROOMS": {
+      if (action.payload === "text") {
+        return true
+      }
+      if (
+        typeof action.payload === "number" ||
+        typeof action.payload === "string"
+      ) {
+        return false
+      }
+      break
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+export const ToggleMaxRooms = (state = initState.maxRoomsDropdown, action) => {
+  switch (action.type) {
+    case "TOGGLE_MAX_AMOUNT_OF_ROOMS": {
+      if (action.payload === "text") {
+        return true
+      }
+      if (
+        typeof action.payload === "number" ||
+        typeof action.payload === "string"
+      ) {
+        return false
+      }
+      break
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+export const ToggleFloor = (state = initState.minFloorDrop, action) => {
+  switch (action.type) {
+    case "TOGGLE_MIN_FLOOR": {
+      if (action.payload === "text") {
+        return true
+      }
+      if (
+        typeof action.payload === "number" ||
+        typeof action.payload === "string"
+      ) {
+        return false
+      }
+      break
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+export const ToggleMaxFloor = (state = initState.maxFloorDrop, action) => {
+  switch (action.type) {
+    case "TOGGLE_MAX_FLOOR": {
+      if (action.payload === "text") {
+        return true
+      }
+      if (
+        typeof action.payload === "number" ||
+        typeof action.payload === "string"
+      ) {
+        return false
+      }
+      break
     }
     default: {
       return state

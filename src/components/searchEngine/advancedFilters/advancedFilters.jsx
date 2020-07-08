@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import {
   Wrapper,
   Label,
@@ -13,40 +13,47 @@ import {
 
 const AdvancedFilter = ({
   dropdown,
-  insertMinRoom,
-  insertMaxRoom,
+  insertRoom,
   min,
   max,
   title,
   icon,
   array,
   readOnly,
+  pl,
+  lang,
+  toggle,
 }) => {
   return (
     <Wrapper>
-      <Label>{title}</Label>
+      <Label>{lang ? title : pl}</Label>
       <InputsWrapper>
         <InputWrapper>
           {readOnly ? (
-            <MinInput icon={icon} placeholder="min" readOnly value={min} />
+            <MinInput
+              icon={icon}
+              placeholder={lang ? "min" : "od"}
+              readOnly
+              value={min}
+            />
           ) : (
             <MinInput
               icon={icon}
-              placeholder="min"
+              placeholder={lang ? "min" : "od"}
               onChange={e => console.log(e)}
               value={min}
             />
           )}
           {dropdown ? (
-            <Dropdown>
+            <Dropdown toggle={toggle}>
               {array.map(val => {
                 return (
                   <Item
                     name="minRooms"
-                    onClick={e => insertMinRoom(e)}
+                    onClick={e => insertRoom(e)}
                     key={val.key}
                   >
-                    {val.value}
+                    {val.amount}
                   </Item>
                 )
               })}
@@ -55,25 +62,31 @@ const AdvancedFilter = ({
         </InputWrapper>
         <InputWrapper>
           {readOnly ? (
-            <MaxInput icon={icon} placeholder="max" readOnly value={max} />
+            <MaxInput
+              icon={icon}
+              placeholder={lang ? "max" : "od"}
+              readOnly
+              value={max}
+            />
           ) : (
             <MaxInput
               icon={icon}
-              placeholder="max"
+              placeholder={lang ? "max" : "od"}
               onChange={e => console.log(e)}
               value={max}
             />
           )}
           {dropdown ? (
-            <DropdownMax>
+            <DropdownMax toggle={toggle}>
               {array.map(val => {
                 return (
                   <Item
                     name="maxRooms"
-                    onClick={e => insertMaxRoom(e)}
+                    onClick={e => insertRoom(e)}
+                    value={max}
                     key={val.key}
                   >
-                    {val.value}
+                    {val.amount}
                   </Item>
                 )
               })}
