@@ -16,20 +16,37 @@ export const SortContainer = styled.div`
   width: max-content;
   height: max-content;
   position: relative;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+`
+export const InputContainer = styled.div`
+  position: relative;
 `
 export const SortDropdown = styled.div`
   position: absolute;
   z-index: 5;
-  width: 75%;
+  width: 90%;
   height: auto;
-  top: 100%;
-  right: 0;
-  background-color: #f3f3f3;
+  top: -20%;
+  left: 50%;
+  margin: 0 0 0 -45%;
+  background-color: #ffffff;
   display: flex;
   flex-flow: column;
   -webkit-flex-flow: column;
   transition: 0.3s ease-in-out;
-  transform-origin: center 0;
+  transform-origin: center 20%;
+  transform: ${props => (props.toggle ? "scale(1)" : "scale(0)")};
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px 0 10px;
+  box-shadow: 0 0.7px 2.2px -6px rgba(0, 0, 0, 0.02),
+    0 1.8px 5.3px -6px rgba(0, 0, 0, 0.028),
+    0 3.4px 10px -6px rgba(0, 0, 0, 0.035),
+    0 6px 17.9px -6px rgba(0, 0, 0, 0.042),
+    0 11.3px 33.4px -6px rgba(0, 0, 0, 0.05),
+    0 27px 80px -6px rgba(0, 0, 0, 0.07);
 `
 export const SortInput = styled.input`
   height: 40px;
@@ -40,7 +57,6 @@ export const SortInput = styled.input`
 
   &:focus {
     outline: none;
-    border-radius: 10px 10px 0 0;
   }
 `
 export const Label = styled.label`
@@ -54,9 +70,13 @@ export const Item = styled.button`
   text-align: left;
   width: 100%;
   cursor: pointer;
+  background: transparent;
+  transition: 0.3s ease-in-out;
 
   &:hover {
-    background-color: #d9d9d9;
+    background-color: ${colors.pink};
+    color: #fff;
+    transition: 0.3s ease-in-out;
   }
   &:focus {
     outline: none;

@@ -22,7 +22,7 @@ const Estate = ({ estate, handleLike }) => {
     navigate(`/results/${estate.slug}`)
   }
   return (
-    <EstateWrapper>
+    <EstateWrapper className="estate">
       <EstateImageContainer seen={estate.seen}>
         {estate.images.length > 0 ? (
           estate.images.map(img => {

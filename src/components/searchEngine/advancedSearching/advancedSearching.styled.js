@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { colors } from "../../../theme"
 
 export const AdvancedWrapper = styled.main`
   position: absolute;
@@ -15,9 +16,50 @@ export const AdvancedWrapper = styled.main`
     0 15.9px 29.3px -10px rgba(0, 0, 0, 0.036),
     0 29.7px 54.7px -10px rgba(0, 0, 0, 0.043),
     0 71px 131px -10px rgba(0, 0, 0, 0.06);
+  padding: 1vw;
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  transition: 0.3s ease-in-out;
+  transform: ${props => (props.toggle ? "scale(1)" : "scale(0)")};
+  transform-origin: 100% 0;
+`
+export const Filters = styled.div`
+  width: 100%;
+  height: 10vh;
   display: grid;
   grid-template-columns: 15% 15% 60%;
   grid-row-gap: 2vw;
   grid-column-gap: 2vw;
-  padding: 1vw;
+`
+export const Buttons = styled.div`
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  align-items: center;
+  -webkit-align-items: center;
+`
+export const ClearAllFields = styled.button`
+  font-size: 1em;
+  border: none;
+  background: none;
+  color: ${colors.pink};
+  height: max-content;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+`
+
+export const SubmitBtn = styled(ClearAllFields)`
+  background-color: ${colors.pink};
+  color: #fff;
+  padding: 20px 40px 20px;
+  border-radius: 5px;
+  margin: 0 0 0 80px;
 `

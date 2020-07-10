@@ -12,13 +12,13 @@ import {
   SwitchLanguage,
   Filter,
   ToggleFullScreen,
-  FilterProps,
   ToggleAmountOfRooms,
   ToggleMaxRooms,
   ToggleFloor,
   ToggleMaxFloor,
   FilterByAdvantages,
 } from "../components/reducers"
+import { SearchEngine } from "../components/reducers/searchProps"
 
 const reducers = combineReducers({
   ToggleBurger,
@@ -29,20 +29,17 @@ const reducers = combineReducers({
   SwitchLanguage,
   Filter,
   modal: ToggleFullScreen,
-  filterProps: FilterProps,
   toggleRoomsDropdown: ToggleAmountOfRooms,
   toggleMaxRooms: ToggleMaxRooms,
   toggleFloor: ToggleFloor,
   toggleMaxFloor: ToggleMaxFloor,
   filterByAdvantages: FilterByAdvantages,
+  search: SearchEngine,
 })
 
 //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
-export const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+export const store = createStore(reducers)
 
 const IndexPage = () => (
   <Layout>

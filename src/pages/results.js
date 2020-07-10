@@ -7,23 +7,17 @@ import Sorting from "../components/sorting/sorting"
 import { useSelector } from "react-redux"
 
 const Results = () => {
-  const props = useSelector(state => state.filterProps)
   const lang = useSelector(state => state.SwitchLanguage)
-  const [searchInput, setSearchInput] = useState(props.city)
-  const handleSearchInput = e => {
-    setSearchInput(e.target.value)
+  const [switchSorting, setSorting] = useState(false)
+  const handleSwitch = () => {
+    setSorting(!switchSorting)
   }
-
   return (
     <Layout>
       <Container>
-        <Filters
-          handleSearchInput={handleSearchInput}
-          searchInput={searchInput}
-          lang={lang}
-        />
-        <Sorting />
-        <SearchResults />
+        <Filters lang={lang} />
+        <Sorting handleSwitch={handleSwitch} />
+        <SearchResults sorting={switchSorting} />
       </Container>
     </Layout>
   )

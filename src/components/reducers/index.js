@@ -1,4 +1,5 @@
 import estates from "../../data/estates.json"
+import advantages from "../../data/advantages.json"
 
 export const initState = {
   favourites: [],
@@ -10,12 +11,12 @@ export const initState = {
   english: true,
   filtering: estates,
   fullScreenModal: false,
-  filterProps: {},
   roomsDropdown: false,
   maxRoomsDropdown: false,
   minFloorDrop: false,
   maxFloorDrop: false,
   selectedAdvantages: [],
+  initialJSON: advantages,
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -161,21 +162,21 @@ export const Filter = (state = initState.filtering, action) => {
       return state.sort(compare)
     }
     case "SORT_FROM_HIGHEST": {
-      return state
+      const compare = (a, b) => {
+        const priceA = a.prices.price
+        const priceB = b.prices.price
+        let comparison = 0
+        if (priceA < priceB) {
+          comparison = 1
+        } else if (priceA > priceB) {
+          comparison = -1
+        }
+        return comparison
+      }
+      return state.sort(compare)
     }
     case "RESET_RESULTS": {
       return (state = initState.estates)
-    }
-    default: {
-      return state
-    }
-  }
-}
-
-export const FilterProps = (state = initState.filterProps, action) => {
-  switch (action.type) {
-    case "GET_FILTER_PROPS": {
-      return (state = action.payload)
     }
     default: {
       return state
@@ -195,6 +196,12 @@ export const FilterByAdvantages = (
       return state.filter(item => {
         return item.key !== action.payload.key
       })
+    }
+    case "RESET": {
+      initState.initialJSON.forEach(item => {
+        item.checked = false
+      })
+      return []
     }
     default: {
       return state

@@ -20,11 +20,12 @@ import { filterByCity } from "../actions/filterByCity"
 import { filterByType } from "../actions/filterByType"
 import { filterByTransaction } from "../actions/filterByTransaction"
 import { filterByPrice } from "../actions/filterByPrice"
-import { getFilterProps } from "../actions/getFilterProps"
 import { toggleAmountOfRooms } from "../actions/advancedActions/toggleAmountOfRooms"
 import { toggleMaxAmountOfRooms } from "../actions/advancedActions/toggleMaxAmountOfRooms"
 import { toggleMinFloor } from "../actions/advancedActions/toggleMinFloor"
 import { toggleMaxFloor } from "../actions/advancedActions/toggleMaxFloor"
+import { resetAdvantages } from "../actions/advancedActions/resetAdvantages"
+import { handleSearch } from "../actions/searchData"
 
 const mapStateToProps = state => {
   return {
@@ -224,6 +225,22 @@ class Search extends Component {
       toggleSearchDropdown: false,
     })
   }
+  handleResetFields = e => {
+    e.preventDefault()
+    const { dispatch } = this.props
+    dispatch(resetAdvantages())
+    this.setState({
+      city: "",
+      chooseType: "",
+      choosePayment: "",
+      minRooms: 0,
+      maxRooms: 0,
+      minPrice: 0,
+      maxPrice: 0,
+      minFloor: 0,
+      maxFloor: 0,
+    })
+  }
   handleSearch = e => {
     e.preventDefault()
     const {
@@ -233,17 +250,21 @@ class Search extends Component {
       price,
       minPrice,
       maxPrice,
+      minRooms,
+      maxRooms,
     } = this.state
-    const props = {
-      city: city,
-      chooseType: chooseType,
-      choosePayment: choosePayment,
+    const values = {
+      search: city,
+      estateType: chooseType,
+      transaction: choosePayment,
       minPrice: minPrice,
       maxPrice: maxPrice,
+      minRooms: minRooms,
+      maxRooms: maxRooms,
     }
     const { dispatch } = this.props
     dispatch(filterByCity(this.state.city))
-    dispatch(getFilterProps(props))
+    dispatch(handleSearch(values))
 
     navigate("/results")
   }
@@ -254,7 +275,10 @@ class Search extends Component {
     return (
       <SearchWrapper>
         <HomepageIllustration />
-        <SearchBar onSubmit={e => this.handleSearch(e)}>
+        <SearchBar
+          toggle={this.state.toggleAdvancedSettings}
+          onSubmit={e => this.handleSearch(e)}
+        >
           <InputWrapper>
             <SearchInput
               onFocus={() => this.setState({ toggleSearchDropdown: true })}
@@ -354,6 +378,8 @@ class Search extends Component {
             floors={this.state.floor}
             minFloor={this.state.minFloor}
             maxFloor={this.state.maxFloor}
+            handleResetFields={this.handleResetFields}
+            toggleAdvancedSettings={this.state.toggleAdvancedSettings}
           />
           <SearchBtn>{lang ? "Search" : "Szukaj"}</SearchBtn>
         </SearchBar>

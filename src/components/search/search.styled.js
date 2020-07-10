@@ -30,12 +30,13 @@ export const SearchBar = styled.form`
   width: 80%;
   height: 100px;
   background-color: ${colors.darkBlue};
-  border-radius: 10px;
+  border-radius: ${props => (props.toggle ? "10px 10px 0 0" : "10px")};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 15px 0;
   position: relative;
+  transition: 0.3s ease-in-out;
 
   @media all and (max-width: ${small}) {
     width: 90%;

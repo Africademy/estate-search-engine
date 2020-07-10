@@ -12,6 +12,9 @@ import ReactMapboxGl, { Marker } from "react-mapbox-gl"
 import EstatesCarousel from "../estatesCarousel/estatesCarousel"
 import { useSelector } from "react-redux"
 import EstateMarker from "../estateMarker/estateMarker"
+import gsap from "gsap"
+import { CSSPlugin } from "gsap/CSSPlugin"
+gsap.registerPlugin(CSSPlugin)
 
 const MapElement = ReactMapboxGl({
   accessToken: process.env.GATSBY_MAPBOX_TOKEN,
@@ -30,6 +33,16 @@ const OnMapSearching = ({ results }) => {
         const { coords } = results[0]
         setNewCenter([coords.lat, coords.long])
       }
+    }
+    if (document) {
+      const items = document.querySelectorAll(".carouselItem")
+      gsap.from(items, {
+        opacity: 0,
+        y: 10,
+        stagger: 0.3,
+        duration: 0.7,
+        delay: 0.2,
+      })
     }
   }, [results])
 

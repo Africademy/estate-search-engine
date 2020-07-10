@@ -1,25 +1,25 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { ResultsWrapper } from "./searchResults.styled"
 import Estate from "../estate/estate"
 import { useSelector } from "react-redux"
+import gsap from "gsap"
+import { CSSPlugin } from "gsap/CSSPlugin"
+gsap.registerPlugin(CSSPlugin)
 
-// TODO FUNCTIONALITY - possibility to filter only already seen estates
-const SearchResults = () => {
+const SearchResults = ({ sorting }) => {
   const estates = useSelector(state => state.Filter)
-  const props = useSelector(state => state.filterProps)
-  const compare = (a, b) => {
-    const priceA = a.prices.price
-    const priceB = b.prices.price
-
-    let comparison = 0
-    if (priceA > priceB) {
-      comparison = 1
-    } else if (priceA < priceB) {
-      comparison = -1
+  useEffect(() => {
+    if (document) {
+      const estates = document.querySelectorAll(".estate")
+      gsap.from(estates, {
+        opacity: 0,
+        y: 10,
+        stagger: 0.3,
+        duration: 0.7,
+        delay: 0.2,
+      })
     }
-    return comparison
-  }
-  console.log(props)
+  }, [sorting])
   return (
     <ResultsWrapper>
       {estates.map(estate => {

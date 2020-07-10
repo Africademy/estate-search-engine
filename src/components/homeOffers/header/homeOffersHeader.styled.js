@@ -54,12 +54,29 @@ export const MostImportant = styled.button`
     outline: none;
   }
 
-  &:hover {
+  ${props => {
+    if (props.isDetailed) {
+      return `
+         &:hover {
     transition: 0.3s ease-in-out;
     background-color: ${colors.darkBlue};
   }
+      `
+    }
+  }}
 `
-export const MoreDetails = styled(MostImportant)``
+export const MoreDetails = styled(MostImportant)`
+  ${props => {
+    if (!props.isDetailed) {
+      return `
+        &:hover {
+    transition: 0.3s ease-in-out;
+    background-color: ${colors.darkBlue};
+  }
+      `
+    }
+  }}
+`
 
 export const Icon = styled.div`
   width: 60%;

@@ -4,16 +4,13 @@ import {
   BasicSearchWrapper,
   SearchWrapper,
   AdvancedSearchWrapper,
-  FilterWrapper,
-  Label,
-  MinPrice,
-  ChooseValue,
-  Dropdown,
 } from "./filters.styled"
 import { SearchInput } from "../search/search.styled"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
+import { useSelector } from "react-redux"
 
 const Filters = ({ searchInput, handleSearchInput, lang }) => {
+  const searchProps = useSelector(state => state.search)
   const [types] = useState([
     { key: 1, name: "Flat" },
     { key: 2, name: "House" },
@@ -33,7 +30,7 @@ const Filters = ({ searchInput, handleSearchInput, lang }) => {
       <BasicSearchWrapper>
         <SearchWrapper>
           <SearchInput
-            value={searchInput !== undefined ? searchInput : ""}
+            value={searchProps !== undefined ? searchProps.search : ""}
             type="text"
             placeholder={lang ? "Search..." : "Szukaj..."}
             onChange={e => handleSearchInput(e)}
@@ -45,6 +42,7 @@ const Filters = ({ searchInput, handleSearchInput, lang }) => {
           name={"chooseType"}
           handleToggle={toggleDropdown}
           toggleState={toggle}
+          chooseType={searchProps !== undefined ? searchProps.estateType : ""}
         />
         <BasicFilter
           array={types}
@@ -52,14 +50,8 @@ const Filters = ({ searchInput, handleSearchInput, lang }) => {
           name={"chooseType"}
           handleToggle={toggleDropdown}
           toggleState={toggle}
+          chooseType={searchProps !== undefined ? searchProps.transaction : ""}
         />
-        <FilterWrapper>
-          <Label>Price</Label>
-          <ChooseValue>
-            <MinPrice min={0} max={2000} type="number" />
-            <Dropdown></Dropdown>
-          </ChooseValue>
-        </FilterWrapper>
       </BasicSearchWrapper>
       <AdvancedSearchWrapper></AdvancedSearchWrapper>
     </FiltersWrapper>

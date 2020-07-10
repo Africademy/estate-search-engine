@@ -15,7 +15,10 @@ import NoImage from "../noImage/noImage"
 const CarouselItem = ({ estate, showSelectedEstate }) => {
   const { name, prices, images } = estate
   return (
-    <CarouselItemWrapper onClick={() => showSelectedEstate(estate)}>
+    <CarouselItemWrapper
+      className="carouselItem"
+      onClick={() => showSelectedEstate(estate)}
+    >
       <GradientFade />
       <ImageContainer>
         {images.length > 0 ? (

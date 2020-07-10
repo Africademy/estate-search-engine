@@ -14,6 +14,7 @@ import { useSelector } from "react-redux"
 
 const HomeOffersHeader = ({ handleToggle, isDetailed }) => {
   const lang = useSelector(state => state.SwitchLanguage)
+  console.log(isDetailed)
   return (
     <Wrapper>
       <Title>{lang ? "Newest" : "Najnowsze"}</Title>
@@ -42,7 +43,7 @@ const HomeOffersHeader = ({ handleToggle, isDetailed }) => {
             </Icon>
           </MoreDetails>
         ) : (
-          <MoreDetails disabled="disabled">
+          <MoreDetails isDetailed={isDetailed} disabled="disabled">
             <Icon>
               <Line />
               <Line />

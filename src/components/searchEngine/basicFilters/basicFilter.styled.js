@@ -3,7 +3,7 @@ import { colors } from "../../../theme"
 import { small } from "../../breakpoints"
 
 export const TypesWrapper = styled.section`
-  height: 60%;
+  height: 100%;
   width: 10vw;
   font-size: 1em;
   display: flex;

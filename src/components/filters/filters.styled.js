@@ -1,9 +1,10 @@
 import styled from "styled-components"
+import { colors } from "../../theme"
 
 export const FiltersWrapper = styled.section`
   width: 100%;
-  height: 10vh;
-  background-color: #d7d7d7;
+  height: auto;
+  background-color: ${colors.darkBlue};
   display: flex;
   flex-flow: column;
   -webkit-flex-flow: column;
@@ -11,7 +12,7 @@ export const FiltersWrapper = styled.section`
 `
 export const BasicSearchWrapper = styled.div`
   width: 100%;
-  height: auto;
+  height: 6vh;
   display: flex;
   align-items: center;
   -webkit-align-items: center;
