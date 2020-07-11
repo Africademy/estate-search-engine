@@ -14,9 +14,23 @@ export const Container = styled.main`
 export const ResultsWrapper = styled.main`
   width: 100%;
   height: auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 2vw;
-  grid-column-gap: 2vw;
+  ${props => {
+    if (props.estates > 0) {
+      return `
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row-gap: 2vw;
+        grid-column-gap: 2vw;
+      `
+    } else {
+      return `
+        display: flex;
+        justify-content: center;
+        -webkit-justify-content: center;
+        align-content: center;
+        -webkit-align-items: center;
+      `
+    }
+  }};
   padding: 2vw 5vw 10vw;
 `

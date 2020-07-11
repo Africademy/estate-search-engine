@@ -1,10 +1,12 @@
 import styled from "styled-components"
 import { colors } from "../../../theme"
 import { small } from "../../breakpoints"
+import dollarW from "../../../static/icons/dollar-white.svg"
 
 export const TypesWrapper = styled.section`
   height: 100%;
-  width: 10vw;
+  width: ${props =>
+    props.title === "Price" || props.title === "Cena" ? "15vw" : "10vw"};
   font-size: 1em;
   display: flex;
   flex-flow: column;
@@ -59,19 +61,18 @@ export const Dropdown = styled.section`
   transition: 0.3s ease-in-out;
   transform-origin: center 0;
   transform: scale(${props => (props.toggleState ? 1 : 0)});
-`
-export const PriceDropdown = styled(Dropdown)`
-  width: 200%;
+  border-radius: 10px;
+  overflow: hidden;
 `
 export const PriceFilter = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  flex-flow: column;
-  -webkit-flex-flow: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
   position: relative;
-  padding: 0 10px 0;
-  align-items: flex-end;
 `
 export const InputWrapper = styled.div`
   width: 100%;
@@ -81,21 +82,6 @@ export const InputWrapper = styled.div`
   align-items: center;
   -webkit-align-items: center;
   margin: 0 0 10px;
-`
-export const ApplyBtn = styled.button`
-  width: max-content;
-  padding: 10px 20px 10px;
-  bottom: 0;
-  right: 10px;
-  cursor: pointer;
-  border-radius: 50px;
-  background-color: ${colors.pink};
-  color: #fff;
-  border: none;
-
-  :focus {
-    outline: none;
-  }
 `
 export const Title = styled.p`
   color: #fff;
@@ -138,13 +124,6 @@ export const Item = styled.button`
     outline: none;
   }
 `
-export const Separator = styled.span`
-  display: block;
-  width: 20px;
-  height: 2px;
-  background-color: #000;
-  margin: 0 10px 0;
-`
 export const Input = styled.input`
   height: 40px;
   font-size: 1em;
@@ -157,5 +136,59 @@ export const Input = styled.input`
 
   &:focus {
     outline: none;
+  }
+`
+export const MinInput = styled.input`
+  width: 100%;
+  height: 40px;
+  font-size: 1em;
+  padding: 10px 10px 10px 25px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background: url(${dollarW}) no-repeat rgba(255, 255, 255, 0.15) 0 center;
+
+  &:focus {
+    outline: none;
+  }
+`
+export const MaxInput = styled(MinInput)``
+export const MinPriceContainer = styled.div`
+  position: relative;
+  width: 45%;
+`
+export const MaxPriceContainer = styled(MinPriceContainer)``
+export const PriceDropdown = styled.ul`
+  width: 100%;
+  position: absolute;
+  height: auto;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
+  justify-content: center;
+  padding: 10px 0 10px;
+  box-shadow: 0 0.1px 2.2px rgba(0, 0, 0, 0.025),
+    0 0.3px 5.3px rgba(0, 0, 0, 0.036), 0 0.6px 10px rgba(0, 0, 0, 0.045),
+    0 1.1px 17.9px rgba(0, 0, 0, 0.054), 0 2.1px 33.4px rgba(0, 0, 0, 0.065),
+    0 5px 80px rgba(0, 0, 0, 0.09);
+  transform: ${props => (props.toggle ? "scale(1)" : "scale(0)")};
+`
+export const PriceItem = styled.button`
+  font-size: 1em;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: ${colors.pink};
+    color: #fff;
   }
 `

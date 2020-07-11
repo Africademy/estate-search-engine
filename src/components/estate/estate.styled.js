@@ -11,12 +11,12 @@ export const EstateContent = styled.section`
   z-index: 0;
   bottom: 0;
   left: 0;
-  box-shadow: 0 0.4px 2.2px -10px rgba(0, 0, 0, 0.039),
+  /*box-shadow: 0 0.4px 2.2px -10px rgba(0, 0, 0, 0.039),
     0 0.9px 5.3px -10px rgba(0, 0, 0, 0.057),
     0 1.6px 10px -10px rgba(0, 0, 0, 0.07),
     0 2.9px 17.9px -10px rgba(0, 0, 0, 0.083),
     0 5.4px 33.4px -10px rgba(0, 0, 0, 0.101),
-    0 13px 80px -10px rgba(0, 0, 0, 0.14);
+    0 13px 80px -10px rgba(0, 0, 0, 0.14); */
   padding: 40px 15px 15px;
 
   display: flex;

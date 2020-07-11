@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { ResultsWrapper } from "./searchResults.styled"
 import Estate from "../estate/estate"
+import FoundNothing from "../foundNothing/foundNothing"
 import { useSelector } from "react-redux"
 import gsap from "gsap"
 import { CSSPlugin } from "gsap/CSSPlugin"
@@ -21,10 +22,14 @@ const SearchResults = ({ sorting }) => {
     }
   }, [sorting])
   return (
-    <ResultsWrapper>
-      {estates.map(estate => {
-        return <Estate key={estate.key} estate={estate} />
-      })}
+    <ResultsWrapper estates={estates.length}>
+      {estates.length > 0 ? (
+        estates.map(estate => {
+          return <Estate key={estate.key} estate={estate} />
+        })
+      ) : (
+        <FoundNothing />
+      )}
     </ResultsWrapper>
   )
 }

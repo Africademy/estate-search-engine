@@ -12,6 +12,7 @@ import {
   ToggleAdvanced,
   Filters,
 } from "./search.styled"
+import Error from "../error/error"
 import HomepageIllustration from "../homepageIllustration/homepageIllustration"
 import BasicFilter from "../searchEngine/basicFilters/basicFilter"
 import AdvancedSearching from "../searchEngine/advancedSearching/advancedSearching"
@@ -26,11 +27,15 @@ import { toggleMinFloor } from "../actions/advancedActions/toggleMinFloor"
 import { toggleMaxFloor } from "../actions/advancedActions/toggleMaxFloor"
 import { resetAdvantages } from "../actions/advancedActions/resetAdvantages"
 import { handleSearch } from "../actions/searchData"
+import { handleError } from "../actions/handleError"
+import { number } from "prop-types"
 
 const mapStateToProps = state => {
   return {
     lang: state.SwitchLanguage,
     filter: state.Filter,
+    search: state.search,
+    error: state.error,
   }
 }
 
@@ -52,12 +57,14 @@ class Search extends Component {
       minRooms: 0,
       maxRooms: 0,
       price: "",
-      minPrice: 0,
-      maxPrice: 0,
+      minPriceValue: number,
+      maxPriceValue: number,
       minPriceForMeter: 0,
       maxPriceForMeter: 0,
       minFloor: 0,
       maxFloor: 0,
+      toggleMinDrop: false,
+      toggleMaxDrop: false,
       result: [],
       types: [
         { key: 8, name: "All" },
@@ -180,18 +187,16 @@ class Search extends Component {
     e.preventDefault()
     this.setState({ togglePrice: true })
   }
-  handlePrice = e => {
+  handlePrice = (e, value) => {
     e.preventDefault()
-    this.setState(
-      {
-        [e.target.name]: e.target.value,
-      },
-      () => {
-        this.setState({
-          price: `${this.state.minPrice} - ${this.state.maxPrice}`,
-        })
-      }
-    )
+    if (e.target.name === "minPrice")
+      this.setState({ minPriceValue: value }, () => {
+        this.setState({ toggleMinDrop: false })
+      })
+    if (e.target.name === "maxPrice")
+      this.setState({ maxPriceValue: value }, () => {
+        this.setState({ toggleMaxDrop: false })
+      })
   }
   applyPrice = e => {
     e.preventDefault()
@@ -241,6 +246,11 @@ class Search extends Component {
       maxFloor: 0,
     })
   }
+  toggleDropdowns = e => {
+    e.preventDefault()
+    if (e.target.name === "minPrice") this.setState({ toggleMinDrop: true })
+    if (e.target.name === "maxPrice") this.setState({ toggleMaxDrop: true })
+  }
   handleSearch = e => {
     e.preventDefault()
     const {
@@ -248,8 +258,8 @@ class Search extends Component {
       city,
       choosePayment,
       price,
-      minPrice,
-      maxPrice,
+      minPriceValue,
+      maxPriceValue,
       minRooms,
       maxRooms,
     } = this.state
@@ -257,16 +267,24 @@ class Search extends Component {
       search: city,
       estateType: chooseType,
       transaction: choosePayment,
-      minPrice: minPrice,
-      maxPrice: maxPrice,
+      minPrice: minPriceValue,
+      maxPrice: maxPriceValue,
       minRooms: minRooms,
       maxRooms: maxRooms,
     }
     const { dispatch } = this.props
-    dispatch(filterByCity(this.state.city))
-    dispatch(handleSearch(values))
 
-    navigate("/results")
+    if (minPriceValue > maxPriceValue) {
+      dispatch(handleError())
+      setTimeout(() => {
+        dispatch(handleError())
+      }, 3000)
+    } else {
+      dispatch(filterByCity(this.state.city))
+      dispatch(filterByPrice(minPriceValue, maxPriceValue))
+      dispatch(handleSearch(values))
+      navigate("/results")
+    }
   }
 
   render() {
@@ -342,8 +360,25 @@ class Search extends Component {
               name={"price"}
               openPrice={this.openPrice}
               handlePrice={this.handlePrice}
+              toggleDropdowns={this.toggleDropdowns}
+              toggleMin={this.state.toggleMinDrop}
+              toggleMax={this.state.toggleMaxDrop}
+              minPriceValue={this.state.minPriceValue}
+              maxPriceValue={this.state.maxPriceValue}
             />
-            <ToggleAdvanced
+          </Filters>
+          <SearchBtn>{lang ? "Search" : "Szukaj"}</SearchBtn>
+          <Error />
+        </SearchBar>
+      </SearchWrapper>
+    )
+  }
+}
+
+export default connect(mapStateToProps)(Search)
+
+/*
+<ToggleAdvanced
               toggle={this.state.toggleAdvancedSettings}
               onClick={e => this.handleAdvancedSettings(e)}
             >
@@ -369,8 +404,8 @@ class Search extends Component {
                 </g>
               </svg>
             </ToggleAdvanced>
-          </Filters>
-          <AdvancedSearching
+
+            <AdvancedSearching
             minRooms={this.state.minRooms}
             maxRooms={this.state.maxRooms}
             insertValue={this.insertValue}
@@ -380,12 +415,6 @@ class Search extends Component {
             maxFloor={this.state.maxFloor}
             handleResetFields={this.handleResetFields}
             toggleAdvancedSettings={this.state.toggleAdvancedSettings}
+            handleAdvanced={this.handleAdvancedSettings}
           />
-          <SearchBtn>{lang ? "Search" : "Szukaj"}</SearchBtn>
-        </SearchBar>
-      </SearchWrapper>
-    )
-  }
-}
-
-export default connect(mapStateToProps)(Search)
+ */

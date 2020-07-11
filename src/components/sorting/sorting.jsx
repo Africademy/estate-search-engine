@@ -15,9 +15,7 @@ import { sortFromHighest } from "../actions/sortFromHighest"
 
 const Sorting = ({ handleSwitch }) => {
   const dispatch = useDispatch()
-  const estates = useSelector(state => state.Filter)
-  const [sortInput, setSortInput] = useState("Price")
-  const [trigger, setTrigger] = useState(false)
+  const [sortInput, setSortInput] = useState("Choose...")
   const [toggleDropdown, setDropdown] = useState(false)
   const handleSorting = e => {
     if (e.target.name === "lowest") {

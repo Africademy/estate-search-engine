@@ -15,11 +15,17 @@ import {
 import Heart from "../icons/favourites"
 import HeartFull from "../icons/favouritesFilled"
 import NoImage from "../noImage/noImage"
+import { addToFavourites } from "../actions/addToFavourites"
+import { useDispatch } from "react-redux"
 
-const Estate = ({ estate, handleLike }) => {
+const Estate = ({ estate }) => {
+  const dispatch = useDispatch()
   const handleSeen = estate => {
     estate.seen = true
     navigate(`/results/${estate.slug}`)
+  }
+  const handleLike = estate => {
+    dispatch(addToFavourites(estate))
   }
   return (
     <EstateWrapper className="estate">

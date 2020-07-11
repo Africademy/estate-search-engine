@@ -1,18 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   Dropdown,
-  PriceDropdown,
-  Item,
   Title,
   TypesWrapper,
   Type,
   PriceFilter,
-  ApplyBtn,
-  InputWrapper,
-  Separator,
   Input,
+  MinInput,
+  MaxInput,
+  MinPriceContainer,
+  MaxPriceContainer,
+  PriceDropdown,
+  PriceItem,
 } from "./basicFilter.styled"
-import { MaxInput, MinInput } from "../advancedFilters/advancedFilters.styled"
 
 const BasicFilter = ({
   chooseType,
@@ -20,54 +20,80 @@ const BasicFilter = ({
   handleToggle,
   toggleState,
   title,
-  insert,
   openPrice,
-  applyPrice,
-  minPrice,
+  minPriceValue,
+  maxPriceValue,
   maxPrice,
   handlePrice,
-  name,
+  toggleMin,
+  toggleMax,
+  toggleDropdowns,
 }) => {
+  const [price] = useState([
+    { key: 1, value: 1000 },
+    { key: 2, value: 1200 },
+    { key: 3, value: 1400 },
+    { key: 4, value: 1600 },
+    { key: 5, value: 1800 },
+    { key: 6, value: 2000 },
+  ])
   return (
-    <TypesWrapper>
+    <TypesWrapper title={title}>
       {array !== null ? (
         <Type onClick={e => handleToggle(e)}>
           <Title>{title}</Title>
           <Input placeholder={"Choose..."} readOnly value={chooseType} />
-          <Dropdown toggleState={toggleState}>
-            {array.map(item => {
-              return (
-                <Item name={name} onClick={e => insert(e)} key={item.key}>
-                  {item.name}
-                </Item>
-              )
-            })}
-          </Dropdown>
+          <Dropdown toggleState={toggleState}></Dropdown>
         </Type>
       ) : (
         <Type>
           <Title onClick={e => openPrice(e)}>{title}</Title>
-          <Input readOnly placeholder={chooseType} value={chooseType} />
-          <PriceDropdown toggleState={toggleState}>
-            <PriceFilter>
-              <InputWrapper>
-                <MinInput
-                  onChange={e => handlePrice(e)}
-                  name="minPrice"
-                  value={minPrice}
-                  placeholder="min"
-                />
-                <Separator />
-                <MaxInput
-                  onChange={e => handlePrice(e)}
-                  name="maxPrice"
-                  value={maxPrice}
-                  placeholder="max"
-                />
-              </InputWrapper>
-              <ApplyBtn onClick={e => applyPrice(e)}>Apply</ApplyBtn>
-            </PriceFilter>
-          </PriceDropdown>
+          <PriceFilter>
+            <MinPriceContainer>
+              <MinInput
+                onClick={e => toggleDropdowns(e)}
+                name="minPrice"
+                value={minPriceValue}
+                placeholder="min"
+                readOnly
+              />
+              <PriceDropdown toggle={toggleMin}>
+                {price.map(item => {
+                  return (
+                    <PriceItem
+                      name="minPrice"
+                      onClick={e => handlePrice(e, item.value)}
+                      key={item.key}
+                    >
+                      {item.value}
+                    </PriceItem>
+                  )
+                })}
+              </PriceDropdown>
+            </MinPriceContainer>
+            <MaxPriceContainer>
+              <MaxInput
+                onClick={e => toggleDropdowns(e)}
+                name="maxPrice"
+                value={maxPriceValue}
+                placeholder="max"
+                readOnly
+              />
+              <PriceDropdown toggle={toggleMax}>
+                {price.map(item => {
+                  return (
+                    <PriceItem
+                      name="maxPrice"
+                      onClick={e => handlePrice(e, item.value)}
+                      key={item.key}
+                    >
+                      {item.value}
+                    </PriceItem>
+                  )
+                })}
+              </PriceDropdown>
+            </MaxPriceContainer>
+          </PriceFilter>
         </Type>
       )}
     </TypesWrapper>

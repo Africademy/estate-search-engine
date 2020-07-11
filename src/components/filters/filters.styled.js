@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
 
-export const FiltersWrapper = styled.section`
+export const FiltersWrapper = styled.form`
   width: 100%;
   height: auto;
   background-color: ${colors.darkBlue};

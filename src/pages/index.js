@@ -17,6 +17,7 @@ import {
   ToggleFloor,
   ToggleMaxFloor,
   FilterByAdvantages,
+  ErrorHandler,
 } from "../components/reducers"
 import { SearchEngine } from "../components/reducers/searchProps"
 
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   toggleMaxFloor: ToggleMaxFloor,
   filterByAdvantages: FilterByAdvantages,
   search: SearchEngine,
+  error: ErrorHandler,
 })
 
 //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

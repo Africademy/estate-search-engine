@@ -3,7 +3,7 @@ import { colors } from "../../../theme"
 
 export const AdvancedWrapper = styled.main`
   position: absolute;
-  width: 100%;
+  width: 95%;
   min-height: 10vh;
   height: 30vh;
   left: 0;
@@ -23,7 +23,15 @@ export const AdvancedWrapper = styled.main`
   justify-content: space-between;
   -webkit-justify-content: space-between;
   transition: 0.3s ease-in-out;
-  transform: ${props => (props.toggle ? "scale(1)" : "scale(0)")};
+
+  ${props => {
+    if (!props.toggle) {
+      return `
+      clip: rect(0 90% 50% 30%);
+      clip-path: inset(0 5% 90% 5%);
+      `
+    }
+  }};
   transform-origin: 100% 0;
 `
 export const Filters = styled.div`

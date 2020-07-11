@@ -17,6 +17,7 @@ export const initState = {
   maxFloorDrop: false,
   selectedAdvantages: [],
   initialJSON: advantages,
+  error: false,
 }
 
 export const Favourites = (state = initState.favourites, action) => {
@@ -285,6 +286,17 @@ export const ToggleMaxFloor = (state = initState.maxFloorDrop, action) => {
         return false
       }
       break
+    }
+    default: {
+      return state
+    }
+  }
+}
+
+export const ErrorHandler = (state = initState.error, action) => {
+  switch (action.type) {
+    case "HANDLE_ERROR": {
+      return !state
     }
     default: {
       return state

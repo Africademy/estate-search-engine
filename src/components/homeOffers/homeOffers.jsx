@@ -15,10 +15,6 @@ const HomeOffers = () => {
   const handleToggle = () => {
     setDetailed(!isDetailed)
   }
-  const handleLike = estate => {
-    dispatch(addToFavourites(estate))
-    setUpdated(!updated)
-  }
 
   return (
     <HomeOffersWrapper>
@@ -26,22 +22,10 @@ const HomeOffers = () => {
       <Grid isDetailed={isDetailed}>
         {isDetailed
           ? estates.map(estate => {
-              return (
-                <DetailedEstate
-                  handleLike={handleLike}
-                  key={estate.key}
-                  estate={estate}
-                />
-              )
+              return <DetailedEstate key={estate.key} estate={estate} />
             })
           : estates.map(estate => {
-              return (
-                <Estate
-                  handleLike={handleLike}
-                  key={estate.key}
-                  estate={estate}
-                />
-              )
+              return <Estate key={estate.key} estate={estate} />
             })}
       </Grid>
     </HomeOffersWrapper>

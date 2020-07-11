@@ -8,6 +8,7 @@ import { useSelector } from "react-redux"
 
 const Results = () => {
   const lang = useSelector(state => state.SwitchLanguage)
+  const estates = useSelector(state => state.Filter)
   const [switchSorting, setSorting] = useState(false)
   const handleSwitch = () => {
     setSorting(!switchSorting)
@@ -16,7 +17,7 @@ const Results = () => {
     <Layout>
       <Container>
         <Filters lang={lang} />
-        <Sorting handleSwitch={handleSwitch} />
+        {estates.length > 0 ? <Sorting handleSwitch={handleSwitch} /> : null}
         <SearchResults sorting={switchSorting} />
       </Container>
     </Layout>

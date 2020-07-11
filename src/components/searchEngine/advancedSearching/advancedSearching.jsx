@@ -24,13 +24,17 @@ const AdvancedSearching = ({
   maxFloor,
   handleResetFields,
   toggleAdvancedSettings,
+  handleAdvanced,
 }) => {
   const toggleDropdown = useSelector(state => state.toggleRoomsDropdown)
   const toggleMaxRooms = useSelector(state => state.toggleMaxRooms)
   const toggleFloor = useSelector(state => state.toggleFloor)
   const toggleMaximumFloor = useSelector(state => state.toggleMaxFloor)
   return (
-    <AdvancedWrapper toggle={toggleAdvancedSettings}>
+    <AdvancedWrapper
+      onClick={e => handleAdvanced(e)}
+      toggle={toggleAdvancedSettings}
+    >
       <Filters>
         <AdvancedFilter
           insertValue={insertValue}
